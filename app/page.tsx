@@ -12,40 +12,42 @@ export default function Home() {
     <>
     <main className='intro'>
       <div className="intro-wrap">
-        <div className='left-intro-column'>
-          <Image src={pizza} alt='pizza slices image'/>
+        <div className='intro-wrap-grid'>
+          <div className='left-intro-column'>
+            <Image src={pizza} alt='pizza slices image'/>
+          </div>
+          <section className='right-intro-column'>
+            <Image src={logo} alt='Bella Ciao logo'/>
+            <h2> Original Italian food and wine experience</h2>
+            <h5>
+              Famous across the whole globe, italian cuisine best known for dishes like 
+              Pizza or Risotto is much more richer than two previously mentioned meals.
+            </h5>
+            <h5>
+              Sounds interesting? Getting hungry?
+              Get your order <span className='order-link-span'><a href='/order'>here</a></span> or 
+              click the button below to see our menu! 
+            </h5>
+            <button className='button-28 into'>Menu</button>
+          </section>
         </div>
-        <section className='right-intro-column'>
-          <Image src={logo} alt='Bella Ciao logo'/>
-          <h2> Original Italian food and wine experience</h2>
-          <h5>
-            Famous across the whole globe, italian cuisine best known for dishes like 
-            Pizza or Risotto is much more richer than two previously mentioned meals.
-          </h5>
-          <h5>
-            Sounds interesting? Getting hungry?
-            Get your order <span className='order-link-span'><a href='/order'>here</a></span> or 
-            click the button below to see our menu! 
-          </h5>
-          <button className='button-28 into'>Menu</button>
-        </section>
       </div>
       <section className='intro-extend'>
-          <h1 className='extend-title'>Discover Italian cuisine</h1>
-          <div className='intro-extend-flex'>
-              <a href='/menu' className='intro-extend-anchor'>
-                <Image src={sandwich_img} alt='sandwich image' className='sandwich-img'/>
-                <h3>Menu</h3>
-              </a>
-              <a href='/order' className='intro-extend-anchor'>
-                <Image src={pizza_img} alt='pizza image' className='pizza-img'/>
-                <h3>Order</h3>
-              </a>
-              <a href='/catering' className='intro-extend-anchor'>
-                <Image src={pasta_img} alt='pizza image' className='pasta-img'/>
-                <h3>Catering</h3>
-              </a>
-          </div>
+        <h1 className='extend-title'>Discover Italian cuisine</h1>
+        <div className='intro-extend-flex'>
+            <a href='/menu' className='intro-extend-anchor'>
+              <Image src={sandwich_img} alt='sandwich image' className='sandwich-img'/>
+              <h3>Catering</h3>
+            </a>
+            <a href='/order' className='intro-extend-anchor'>
+              <Image src={pizza_img} alt='pizza image' className='pizza-img'/>
+              <h3>Menu</h3>
+            </a>
+            <a href='/catering' className='intro-extend-anchor'>
+              <Image src={pasta_img} alt='pizza image' className='pasta-img'/>
+              <h3>Order</h3>
+            </a>
+        </div>
       </section>
       <section className='parallax-shot'></section>
       <section className='about-italy'>
@@ -92,8 +94,10 @@ export default function Home() {
           <h2>Take it home</h2>
           <h1>We Deliver</h1>
           <div className='delivery-btn-grp'>
-            <a href='/delivery'><button className='button-28 delivery'>Delivery</button></a>
-            <button className='button-28 delivery'>Pickup</button>
+            <a href='/delivery'>
+              <button className='button-28 delivery'>Delivery</button>
+            </a>
+              <button className='button-28 delivery'>Pickup</button>
           </div>
         </div>
       </section>

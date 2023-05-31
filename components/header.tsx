@@ -2,17 +2,81 @@
 import Image from "next/image"
 import Logo from '../public/Logo.webp'
 import '../styles/navbar.css'
+import { useEffect, useState } from "react";
 export default function Header() {
+  const [visible, setVisible] = useState(true)
+  const [toggled, setToggled] = useState(false)
+  const [scrollPos, setScrollPos] = useState(0)
+
   const handleBurgerClick = () => {
+    toggleBurger()
+    if (toggled === false) {
+      setToggled(true)
+      showNav()
+    } else {
+      setToggled(false)
+      hideNav()
+    }
+  }
+  /* Burger icon function used to toggle between showing navigation elements */
+  const toggleBurger = () => {
     let button: any = document.getElementById('nav-toggle')
     let links: any = document.querySelector('.nav-links')
+    let links_wrap: any = document.querySelector('.list-and-toggle-wrap')
     button.classList.toggle('open')
     links.classList.toggle('open')
+    links_wrap.classList.toggle('open')
   }
+  /* Navbar function used to change navbar's size and prevent user from scrolling  */
+  const showNav = () => {
+    let navbar: any = document.getElementById('navbar')
+    let html: any = document.documentElement
+    navbar.style.width = 'auto'
+    html.classList.toggle('block')
+  }
+  const hideNav = () => {
+    let navbar: any = document.getElementById('navbar')
+    let html: any = document.documentElement
+    navbar.style.width = '100%'
+    html.classList.toggle('block')
+  }
+  /* Function used to display navbar if scrolled up */
+  const handleScroll = () => {
+    const currentPos = window.scrollY
+    const header: any = document.getElementById('header')
+    const navbar: any = document.getElementById('navbar')
+    if(currentPos > scrollPos) {
+      setVisible(false)
+      header.style.display = 'none'
+    } else {
+      setVisible(true)
+      header.style.display = 'block'
+    }
+    setScrollPos(currentPos)
+    if (toggled === true && visible === true) {
+      navbar.style.width = 'auto'
+    } else {
+      navbar.style.width = '100%'
+    }
+  }
+  const checkSize = () => {
+    if (toggled === true){
+      setToggled(false)
+      showNav()
+    }
+  }
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  })
+  useEffect(() => {
+    window.addEventListener('resize', checkSize)
+    return () => window.removeEventListener('resize', checkSize)
+  })
   return (
     <>
-    <header>
-      <nav>
+    <header id="header">
+      <nav id="navbar">
         <a href='/' className="logo-image-link">
           <Image 
           src={Logo} 

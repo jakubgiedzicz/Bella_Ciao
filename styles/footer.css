@@ -1,13 +1,13 @@
 footer {
-  height: 20vh;
-  margin-inline: 20%;
+  min-height: 20vh;
+  margin-inline: 15%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .contact-wrap {
   display: flex;
-  gap: 4rem;
+  gap: 2vw;
 }
 .contact-wrap h3 {
  padding-bottom: 1rem;
@@ -17,16 +17,21 @@ footer {
 }
 .contact-wrap h3,
 .contact-email h3 {
-  font-size: 24px;
+  font-size: clamp(2vh, 2rem, 2vw);
   font-family: var(--formal-font);
   font-weight: 600;
 }
 .contact-wrap h5 {
-  font-size: 16px;
+  font-size: clamp(1.5vh, 1.5rem, 1.5vw);
   font-family: var(--formal-font);
   font-weight: 500;
 }
 .contact-email h3 {
   text-decoration: underline;
   padding-left: 2rem;
+}
+@media screen and (max-width: 1000px){
+  footer {
+  flex-direction: column;
+  }
 }
