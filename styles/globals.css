@@ -1,6 +1,7 @@
 :root {
   --text-grey: 190, 190, 190;
   --formal-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --cormorant: 'Cormorant', serif;
   --the-orange: #f0811a;
   --btn-trans: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 }

@@ -2,24 +2,44 @@
 import Image from "next/image"
 import Logo from '../public/Logo.webp'
 import '../styles/navbar.css'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 export default function Header() {
+  /* Navbar visibility; changes on user scroll */
   const [visible, setVisible] = useState(true)
+
+  /* Navbar list items after clicking on designed button */
   const [toggled, setToggled] = useState(false)
-  const [scrollPos, setScrollPos] = useState(0)
+
+  /* Prevent useEffect to display navbar on mount */
+  const effectRan = useRef(false)
 
   const handleBurgerClick = () => {
-    toggleBurger()
-    if (toggled === false) {
-      setToggled(true)
-      showNav()
-    } else {
+    if(toggled === true) {
       setToggled(false)
-      hideNav()
+    } else {
+      setToggled(true)
     }
   }
-  /* Burger icon function used to toggle between showing navigation elements */
-  const toggleBurger = () => {
+
+  const handleScroll = (event: any) => {
+    if(event.deltaY < 0) {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+  }
+
+  const hideOnScroll = () => {
+    const header: any = document.getElementById('header')
+    const navbar: any = document.getElementById('navbar')
+    if(header.style.display === 'block' && navbar.style.width === 'auto'){
+      setToggled(false)
+      setVisible(false)
+    }
+  }
+
+  const toggleNavbar = () => {
+    toggleHeader()
     let button: any = document.getElementById('nav-toggle')
     let links: any = document.querySelector('.nav-links')
     let links_wrap: any = document.querySelector('.list-and-toggle-wrap')
@@ -27,52 +47,46 @@ export default function Header() {
     links.classList.toggle('open')
     links_wrap.classList.toggle('open')
   }
-  /* Navbar function used to change navbar's size and prevent user from scrolling  */
-  const showNav = () => {
-    let navbar: any = document.getElementById('navbar')
-    let html: any = document.documentElement
-    navbar.style.width = 'auto'
-    html.classList.toggle('block')
-  }
-  const hideNav = () => {
-    let navbar: any = document.getElementById('navbar')
-    let html: any = document.documentElement
-    navbar.style.width = '100%'
-    html.classList.toggle('block')
-  }
-  /* Function used to display navbar if scrolled up */
-  const handleScroll = () => {
-    const currentPos = window.scrollY
-    const header: any = document.getElementById('header')
-    const navbar: any = document.getElementById('navbar')
-    if(currentPos > scrollPos) {
-      setVisible(false)
-      header.style.display = 'none'
-    } else {
-      setVisible(true)
-      header.style.display = 'block'
-    }
-    setScrollPos(currentPos)
-    if (toggled === true && visible === true) {
-      navbar.style.width = 'auto'
-    } else {
-      navbar.style.width = '100%'
-    }
-  }
-  const checkSize = () => {
-    if (toggled === true){
-      setToggled(false)
-      showNav()
+  const toggleHeader = () => {
+    if(document.documentElement.clientWidth < 760){
+      const header: any = document.getElementById('header')
+      const navbar: any = document.getElementById('navbar')
+      if(visible === true) {
+        header.style.display = 'block'
+      } else {
+        header.style.display = 'none'
+      }
+      if(toggled === true){
+        navbar.style.width = 'auto'
+      } else {
+        navbar.style.width = '100%'
+      }
     }
   }
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  })
+    if(effectRan.current === true){
+      toggleNavbar()
+    }
+    return () => {
+        effectRan.current = true
+    }
+  }, [toggled])
+
+
   useEffect(() => {
-    window.addEventListener('resize', checkSize)
-    return () => window.removeEventListener('resize', checkSize)
-  })
+    window.addEventListener('wheel', handleScroll)
+    return () => window.removeEventListener('wheel', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('wheel', hideOnScroll)
+    return () => window.removeEventListener('wheel', hideOnScroll)
+  }, [])
+
+  useEffect(() => {
+    toggleHeader()
+  }, [visible])
+
   return (
     <>
     <header id="header">

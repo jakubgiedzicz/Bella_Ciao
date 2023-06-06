@@ -106,10 +106,12 @@ nav {
 .list-and-toggle-wrap.open {
   align-items: flex-end;
   height: 100vh;
+  overflow: hidden;
+  animation: none;
 }
 .block {
-  margin: 0;
   height: 100%;
+  width: 100%;
   overflow: hidden!important;
 }
 @media screen and (max-width: 1000px){

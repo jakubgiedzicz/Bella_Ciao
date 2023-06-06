@@ -1,0 +1,68 @@
+/* Menu intro */
+.main-menu {
+  background-color: white;
+}
+.menu-intro {
+  margin-inline: 10%;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.menu-intro-flex-text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
+}
+.menu-intro-flex-text h5 {
+  font-size: clamp(1.5rem, 1.5vh, 1.5vw);
+}
+.menu-intro-flex-text h1 {
+  font-size: clamp(4rem, 4vh, 4vw);
+}
+.button-28.menu-intro {
+  background-color: green;
+  display: inline-block;
+  margin: 0;
+  color: white;
+}
+.button-28.menu-intro:hover {
+  background-color: rgb(0, 150, 0);
+}
+.menu-intro-img {
+  max-width: 60%;
+  height: auto;
+  border-radius: 2rem;
+  -webkit-box-shadow: 3px 5px 20px -6px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 3px 5px 20px -6px rgba(66, 68, 90, 1);
+  box-shadow: 3px 5px 20px -6px rgba(66, 68, 90, 1);
+}
+/* Menu featured */
+.menu-featured {
+  background-color: rgb(200, 200, 200);
+  color: black;
+  padding-inline: 10%;
+}
+.menu-featured h3 {
+  font-size: clamp(2rem, 2vh, 2vw);
+  letter-spacing: 1px;
+}
+.menu-featured-title-btn-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-featured-btn-grp {
+  display: inline-flex;
+  gap: 2rem;
+}
+.menu-featured-btn-grp svg {
+  max-width: 2rem;
+  min-width: 2rem;
+  cursor: pointer;
+}
