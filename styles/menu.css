@@ -56,6 +56,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-top: 2rem;
 }
 .menu-featured-btn-grp {
   display: inline-flex;
@@ -65,4 +66,8 @@
   max-width: 2rem;
   min-width: 2rem;
   cursor: pointer;
+  display: none;
+}
+.menu-carousel-item-container img {
+  width: 100%;
 }

@@ -30,7 +30,7 @@ footer {
   text-decoration: underline;
   padding-left: 2rem;
 }
-@media screen and (max-width: 1000px){
+@media (max-width: 1000px){
   footer {
   flex-direction: column;
   }
