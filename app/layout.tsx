@@ -11,7 +11,7 @@ const cormorant = Cormorant({
 export const metadata = {
   title: 'Bella Ciao',
   description: 'Użyto create next app',
-  
+  viewport: "width=device-width, initial-scale=1, minimum-scale=1"
 }
 
 export default function RootLayout({

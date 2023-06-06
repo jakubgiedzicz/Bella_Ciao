@@ -2,17 +2,95 @@
 import Image from "next/image"
 import Logo from '../public/Logo.webp'
 import '../styles/navbar.css'
+import { useEffect, useRef, useState } from "react";
 export default function Header() {
+  /* Navbar visibility; changes on user scroll */
+  const [visible, setVisible] = useState(true)
+
+  /* Navbar list items after clicking on designed button */
+  const [toggled, setToggled] = useState(false)
+
+  /* Prevent useEffect to display navbar on mount */
+  const effectRan = useRef(false)
+
   const handleBurgerClick = () => {
+    if(toggled === true) {
+      setToggled(false)
+    } else {
+      setToggled(true)
+    }
+  }
+
+  const handleScroll = (event: any) => {
+    if(event.deltaY < 0) {
+      setVisible(true)
+    } else {
+      setVisible(false)
+    }
+  }
+
+  const hideOnScroll = () => {
+    const header: any = document.getElementById('header')
+    const navbar: any = document.getElementById('navbar')
+    if(header.style.display === 'block' && navbar.style.width === 'auto'){
+      setToggled(false)
+      setVisible(false)
+    }
+  }
+
+  const toggleNavbar = () => {
+    toggleHeader()
     let button: any = document.getElementById('nav-toggle')
     let links: any = document.querySelector('.nav-links')
+    let links_wrap: any = document.querySelector('.list-and-toggle-wrap')
     button.classList.toggle('open')
     links.classList.toggle('open')
+    links_wrap.classList.toggle('open')
   }
+  const toggleHeader = () => {
+    if(document.documentElement.clientWidth < 760){
+      const header: any = document.getElementById('header')
+      const navbar: any = document.getElementById('navbar')
+      if(visible === true) {
+        header.style.display = 'block'
+      } else {
+        header.style.display = 'none'
+      }
+      if(toggled === true){
+        navbar.style.width = 'auto'
+      } else {
+        navbar.style.width = '100%'
+      }
+    }
+  }
+  useEffect(() => {
+    if(effectRan.current === true){
+      toggleNavbar()
+    }
+    return () => {
+        effectRan.current = true
+    }
+  }, [toggled])
+
+
+  useEffect(() => {
+    window.addEventListener('wheel', handleScroll)
+    return () => window.removeEventListener('wheel', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('wheel', hideOnScroll)
+    return () => window.removeEventListener('wheel', hideOnScroll)
+  }, [])
+
+  useEffect(() => {
+    toggleHeader()
+  }, [visible])
+
   return (
     <>
-    <header>
-      <nav>
+    <header id="header">
+      <nav id="navbar">
         <a href='/' className="logo-image-link">
           <Image 
           src={Logo} 
