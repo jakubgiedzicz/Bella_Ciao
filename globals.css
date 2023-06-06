@@ -1,0 +1,38 @@
+:root {
+  --text-grey: 190, 190, 190;
+  --formal-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --cormorant: 'Cormorant', serif;
+  --the-orange: #f0811a;
+  --btn-trans: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+html,
+body {
+  width: 100vw;
+}
+
+img {
+  display: block;
+}
+
+body {
+  background-color: black;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}

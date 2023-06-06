@@ -1,0 +1,307 @@
+.intro-wrap {
+  margin-inline: 15%;
+  min-height: calc(100vh - 6rem);
+}
+.intro-wrap-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 2rem;
+  min-height: 90%;
+  padding-bottom: 1rem;
+}
+.left-intro-column,
+.right-intro-column {
+  width: 100%;
+  min-height: 80dvh;
+}
+.left-intro-column img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.left-intro-column {
+  animation: 1.5s ease-out 0s 1 slideFromLeft;
+}
+.button-28.into {
+  padding: 1rem 3rem;
+  border-radius: 0.75rem;
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 4rem);
+}
+.right-intro-column {
+  text-align: center;
+  font-family: 'Cormorant', serif;
+  font-weight: normal;
+  font-size: clamp(0.5rem, 1.5vw, 4rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.right-intro-column img {
+  min-height: 140px;
+  max-height: 30%;
+  width: auto;
+  animation: 1s ease-out 0s 1 slideFromLeft;
+}
+.right-intro-column h5 {
+  color: rgb(var(--text-grey));
+}
+.order-link-span {
+  text-decoration: underline;
+}
+.order-link-span:hover {
+  color: white;
+}
+.right-intro-column h2,
+.right-intro-column h5 {
+  width: 80%;
+  padding-top: 3rem;
+  font-weight: normal;
+  animation: 0.4s ease-out 0s 1 slideFromRight;
+}
+.intro-extend {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 60vh;
+  height: auto;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding-inline: 10%;
+}
+.extend-title {
+  font-size: clamp(8vh, 8rem, 8vw);
+  font-family: var(--formal-font);
+  font-weight: 600;
+}
+.intro-extend-flex img {
+  max-height: 350px;
+  width: 100%;
+  object-fit: contain;
+}
+.intro-extend-flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+.intro-extend-flex h3 {
+  font-size: clamp(2vh, 2rem, 2vw);
+}
+.parallax-shot,
+.delivery-parallax {
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;
+  background-attachment: fixed;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.parallax-shot {
+  background-image: url(../public/wide-shot-table2.jpg);
+}
+.about-italy {
+  background-color: white;
+}
+.italy-desc,
+.italy-wine-desc {
+  margin-inline: 10%;
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  color: rgb(50, 50, 50);
+  gap: 2rem;
+}
+.italy-desc-text,
+.italy-desc-map,
+.italy-wine-desc-img,
+.italy-wine-desc-text {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.desc-btn {
+  transition: var(--btn-trans);
+}
+.desc-btn:hover {
+  background-color: var(--the-orange);
+}
+.mapouter {
+  position:relative;
+  text-align:right;
+  width:600px;
+  height:500px;
+}
+.gmap_canvas {
+  overflow:hidden;
+  background:none!important;
+  width:600px;
+  height:500px;
+}
+.gmap_iframe {
+  width:600px!important;
+  height:500px!important;
+}
+.italy-desc-text {
+  flex-direction: column;
+}
+.desc-btn {
+  background-color: black;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: larger;
+  color: white;
+}
+.italy-wine-desc {
+  justify-content: flex-start;
+}
+.italy-wine-desc-img {
+  width: 60%;
+}
+.italy-wine-desc-img img {
+  max-width: 100%;
+  max-height: 70%;
+  object-fit: cover;
+}
+.italy-desc-text,
+.italy-wine-desc-text {
+  width: 20%;
+}
+.delivery-parallax {
+  min-height: 80vh;
+  height: 80vh;
+  background-image: url(../public/delivery-wide.jpg);
+  background-size: cover;
+}
+
+.delivery-parallax-wrap {
+  background-color: rgba(255, 255, 255, 0.3);
+  width: 100vw;
+  min-height: 80vh;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  text-align: center;
+}
+.delivery-parallax-wrap h1 {
+  font-weight:bolder;
+  font-size: clamp(12vh, 12rem, 12vw);
+  font-family: var(--formal-font);
+}
+.delivery-parallax-wrap h2 {
+  font-size: clamp(4vh, 4rem, 4vw);
+  font-family: var(--formal-font);
+}
+.delivery-btn-grp {
+  width: auto;
+  gap: 10vw;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+.button-28.delivery {
+  margin: 0;
+  background-color: transparent;
+  font-size: 2rem;
+  border: 2px solid #fff;
+  text-shadow: -1px 1px 4px rgba(59, 60, 62, 1);
+  font-size: clamp(4vh, 4rem, 4vw);
+  margin: 1px;
+}
+.button-28.delivery:hover {
+  background-color: #f0811a;
+}
+@media screen and (max-width: 1000px){
+  .intro-wrap {
+    margin-top: 6rem;
+    margin-inline: 25%;
+    min-height: 100vh;
+    height: auto;
+  }
+  .intro-wrap-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .right-intro-column {
+    height: auto;
+  }
+  .right-intro-column h2 {
+    font-size: clamp(2rem, 2vh, 3rem);
+    overflow: visible;
+    height: auto;
+  }
+  .right-intro-column h5 {
+    font-size: clamp(1rem, 2vh, 2rem);
+    overflow: visible;
+  }
+  .left-intro-column {
+    display: none;
+  }
+  .right-intro-column img {
+    max-height: 10vh;
+  }
+  .button-28.into {
+    padding: 0.4rem 1.2rem;
+    margin-top: 1rem;
+  }
+  .intro-extend {
+    height: auto;
+  }
+  .intro-extend-flex {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .extend-title {
+    font-size: clamp(2rem, 2vh, 3rem);
+  }
+  .italy-desc,
+  .italy-wine-desc {
+    flex-direction: column;
+  }
+  .italy-desc-text,
+  .italy-wine-desc-text,
+  .italy-desc-map {
+    width: 100%;
+  }
+  .italy-wine-desc-img {
+    display: none;
+  }
+}
+@media screen and (max-width: 1280px){
+  .button-28.into {
+    padding: 0.7rem 2.1rem;
+  }
+  .delivery-btn-grp {
+    width: auto;
+    gap: 1rem;
+  }
+}
+@keyframes slideFromLeft {
+  0% {
+    transform: translateX(-35%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(35%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
