@@ -220,7 +220,7 @@
 .button-28.delivery:hover {
   background-color: #f0811a;
 }
-@media screen and (max-width: 1000px){
+@media (max-width: 1000px){
   .intro-wrap {
     margin-top: 6rem;
     margin-inline: 25%;
@@ -276,7 +276,7 @@
     display: none;
   }
 }
-@media screen and (max-width: 1280px){
+@media (max-width: 1280px){
   .button-28.into {
     padding: 0.7rem 2.1rem;
   }
