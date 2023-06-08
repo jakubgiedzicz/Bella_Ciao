@@ -1,0 +1,67 @@
+.reservations-main {
+  background-color: white!important;
+}
+.reservations-intro {
+  padding-inline: 10%;
+  background-color: rgb(238, 240, 242);
+  color: black;
+  text-align: center;
+}
+.reservations-intro h1 {
+  font-family: var(--formal-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--clamp2);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.reservations-intro-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 4rem;
+}
+.reservation-intro-make-res {
+  height: 100%;
+  background-color: rgb(228, 230, 232);
+  width: 15vw;
+  border: 1px solid rgb(208, 210, 212);
+}
+.drop-btn,
+.reservation-intro-make-res h3,
+.restaurant-pick {
+  font-family: var(--formal-font);
+  font-weight: 500;
+  font-style: normal;
+}
+.reservations-title {
+  font-size: var(--clamp2);
+  padding: 1rem;
+}
+.drop-btn {
+  height: 3rem;
+  width: auto;
+  margin: 1rem;
+  padding-inline: 2%;
+  background-color: white;
+  cursor: pointer;
+  border: 1px solid rgb(208, 210, 212);
+  position: relative;
+}
+.wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.drop-btn span {
+  font-size: var(--clamp15);
+}
+.dropdown-content {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  background-color: red;
+}

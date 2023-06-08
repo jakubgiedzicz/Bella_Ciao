@@ -107,7 +107,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href='/reservation'>
+                <a href='/reservations'>
                   <p>Reservations</p>
                 </a>
               </li>

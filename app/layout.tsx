@@ -4,7 +4,7 @@ import Header from '../components/header'
 import Footer from '@/components/footer'
 
 const cormorant = Cormorant({
-  weight: '400',
+  weight: ['400', '500', '600', '700'],
   subsets: ['latin']
 })
 
