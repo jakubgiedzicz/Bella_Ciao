@@ -3,6 +3,7 @@
   background-color: white;
 }
 .menu-intro {
+  margin-top: 2rem;
   margin-inline: 10%;
   color: black;
   display: flex;
@@ -16,7 +17,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 10%;
-  margin-bottom: 10%;
+  margin-bottom: 5%;
 }
 .menu-intro-flex-text h5 {
   font-size: clamp(1.5rem, 1.5vh, 1.5vw);
@@ -26,6 +27,7 @@
 }
 .button-28.menu-intro {
   background-color: green;
+  font-size: clamp(1.5rem, 1.5vh, 1.5vw);
   display: inline-block;
   margin: 0;
   color: white;
@@ -35,6 +37,7 @@
 }
 .menu-intro-img {
   max-width: 60%;
+  margin-right: 1rem;
   height: auto;
   border-radius: 2rem;
   -webkit-box-shadow: 3px 5px 20px -6px rgba(66, 68, 90, 1);
@@ -43,7 +46,7 @@
 }
 /* Menu featured */
 .menu-featured {
-  background-color: rgb(200, 200, 200);
+  background-color: rgb(238, 240, 242);
   color: black;
   padding-inline: 10%;
 }
@@ -68,6 +71,146 @@
   cursor: pointer;
   display: none;
 }
+.menu-carousel-item-container {
+  width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.menu-carousel-item-container h3 {
+  padding-top: 1rem;
+  font-size: clamp(1.5vh, 1.5rem, 1.5vw);
+}
+.menu-carousel-item-container p {
+  font-size: clamp(1.5vh, 1.5rem, 1.5vw);
+  padding-top: 0.5rem;
+  margin-bottom: 4rem;
+}
+.menu-carousel-item-container h3,
+.menu-carousel-item-container p {
+  font-family: var(--formal-font);
+  font-weight: 400;
+  letter-spacing: 0;
+}
 .menu-carousel-item-container img {
   width: 100%;
+  object-fit: cover;
+  border-radius: 2rem;
+  -webkit-box-shadow: 1px 1px 5px 1px rgba(50, 50, 50, 1);
+  -moz-box-shadow: 1px 1px 5px 1px rgba(50, 50, 50, 1);
+  box-shadow: 1px 1px 5px 1px rgba(50, 50, 50, 1);
+}
+.menu-carousel-item-container img:hover {
+  opacity: 0.8;
+  transition: ease-in-out 0.2s;
+}
+.menu-categories-title,
+.menu-categories-extend {
+  color: black;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-family: var(--formal-font);
+}
+.menu-categories-title {
+  font-size: clamp(4vh, 4rem, 4vw);
+  font-weight: 600;
+}
+.menu-categories-extend {
+  font-size: clamp(2vh, 2rem, 2vw);
+  font-weight: 500;
+}
+.menu-category-main-dish-wrap,
+.menu-category-else-wrap {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 2px;
+}
+.category-main-dish {
+  height: 400px;
+  margin-bottom: 2px;
+}
+.category-else-product {
+  height: 300px;
+  margin-bottom: 2px;
+}
+.category-main-dish,
+.category-else-product {
+  filter:brightness(80%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-position: center center;
+  border-radius: 1rem;
+  background-repeat: no-repeat;
+}
+.category-main-dish h1,
+.category-else-product h1 {
+  text-align: center;
+  font-size: clamp(2rem, 2vh, 2vw);
+  font-family: var(--formal-font);
+  font-weight: 400;
+  text-shadow: 2px 2px 4px black;
+  color: white;
+}
+.menu-category-else-wrap {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.category-main-dish:hover,
+.category-else-product:hover {
+  opacity: 0.8;
+  filter: brightness(100%);
+  transition: ease-in-out 0.2s;
+}
+.small-plates {
+  background-image: url('../public/small-plate-bruscetta.jpg');
+}
+.soups-salads {
+  background-image: url('../public/soups-salads-pasta-e-ceci.jpg');
+}
+.meat-fish {
+  background-image: url('../public/meat-fish.jpg');
+}
+.essentials {
+  background-image: url('../public/small-plate-bruscetta.jpg');
+}
+.white-wine {
+  background-image: url('../public/white-wine.jpg');
+}
+.red-wine {
+  background-image: url('../public/red-wine.png');
+}
+.desserts {
+  background-image: url('../public/dessert-tiramisu.jpg');
+}
+@media (max-width: 1000px) {
+  .menu-intro {
+    flex-direction: column-reverse;
+    max-width: 100%;
+    margin-inline: 2.5%;
+    justify-content:flex-end;
+    margin-top: 7rem;
+  }
+  .menu-intro-img {
+    max-width: 90%;
+    margin-right: 0;
+  }
+  .menu-intro-flex-text {
+    margin-top: 0;
+  }
+}
+@media (max-width: 760px) {
+  .menu-category-main-dish-wrap {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: none;
+  }
+  .menu-category-else-wrap {
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: none;
+  }
+  .menu-category-main-dish-wrap >, 
+  .menu-category-else-wrap > {
+    padding-top: 1px;
+  }
+  
 }
