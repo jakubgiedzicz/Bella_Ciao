@@ -9,7 +9,7 @@ interface place {
   longtitude: number
 }
 
-export default function Reservations(){
+export default function Reservations(this: any){
   const [hidden, setHidden] = useState(true)
   const effectRan = useRef(false)
   const [places, setPlaces] = useState<place[]>([
@@ -26,27 +26,10 @@ export default function Reservations(){
     longtitude: -121.3847,
   }
   ])
-  const handleDropdown = () => {
-    if(hidden === false){
-      setHidden(true)
-    } else {
-      setHidden(false)
-    }
-  }
-  useEffect(() => {
-    const menu: any = document.querySelector('.dropdown-content')
-    if(effectRan.current === false){
-      effectRan.current = true
-    }
-    if(hidden === true) {
-      menu.style.display = 'none'
-    } else {
-      menu.style.display = 'block'
-    }
-      return () => {
-        effectRan.current = true
-    }
-  },[hidden])
+  const today = new Date();
+  const form = `${today.getFullYear()}-0${today.getMonth()+1}-0${today.getDate()}`
+  const time = today.toString()
+  const now = time.slice(16, 21)
   return (
     <main className='reservations-main'>
       <section className='reservations-intro'>
@@ -54,18 +37,14 @@ export default function Reservations(){
         <div className="reservations-intro-wrap">
           <div className="reservation-intro-make-res">
             <h3 className='reservations-title'>Make a reservation</h3>
-            <div className="dropdown">
-              <div className='drop-btn' onClick={() => handleDropdown()}>
-                <div className="wrap">
-                  <span>Select a restaurant</span>
-                  <svg width="24" height="24" xmlns="http://www.w3.org/2000/svg" fillRule="evenodd" clipRule="evenodd"><path d="M12 0c6.623 0 12 5.377 12 12s-5.377 12-12 12-12-5.377-12-12 5.377-12 12-12zm0 1c6.071 0 11 4.929 11 11s-4.929 11-11 11-11-4.929-11-11 4.929-11 11-11zm5.247 8l-5.247 6.44-5.263-6.44-.737.678 6 7.322 6-7.335-.753-.665z"/></svg>
-                </div>
-                <div className="dropdown-content">
-                  <p className='restaurant-pick'>{`${places[0].name}`}</p>
-                  <p className='restaurant-pick'>{`${places[1].name}`}</p>
-              </div>
-              </div>
-            </div>
+            <select name="places" id="place" className='reservations-select'>
+                <option value="choose">Select a restaurant</option>
+                <option value="venice">{`${places[0].name} - ${places[0].address}`}</option>
+                <option value="florence">{`${places[1].name} - ${places[1].address}`}</option>
+            </select>
+            <input type='date' defaultValue={`${form}`} min={`${form}`} className='reservations-date'></input>
+            <input type='time' defaultValue={now} min={'09:00'} max={'22:00:00'} className='reservations-time'></input>
+            <button className='reservations-submit'>Get a table</button>
           </div>
         <iframe 
         src="https://www.google.com/maps/d/u/0/embed?mid=1vNCJfHCeNSFNMLpjDUiu2IqQpLormnM&ehbc=2E312F&z=11" 

@@ -6,6 +6,7 @@
   background-color: rgb(238, 240, 242);
   color: black;
   text-align: center;
+  padding-bottom: 4rem;
 }
 .reservations-intro h1 {
   font-family: var(--formal-font);
@@ -25,12 +26,11 @@
 .reservation-intro-make-res {
   height: 100%;
   background-color: rgb(228, 230, 232);
-  width: 15vw;
+  width: 30vw;
   border: 1px solid rgb(208, 210, 212);
+  height: auto;
 }
-.drop-btn,
-.reservation-intro-make-res h3,
-.restaurant-pick {
+.reservation-intro-make-res h3 {
   font-family: var(--formal-font);
   font-weight: 500;
   font-style: normal;
@@ -39,29 +39,54 @@
   font-size: var(--clamp2);
   padding: 1rem;
 }
-.drop-btn {
-  height: 3rem;
-  width: auto;
-  margin: 1rem;
-  padding-inline: 2%;
+.reservations-select {
+  margin-bottom: 0.5rem;
+}
+.reservations-select,
+.reservations-date,
+.reservations-time {
+  min-height: 3rem;
+  color: black;
+  width: 80%;
+  border: 1px solid rgb(208, 210, 212);
   background-color: white;
   cursor: pointer;
-  border: 1px solid rgb(208, 210, 212);
+  font-size: clamp(1.2vh, 1.2rem, 1.2vw);
   position: relative;
 }
-.wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background-position: right;
+  background-size: auto;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 100%;
 }
-.drop-btn span {
+.reservations-submit {
+  min-width: 80%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: brown;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
   font-size: var(--clamp15);
 }
-.dropdown-content {
-  position: absolute;
-  bottom: -100%;
-  left: 0;
-  background-color: red;
+.reservations-submit:hover {
+  opacity: 0.85;
+  transition: var(--btn-trans);
+}
+@media (max-width:760px) {
+  .reservations-main {
+    margin-top: 6rem;
+  }
+  .reservations-intro-wrap {
+    flex-direction: column-reverse;
+  }
+  .reservation-intro-make-res {
+    width: 60vw;
+  }
 }
