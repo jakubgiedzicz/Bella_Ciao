@@ -107,7 +107,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href='/reservation'>
+                <a href='/reservations'>
                   <p>Reservations</p>
                 </a>
               </li>
@@ -117,7 +117,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href='/#contact'>
+                <a href='#contact'>
                   <p>Contact</p>
                 </a>
               </li>

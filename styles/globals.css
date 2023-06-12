@@ -4,6 +4,9 @@
   --cormorant: 'Cormorant', serif;
   --the-orange: #f0811a;
   --btn-trans: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  --clamp2: clamp(2vh, 2rem, 2vw);
+  --clamp15: clamp(1.5vh, 1.5rem, 1.5vw);
+  --clamp1: clamp(1vh, 1rem, 1vw);
 }
 
 * {
