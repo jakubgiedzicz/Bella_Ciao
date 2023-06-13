@@ -112,6 +112,11 @@ export default function Header() {
                 </a>
               </li>
               <li>
+                <a href='/catering'>
+                  <p>Catering</p>
+                </a>
+              </li>
+              <li>
                 <a href='#contact'>
                   <p>Contact</p>
                 </a>
