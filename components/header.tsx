@@ -107,17 +107,12 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href='/reservation'>
+                <a href='/reservations'>
                   <p>Reservations</p>
                 </a>
               </li>
               <li>
-                <a href='/catering'>
-                  <p>Catering</p>
-                </a>
-              </li>
-              <li>
-                <a href='/#contact'>
+                <a href='#contact'>
                   <p>Contact</p>
                 </a>
               </li>
@@ -133,9 +128,11 @@ export default function Header() {
               </li>
             </ul>
           </div>
-        <a href='/order' className="order-link">
-          <button className="button-28" role="button">Order</button>
-        </a>
+          <button className="button-28" role="button">
+            <a href="/order" className="order-link">
+              Order
+            </a>
+          </button>
         <button aria-label="toggle menu" id="nav-toggle" onClick={handleBurgerClick}>
           <svg 
           xmlns="http://www.w3.org/2000/svg"
