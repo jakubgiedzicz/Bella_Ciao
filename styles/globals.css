@@ -1,8 +1,8 @@
 :root {
   --text-grey: 190, 190, 190;
-  --background-grey: rgb(238, 240, 242);
+  --background-grey: rgb(228, 230, 232);
   --background-dark-grey: rgb(218, 220, 222);
-  --background-light-grey: rgb(242, 246, 240);
+  --background-light-grey: rgb(242, 242, 244);
   --formal-font: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --cormorant: 'Cormorant', serif;
   --the-orange: #f0811a;

@@ -103,41 +103,36 @@ export default function Header() {
             <ul id="nav-list">
               <li>
                 <a href='/menu'>
-                  <p>Menu</p>
+                  Menu
                 </a>
               </li>
               <li>
                 <a href='/reservations'>
-                  <p>Reservations</p>
-                </a>
-              </li>
-              <li>
-                <a href='/catering'>
-                  <p>Catering</p>
+                  Reservations
                 </a>
               </li>
               <li>
                 <a href='#contact'>
-                  <p>Contact</p>
+                  Contact
                 </a>
               </li>
               <li>
-                <a href='/tech'>
-                  <p>Tech</p>
+                <a href='/blog'>
+                  Blog
                 </a>
               </li>
               <li>
                 <a href="/order">
-                  <p className="order-list-item">Order</p>
+                  <span className="order-list-item">Order</span>
                 </a>
               </li>
             </ul>
           </div>
-          <button className="button-28" role="button">
-            <a href="/order" className="order-link">
+          <a href="/order" className="order-link">
+            <button className="button-28" role="button">
               Order
-            </a>
-          </button>
+            </button>
+          </a>
         <button aria-label="toggle menu" id="nav-toggle" onClick={handleBurgerClick}>
           <svg 
           xmlns="http://www.w3.org/2000/svg"

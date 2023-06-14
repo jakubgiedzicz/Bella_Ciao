@@ -16,10 +16,12 @@ nav {
 #nav-list {
   display: flex;
   font-size: clamp(2vh, 1rem, 1vw);
+  align-items: center;
 }
 #nav-list li {
-  display: inline-block;
+  display: inline;
   margin-left: 2vw;
+  height: auto;
   color: rgb(var(--text-grey))
 }
 #nav-list li:hover {
@@ -83,6 +85,7 @@ nav {
 }
 #nav-toggle .openIcon {
   display: block;
+  filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
 }
 #nav-toggle .closeIcon {
   display: none;
