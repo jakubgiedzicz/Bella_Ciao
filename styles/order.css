@@ -88,39 +88,3 @@ body {
   font-family: var(--formal-font);
   font-weight: 500;
 }
-#nav-list li {
-  color: black;
-  height: 2rem;
-}
-#nav-list li:hover {
-  color: black;
-}
-#nav-list li a {
-  position: relative;
-}
-#nav-list  {
-  min-height: clamp(3vh, 3rem, 3vw);
-}
-#nav-list li a::after {
-  border-bottom: 2px solid black;
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0%;
-  transition: width 0.2s ease-in-out;
-  -webkit-transition: width 0.2s ease-in-out;
-  -moz-transition: width 0.2s ease-in-out;
-  -o-transition: width 0.2s ease-in-out;
-}
-#nav-list li a:hover::after {
-  width: 100%;
-}
-footer {
-  background-color: white;
-}
-@media (max-width: 760px){
-  #nav-list li {
-    color: white;
-  }
-}

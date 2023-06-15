@@ -42,7 +42,7 @@ nav {
   display: inline-block;
   line-height: normal;
   padding: 1rem 2rem;
-  font-size: clamp(1vh, 1rem, 1vw);
+  font-size: var(--clamp15);
   outline: none;
   text-align: center;
   text-decoration: none;
@@ -119,7 +119,7 @@ nav {
 }
 @media (max-width: 1000px){
   .button-28 {
-    margin: 1rem 0 1rem 1rem;
+    margin: 1rem 2px 1rem 1rem;
   }
 }
 @media (max-width: 760px){

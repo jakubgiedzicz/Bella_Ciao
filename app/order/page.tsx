@@ -2,6 +2,7 @@
 import wine_img from '../../public/italian-wine.jpg'
 import temp from '../../public/margherita.jpg'
 import '../../styles/order.css'
+import '../../styles/navbar_light.css'
 import Image from "next/image";
 
 export default function Order(){
