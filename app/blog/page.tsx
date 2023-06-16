@@ -1,12 +1,10 @@
-"use client";
 import Image from 'next/image';
 import '../../styles/blog.css'
-import '../../styles/navbar_light.css'
 import next_img from '../../public/next.png'
 import blog1 from '../../public/blog1.jpg'
 export default function Blog(){
   return(
-    <main>
+    <main className='light-bg'>
       <section className='blog-intro-img'>
         <Image src={next_img} alt='next and react logo'/>
       </section>
@@ -37,7 +35,17 @@ export default function Blog(){
           </div>
           <h5 className='post-desc'>Blog page responsiveness added, navbar element fixed.</h5>
           </div>
-          
+        </div>
+        <div className='blog-post'>
+          <div className='blog-post-text'>
+          <div className='blog-post-info'>
+            <h4 className='post-date'>16/06/23 13:07</h4>
+            <h2 className='post-title'>NextJS specifics</h2>
+          </div>
+          <h5 className='post-desc'>Switched &quot;a&quot; tags for Link components,
+          learned when to use client/server.
+          </h5>
+          </div>
         </div>
       </section>
     </main>

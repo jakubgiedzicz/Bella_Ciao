@@ -3,6 +3,7 @@ import Image from "next/image"
 import Logo from '../public/Logo.webp'
 import '../styles/navbar.css'
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 export default function Header() {
   /* Navbar visibility; changes on user scroll */
   const [visible, setVisible] = useState(true)
@@ -91,25 +92,25 @@ export default function Header() {
     <>
     <header id="header">
       <nav id="navbar">
-        <a href='/' className="logo-image-link">
+        <Link href='/' className="logo-image-link">
           <Image 
           src={Logo} 
           alt='Logo'
           className="logo-img"
         />
-        </a>
+        </Link>
         <div className="list-and-toggle-wrap">
           <div className="nav-links">
             <ul id="nav-list">
               <li>
-                <a href='/menu'>
+                <Link href='/menu'>
                   Menu
-                </a>
+                </Link>
               </li>
               <li>
-                <a href='/reservations'>
+                <Link href='/reservations'>
                   Reservations
-                </a>
+                </Link>
               </li>
               <li>
                 <a href='#contact'>
@@ -117,22 +118,22 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href='/blog'>
+                <Link href='/blog'>
                   Blog
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/order">
+                <Link href="/order">
                   <span className="order-list-item">Order</span>
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
-          <a href="/order" className="order-link">
+          <Link href="/order" className="order-link">
             <button className="button-28" role="button">
               Order
             </button>
-          </a>
+          </Link>
         <button aria-label="toggle menu" id="nav-toggle" onClick={handleBurgerClick}>
           <svg 
           xmlns="http://www.w3.org/2000/svg"

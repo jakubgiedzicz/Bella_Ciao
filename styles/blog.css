@@ -1,4 +1,4 @@
-body {
+.light-bg {
   background-color: var(--background-light-grey);
   color: black;
 }
@@ -83,13 +83,6 @@ body {
   border-radius: 1rem;
   object-fit: cover;
 }
-
-
-
-footer {
-  color: black;
-}
-
 @media (max-width:760px) {
   .blog-posts-wrap {
     grid-template-columns: 1fr;

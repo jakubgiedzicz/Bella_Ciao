@@ -2,12 +2,12 @@
 import wine_img from '../../public/italian-wine.jpg'
 import temp from '../../public/margherita.jpg'
 import '../../styles/order.css'
-import '../../styles/navbar_light.css'
 import Image from "next/image";
+import Link from 'next/link';
 
 export default function Order(){
   return (
-    <main>
+    <main className='light-bg'>
       <section className="order-intro">
         <Image src={wine_img} alt='aha'/>
       </section>
@@ -15,49 +15,49 @@ export default function Order(){
         <div className="order-search-btn">?</div>
         <ul className='order-navigation'>
           <li>
-            <a href="#small-plates">
+            <Link href="#small-plates">
               Small Plates
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#soups-and-salads">
+            <Link href="#soups-and-salads">
               Soups and Salads
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#essentials">
+            <Link href="#essentials">
               Essentials
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#meat-and-fish">
+            <Link href="#meat-and-fish">
               Meat and Fish
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#soft-drinks">
+            <Link href="#soft-drinks">
               Soft Drinks
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#desserts">
+            <Link href="#desserts">
               Desserts
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#beer">
+            <Link href="#beer">
               Beer
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#white-wine">
+            <Link href="#white-wine">
               White & Amber Wine
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#red-wine">
+            <Link href="#red-wine">
               Red Wine
-            </a>
+            </Link>
           </li>
         </ul>
       </section>

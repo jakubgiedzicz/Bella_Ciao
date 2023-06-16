@@ -49,6 +49,7 @@
   background-color: rgb(238, 240, 242);
   color: black;
   padding-inline: 10%;
+  padding-bottom: 4rem;
 }
 .menu-featured h3 {
   font-size: clamp(2rem, 2vh, 2vw);
@@ -83,7 +84,6 @@
 .menu-carousel-item-container p {
   font-size: clamp(1.5vh, 1.5rem, 1.5vw);
   padding-top: 0.5rem;
-  margin-bottom: 4rem;
 }
 .menu-carousel-item-container h3,
 .menu-carousel-item-container p {

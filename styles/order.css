@@ -1,4 +1,4 @@
-body {
+.light-bg {
   background-color: var(--background-light-grey);
   color: black;
 }

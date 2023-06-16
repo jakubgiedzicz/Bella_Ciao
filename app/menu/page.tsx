@@ -15,6 +15,7 @@ import red_wine from '../../public/red-wine.png'
 import dessert from '../../public/dessert-tiramisu.jpg'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css'
+import Link from 'next/link';
 export default function Menu() {
   const responsive = {
     superLargeDesktop: {
@@ -95,37 +96,37 @@ export default function Menu() {
         itemClass="carousel-item-margin-40-px"
         >
           <div className='menu-carousel-item-container'>
-            <a href='/product/cacciatore'>
+            <Link href='/product/cacciatore'>
               <Image src={cacciatore_img} alt='aha' />
-            </a>
+            </Link>
             <h3>Chicken Cacciatore</h3>
             <p>$24.95</p>
           </div>
           <div className='menu-carousel-item-container'>
-            <a href='/product/cacciatore'>
+            <Link href='/product/cacciatore'>
               <Image src={cacciatore_img} alt='aha' />
-            </a>
+            </Link>
             <h3>Lasagna</h3>
             <p>$32.95</p>
           </div>
           <div className='menu-carousel-item-container'>
-            <a href='/product/cacciatore'>
+            <Link href='/product/cacciatore'>
               <Image src={cacciatore_img} alt='aha' />
-            </a>
+            </Link>
             <h3>Spaghetti and meatballs</h3>
             <p>$28.95</p>
           </div>
           <div className='menu-carousel-item-container'>
-            <a href='/product/cacciatore'>
+            <Link href='/product/cacciatore'>
               <Image src={cacciatore_img} alt='aha' />
-            </a>
+            </Link>
             <h3>Four cheese pasta</h3>
             <p>$33.95</p>
           </div>
           <div className='menu-carousel-item-container'>
-            <a href='/product/cacciatore'>
+            <Link href='/product/cacciatore'>
               <Image src={cacciatore_img} alt='aha' />
-            </a>
+            </Link>
             <h3>Pizza margharita</h3>
             <p>$30.95</p>
           </div>

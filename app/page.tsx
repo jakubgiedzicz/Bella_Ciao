@@ -6,6 +6,7 @@ import pizza_img from '../public/pizza-img.png'
 import sandwich_img from '../public/sandwich-img.png'
 import pasta_img from '../public/pasta-img.png'
 import wine_img from '../public/italian-wine.jpg'
+import Link from 'next/link'
 export default function Home() {
   
   return (
@@ -35,18 +36,18 @@ export default function Home() {
       <section className='intro-extend'>
         <h1 className='extend-title'>Discover Italian cuisine</h1>
         <div className='intro-extend-flex'>
-            <a href='/menu' className='intro-extend-anchor'>
+            <Link href='/menu' className='intro-extend-anchor'>
               <Image src={sandwich_img} alt='sandwich image' className='sandwich-img'/>
               <h3>Catering</h3>
-            </a>
-            <a href='/order' className='intro-extend-anchor'>
+            </Link>
+            <Link href='/order' className='intro-extend-anchor'>
               <Image src={pizza_img} alt='pizza image' className='pizza-img'/>
               <h3>Menu</h3>
-            </a>
-            <a href='/catering' className='intro-extend-anchor'>
+            </Link>
+            <Link href='/catering' className='intro-extend-anchor'>
               <Image src={pasta_img} alt='pizza image' className='pasta-img'/>
               <h3>Order</h3>
-            </a>
+            </Link>
         </div>
       </section>
       <section className='parallax-shot'></section>
@@ -62,7 +63,7 @@ export default function Home() {
           Its cuisine and cooking techniques spread around the world together with waves of Italian diaspora.
           It is one of the best-known and most appreciated gastronomies worldwide.
             </h3>
-            <a href="https://google.com" className="desc-btn">Read More</a>
+            <Link href="https://google.com" className="desc-btn">Read More</Link>
           </div>
           <div className="italy-desc-map">
             <div className="mapouter">
@@ -70,7 +71,7 @@ export default function Home() {
                 <iframe className="gmap_iframe" 
                 src="https://maps.google.com/maps?width=600&amp;height=500&amp;hl=en&amp;q=Italy&amp;t=p&amp;z=5&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
                 </iframe>
-                <a href="https://capcuttemplate.org/">Capcuttemplate.org</a>
+                <Link href="https://capcuttemplate.org/">Capcuttemplate.org</Link>
               </div>
             </div>
           </div>
@@ -85,7 +86,7 @@ export default function Home() {
           basically one 750-mile-long rock. Like the expression “to get blood from a 
           stone,” vines have barely enough water to survive. Grapes undiluted with 
           water are packed with flavor and texture.</h3>
-          <a href="https://google.com" className="desc-btn">Shop Now</a>
+          <Link href="https://google.com" className="desc-btn">Shop Now</Link>
           </div>
         </div>
       </section>
@@ -94,9 +95,9 @@ export default function Home() {
           <h2>Take it home</h2>
           <h1>We Deliver</h1>
           <div className='delivery-btn-grp'>
-            <a href='/delivery'>
+            <Link href='/delivery'>
               <button className='button-28 delivery'>Delivery</button>
-            </a>
+            </Link>
               <button className='button-28 delivery'>Pickup</button>
           </div>
         </div>
