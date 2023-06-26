@@ -1,0 +1,92 @@
+.reservations_main {
+  background-color: white!important;
+}
+.reservations_intro {
+  padding-inline: 10%;
+  background-color: rgb(238, 240, 242);
+  color: black;
+  text-align: center;
+  padding-bottom: 4rem;
+}
+.reservations_intro h1 {
+  font-family: var(--formal-font);
+  font-style: normal;
+  font-weight: 500;
+  font-size: var(--clamp2);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.reservations_intro_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 4rem;
+}
+.reservation_intro_make_res {
+  height: 100%;
+  background-color: rgb(228, 230, 232);
+  width: 30vw;
+  border: 1px solid rgb(208, 210, 212);
+  height: auto;
+}
+.reservation_intro_make_res h3 {
+  font-family: var(--formal-font);
+  font-weight: 500;
+  font-style: normal;
+}
+.reservations_title {
+  font-size: var(--clamp2);
+  padding: 1rem;
+}
+.reservations_select {
+  margin-bottom: 0.5rem;
+}
+.reservations_select,
+.reservations_date,
+.reservations_time {
+  min-height: 3rem;
+  color: black;
+  width: 80%;
+  border: 1px solid rgb(208, 210, 212);
+  background-color: white;
+  cursor: pointer;
+  font-size: clamp(1.2vh, 1.2rem, 1.2vw);
+  position: relative;
+}
+#dateInput::-webkit-calendar-picker-indicator,
+#timeInput::-webkit-calendar-picker-indicator {
+  background-position: right;
+  background-size: auto;
+  cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.reservations_submit {
+  min-width: 80%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: brown;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-size: var(--clamp15);
+}
+.reservations_submit:hover {
+  opacity: 0.85;
+  transition: var(--btn-trans);
+}
+@media (max-width:760px) {
+  .reservations_main {
+    margin-top: 6rem;
+  }
+  .reservations_intro_wrap {
+    flex-direction: column-reverse;
+  }
+  .reservation_intro_make_res {
+    width: 60vw;
+  }
+}

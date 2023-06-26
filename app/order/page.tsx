@@ -1,19 +1,17 @@
-"use client";
 import wine_img from '../../public/italian-wine.jpg'
 import temp from '../../public/margherita.jpg'
-import '../../styles/order.css'
+import styles from '../../styles/order.module.css'
 import Image from "next/image";
 import Link from 'next/link';
 
-export default function Order(){
+export default async function Order(){
   return (
-    <main className='light-bg'>
-      <section className="order-intro">
+    <main className={styles.light_bg}>
+      <section className={styles.order_intro}>
         <Image src={wine_img} alt='aha'/>
       </section>
-      <section className="order-btn-grp">
-        <div className="order-search-btn">?</div>
-        <ul className='order-navigation'>
+      <section className={styles.order_btn_grp}>
+        <ul className={styles.order_navigation}>
           <li>
             <Link href="#small-plates">
               Small Plates
@@ -61,14 +59,14 @@ export default function Order(){
           </li>
         </ul>
       </section>
-      <section className='order-category'>
-        <div id='small-plates' className='category-grid-wrap'>
-          <div className="order-category-title">
+      <section className={styles.order_category}>
+        <div id='small-plates' className={styles.category_grid_wrap}>
+          <div className={styles.order_category_title}>
             <h2>Small Plates</h2>
           </div>
-          <div className="category-grid-container">
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+          <div className={styles.category_grid_container}>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -76,8 +74,8 @@ export default function Order(){
               </div>
               <Image src={temp} alt='temp'/>
             </div>
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -87,13 +85,13 @@ export default function Order(){
             </div>
           </div>
         </div>
-        <div id='soups-and-salads' className='category-grid-wrap'>
-          <div className="order-category-title">
+        <div id='soups-and-salads' className={styles.category_grid_wrap}>
+          <div className={styles.order_category_title}>
             <h2>Soups and Salads</h2>
           </div>
-          <div className="category-grid-container">
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+          <div className={styles.category_grid_container}>
+          <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -101,8 +99,8 @@ export default function Order(){
               </div>
               <Image src={temp} alt='temp'/>
             </div>
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -112,13 +110,13 @@ export default function Order(){
             </div>
           </div>
         </div>
-        <div id='essentials' className='category-grid-wrap'>
-          <div className="order-category-title">
+        <div id='essentials' className={styles.category_grid_wrap}>
+          <div className={styles.order_category_title}>
             <h2>Essentials</h2>
           </div>
-          <div className="category-grid-container">
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+          <div className={styles.category_grid_container}>
+          <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -126,8 +124,8 @@ export default function Order(){
               </div>
               <Image src={temp} alt='temp'/>
             </div>
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -135,8 +133,8 @@ export default function Order(){
               </div>
               <Image src={temp} alt='temp'/>
             </div>
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -146,13 +144,13 @@ export default function Order(){
             </div>
           </div>
         </div>
-        <div id='meat-and-fish' className='category-grid-wrap'>
-          <div className="order-category-title">
+        <div id='meat-and-fish' className={styles.category_grid_wrap}>
+          <div className={styles.order_category_title}>
             <h2>Meat and Fish</h2>
           </div>
-          <div className="category-grid-container">
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+          <div className={styles.category_grid_container}>
+          <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -160,8 +158,8 @@ export default function Order(){
               </div>
               <Image src={temp} alt='temp'/>
             </div>
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>
@@ -169,8 +167,8 @@ export default function Order(){
               </div>
               <Image src={temp} alt='temp'/>
             </div>
-            <div className='category-item-wrap'>
-              <div className='category-item-desc'>
+            <div className={styles.category_item_wrap}>
+              <div className={styles.category_item_desc}>
                 <h3>Pkhali</h3>
                 <h4>Hand-chopped baby spinach and beets pkhali with walnuts and herbs.
                   Served with eggplant rolls and grilled rosemary bread with olives.</h4>

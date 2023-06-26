@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import '../styles/home.css'
+import styles from '../styles/home.module.css'
 import pizza from '../public/intro-pizza-sm.jpg'
 import logo from '../public/logo-bella2.png'
 import pizza_img from '../public/pizza-img.png'
@@ -11,13 +11,13 @@ export default function Home() {
   
   return (
     <>
-    <main className='intro'>
-      <div className="intro-wrap">
-        <div className='intro-wrap-grid'>
-          <div className='left-intro-column'>
+    <main>
+      <div className={styles.intro_wrap}>
+        <div className={styles.intro_wrap_grid}>
+          <div className={styles.left_intro_column}>
             <Image src={pizza} alt='pizza slices image'/>
           </div>
-          <section className='right-intro-column'>
+          <section className={styles.right_intro_column}>
             <Image src={logo} alt='Bella Ciao logo'/>
             <h2> Original Italian food and wine experience</h2>
             <h5>
@@ -26,34 +26,34 @@ export default function Home() {
             </h5>
             <h5>
               Sounds interesting? Getting hungry?
-              Get your order <span className='order-link-span'><a href='/order'>here</a></span> or 
+              Get your order <span className={styles.order_link_span}><a href='/order'>here</a></span> or 
               click the button below to see our menu! 
             </h5>
-            <button className='button-28 into'>Menu</button>
+            <button className={styles.button_29}>Menu</button>
           </section>
         </div>
       </div>
-      <section className='intro-extend'>
-        <h1 className='extend-title'>Discover Italian cuisine</h1>
-        <div className='intro-extend-flex'>
-            <Link href='/menu' className='intro-extend-anchor'>
-              <Image src={sandwich_img} alt='sandwich image' className='sandwich-img'/>
+      <section className={styles.intro_extend}>
+        <h1 className={styles.extend_title}>Discover Italian cuisine</h1>
+        <div className={styles.intro_extend_flex}>
+            <Link href='/menu'>
+              <Image src={sandwich_img} alt='sandwich image' className={styles.sandwich_img}/>
               <h3>Catering</h3>
             </Link>
-            <Link href='/order' className='intro-extend-anchor'>
-              <Image src={pizza_img} alt='pizza image' className='pizza-img'/>
+            <Link href='/order'>
+              <Image src={pizza_img} alt='pizza image' className={styles.pizza_img}/>
               <h3>Menu</h3>
             </Link>
-            <Link href='/catering' className='intro-extend-anchor'>
-              <Image src={pasta_img} alt='pizza image' className='pasta-img'/>
+            <Link href='/catering'>
+              <Image src={pasta_img} alt='pizza image' className={styles.pasta_img}/>
               <h3>Order</h3>
             </Link>
         </div>
       </section>
-      <section className='parallax-shot'></section>
-      <section className='about-italy'>
-        <div className='italy-desc'>
-          <div className="italy-desc-text">
+      <section className={styles.parallax_shot}></section>
+      <section className={styles.about_italy}>
+        <div className={styles.italy_desc}>
+          <div className={styles.italy_desc_text}>
             <h1>Italy</h1>
             <h3>
             Italy is a country in Southern and 
@@ -63,12 +63,12 @@ export default function Home() {
           Its cuisine and cooking techniques spread around the world together with waves of Italian diaspora.
           It is one of the best-known and most appreciated gastronomies worldwide.
             </h3>
-            <Link href="https://google.com" className="desc-btn">Read More</Link>
+            <Link href="https://google.com" className={styles.desc_btn}>Read More</Link>
           </div>
-          <div className="italy-desc-map">
-            <div className="mapouter">
-              <div className="gmap_canvas">
-                <iframe className="gmap_iframe" 
+          <div className={styles.italy_desc_map}>
+            <div className={styles.mapouter}>
+              <div className={styles.gmap_canvas}>
+                <iframe className={styles.gmap_iframe} 
                 src="https://maps.google.com/maps?width=600&amp;height=500&amp;hl=en&amp;q=Italy&amp;t=p&amp;z=5&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">
                 </iframe>
                 <Link href="https://capcuttemplate.org/">Capcuttemplate.org</Link>
@@ -76,11 +76,11 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='italy-wine-desc'>
-          <div className="italy-wine-desc-img">
+        <div className={styles.italy_wine_desc}>
+          <div className={styles.italy_wine_desc_img}>
             <Image src={wine_img} alt='wine image'/>
           </div>
-          <div className="italy-wine-desc-text">
+          <div className={styles.italy_wine_desc_text}>
             <h1>Italian Wine</h1>
             <h3>For reds, it&#39;s the soil. Italy&#39;s mountainous soil is 
           basically one 750-mile-long rock. Like the expression “to get blood from a 
@@ -90,15 +90,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className='delivery-parallax'>
-        <div className='delivery-parallax-wrap'>
+      <section className={styles.delivery_parallax}>
+        <div className={styles.delivery_parallax_wrap}>
           <h2>Take it home</h2>
           <h1>We Deliver</h1>
-          <div className='delivery-btn-grp'>
+          <div className={styles.delivery_btn_grp}>
             <Link href='/delivery'>
-              <button className='button-28 delivery'>Delivery</button>
+              <button className={styles.button_29}>Delivery</button>
             </Link>
-              <button className='button-28 delivery'>Pickup</button>
+              <button className={styles.button_29}>Pickup</button>
           </div>
         </div>
       </section>

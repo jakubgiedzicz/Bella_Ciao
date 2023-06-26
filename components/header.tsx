@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image"
 import Logo from '../public/Logo.webp'
-import '../styles/navbar.css'
+import styles from '../styles/navbar.module.css'
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 export default function Header() {
@@ -32,8 +32,8 @@ export default function Header() {
 
   const hideOnScroll = () => {
     const header: any = document.getElementById('header')
-    const navbar: any = document.getElementById('navbar')
-    if(header.style.display === 'block' && navbar.style.width === 'auto'){
+    const navbar: any = document.getElementsByClassName(styles.navbar)
+    if(header.style.display === 'block' && navbar[0].style.width === 'auto'){
       setToggled(false)
       setVisible(false)
     }
@@ -41,26 +41,26 @@ export default function Header() {
 
   const toggleNavbar = () => {
     toggleHeader()
-    let button: any = document.getElementById('nav-toggle')
-    let links: any = document.querySelector('.nav-links')
-    let links_wrap: any = document.querySelector('.list-and-toggle-wrap')
-    button.classList.toggle('open')
-    links.classList.toggle('open')
-    links_wrap.classList.toggle('open')
+    let button: any = document.getElementsByClassName(styles.nav_toggle)
+    let links: any = document.getElementsByClassName(styles.nav_links)
+    let links_wrap: any = document.getElementsByClassName(styles.list_toggle_wrap)
+    button[0].classList.toggle(styles.open)
+    links[0].classList.toggle(styles.open)
+    links_wrap[0].classList.toggle(styles.open)
   }
   const toggleHeader = () => {
     if(document.documentElement.clientWidth < 760){
       const header: any = document.getElementById('header')
-      const navbar: any = document.getElementById('navbar')
+      const navbar: any = document.getElementsByClassName(styles.navbar)
       if(visible === true) {
         header.style.display = 'block'
       } else {
         header.style.display = 'none'
       }
       if(toggled === true){
-        navbar.style.width = 'auto'
+        navbar[0].style.width = 'auto'
       } else {
-        navbar.style.width = '100%'
+        navbar[0].style.width = '100%'
       }
     }
   }
@@ -91,17 +91,17 @@ export default function Header() {
   return (
     <>
     <header id="header">
-      <nav id="navbar">
-        <Link href='/' className="logo-image-link">
+      <nav className={styles.navbar}>
+        <Link href='/' className={styles.logo_image_link}>
           <Image 
           src={Logo} 
           alt='Logo'
-          className="logo-img"
+          className={styles.logo_img}
         />
         </Link>
-        <div className="list-and-toggle-wrap">
-          <div className="nav-links">
-            <ul id="nav-list">
+        <div className={styles.list_toggle_wrap}>
+          <div className={styles.nav_links}>
+            <ul className={styles.nav_list}>
               <li>
                 <Link href='/menu'>
                   Menu
@@ -124,23 +124,23 @@ export default function Header() {
               </li>
               <li>
                 <Link href="/order">
-                  <span className="order-list-item">Order</span>
+                  <span className={styles.order_list_item}>Order</span>
                 </Link>
               </li>
             </ul>
           </div>
-          <Link href="/order" className="order-link">
-            <button className="button-28" role="button">
+          <Link href="/order">
+            <button className={styles.button_28} role="button">
               Order
             </button>
           </Link>
-        <button aria-label="toggle menu" id="nav-toggle" onClick={handleBurgerClick}>
+        <button aria-label="toggle menu" className={styles.nav_toggle} onClick={handleBurgerClick}>
           <svg 
           xmlns="http://www.w3.org/2000/svg"
           fill="none" 
           viewBox="0 0 24 24" 
           strokeWidth="1.5" 
-          stroke="currentColor" className="openIcon">
+          stroke="currentColor" className={styles.openIcon}>
             <path 
             strokeLinecap="round" 
             strokeLinejoin="round" 
@@ -151,7 +151,7 @@ export default function Header() {
           viewBox="0 0 24 24" 
           strokeWidth="1.5" 
           stroke="currentColor" 
-          className="closeIcon">
+          className={styles.closeIcon}>
             <path 
             strokeLinecap="round" 
             strokeLinejoin="round" 
