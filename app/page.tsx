@@ -8,7 +8,6 @@ import pasta_img from '../public/pasta-img.png'
 import wine_img from '../public/italian-wine.jpg'
 import Link from 'next/link'
 export default function Home() {
-  
   return (
     <>
     <main>
@@ -26,7 +25,7 @@ export default function Home() {
             </h5>
             <h5>
               Sounds interesting? Getting hungry?
-              Get your order <span className={styles.order_link_span}><a href='/order'>here</a></span> or 
+              Get your order <span className={styles.order_link_span}><Link href='/order'>here</Link></span> or 
               click the button below to see our menu! 
             </h5>
             <button className={styles.button_29}>Menu</button>

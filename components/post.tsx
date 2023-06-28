@@ -8,13 +8,6 @@ interface postData {
       description: string,
     }}
 
-interface post {
-  id: number,
-  date: string,
-  title: string,
-  description: string,
-}
-
 export default function Post(argArray:postData): JSX.Element {
   return (
     <div className={styles.blog_post}>

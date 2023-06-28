@@ -39,6 +39,12 @@ export default function Blog(){
       date: '27/06/2023 10:33',
       title: 'Post component',
       description: 'Fixed types on post component'
+    },
+    {
+      id: 7,
+      date: '28/06/2023 13:17',
+      title: 'Database connection',
+      description: "Managed to connect to MongoDB, wasted a lot of time using getServerSideProps (doesn't work in app router)"
     }
   ]
   return(
