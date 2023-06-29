@@ -167,6 +167,7 @@
 }
 .small_plates {
   background-image: url('../public/small-plate-bruscetta.jpg');
+  background-size: cover;
 }
 .soups_salads {
   background-image: url('../public/soups-salads-pasta-e-ceci.jpg');

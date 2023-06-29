@@ -3,7 +3,10 @@ import Image from 'next/image';
 import wine_img from '../../public/italian-wine.jpg'
 import CarouselComp from '@/components/carousel';
 import 'react-multi-carousel/lib/styles.css'
-export default function Menu() {
+import { getData } from '@/lib/getMenuData';
+
+export default async function Menu() {
+  const menu = await getData()
   return (
     <main className={styles.main_menu}>
       <section className={styles.menu_intro}>
@@ -19,30 +22,6 @@ export default function Menu() {
       <section className={styles.menu_featured}>
         <div className={styles.menu_featured_title_btn_wrap}>
           <h3>Featured items</h3>
-          <div className={styles.menu_featured_btn_grp}>
-            <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 16 16">
-              <path 
-              fill="currentColor" 
-              fillRule="evenodd" 
-              d="M4.3 7.3a1 1 0 0 0 0 1.4l6 6 1.4-1.4L6.42 8l5.3-5.3-1.42-1.4-6 6Z" 
-              clipRule="evenodd">
-              </path>
-            </svg>
-            <svg 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 16 16">
-              <path 
-              fill="currentColor" 
-              fillRule="evenodd" 
-              d="M11.7 7.3a1 1 0 0 1 0 1.4l-6 6-1.4-1.4L9.58 8l-5.3-5.3L5.7 1.3l6 6Z" 
-              clipRule="evenodd">
-              </path>
-            </svg>
-          </div>
         </div>
         <CarouselComp />
       </section>

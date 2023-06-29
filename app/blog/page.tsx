@@ -51,6 +51,18 @@ export default function Blog(){
       date: '28/06/2023 16:54',
       title: 'Order page',
       description: 'Order page refactored (types missing), fetching data from the DB'
+    },
+    {
+      id: 9,
+      date: '29/06/2023 15:22',
+      title: 'Types and DB',
+      description: 'Declared types on few components/pages, added image links to DB'
+    },
+    {
+      id: 10,
+      date: '29/06/2023 17:19',
+      title: 'Dynamic Route',
+      description: 'Started working on dynamic routes for menu items'
     }
   ]
   return(

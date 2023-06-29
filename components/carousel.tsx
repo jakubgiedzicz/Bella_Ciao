@@ -5,6 +5,7 @@ import Link from "next/link"
 import styles from '../styles/menu.module.css'
 import Image from "next/image"
 import cacciatore_img from '../public/chicken-cacciatore.jpg'
+import tiramisu from '../public/castelfranco-with-vincotto-and-blu-di-bufala.jpg'
 
 export default function CarouselComp() {
   const responsive = {
@@ -48,35 +49,35 @@ export default function CarouselComp() {
         itemClass="carousel-item-margin-40-px"
         >
           <div className={styles.menu_carousel_item_container}>
-            <Link href='/product/cacciatore'>
+            <Link href='/product/cacciatore' passHref>
               <Image src={cacciatore_img} alt='aha' />
             </Link>
             <h3>Chicken Cacciatore</h3>
             <p>$24.95</p>
           </div>
           <div className={styles.menu_carousel_item_container}>
-            <Link href='/product/cacciatore'>
-              <Image src={cacciatore_img} alt='aha' />
+            <Link href='/product/cacciatore' passHref>
+              <Image src={tiramisu} alt='aha' />
             </Link>
             <h3>Lasagna</h3>
             <p>$32.95</p>
           </div>
           <div className={styles.menu_carousel_item_container}>
-            <Link href='/product/cacciatore'>
+            <Link href='/product/cacciatore' passHref>
               <Image src={cacciatore_img} alt='aha' />
             </Link>
             <h3>Spaghetti and meatballs</h3>
             <p>$28.95</p>
           </div>
           <div className={styles.menu_carousel_item_container}>
-            <Link href='/product/cacciatore'>
+            <Link href='/product/cacciatore' passHref>
               <Image src={cacciatore_img} alt='aha' />
             </Link>
             <h3>Four cheese pasta</h3>
             <p>$33.95</p>
           </div>
           <div className={styles.menu_carousel_item_container}>
-            <Link href='/product/cacciatore'>
+            <Link href='/product/cacciatore' passHref>
               <Image src={cacciatore_img} alt='aha' />
             </Link>
             <h3>Pizza margherita</h3>

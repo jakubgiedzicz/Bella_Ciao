@@ -49,6 +49,7 @@
 }
 .order_category {
   padding-inline: 15%;
+  margin-bottom: 2rem;
 }
 .category_grid_container {
   display: grid;
@@ -65,15 +66,15 @@
   font-family: var(--formal-font);
 }
 .category_item_wrap img {
-  width: 6rem;
-  height: 6rem;
+  width: 135px;
+  height: 90px;
   margin-right: 1rem;
   border-radius: 1rem;
 }
 .category_item_wrap {
   background-color: white;
   display: flex;
-  padding: 1rem;
+  padding: 0.5rem;
   justify-content: space-between;
   align-items: center;
   border-width: 1px;
