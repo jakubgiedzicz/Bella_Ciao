@@ -10,7 +10,7 @@ export default function OrderCategory(props: any): JSX.Element {
         </div>
           <div className={styles.category_grid_container}>
             {props.data.map((object: MenuItemType) => (
-                <MenuItem props={object} key={object.id} />
+                <MenuItem props={object} key={object._id} />
               ))}
         </div>
       </div>
