@@ -63,6 +63,18 @@ export default function Blog(){
       date: '29/06/2023 17:19',
       title: 'Dynamic Route',
       description: 'Started working on dynamic routes for menu items'
+    },
+    {
+      id: 11,
+      date: '30/06/2023 13:26',
+      title: 'Dynamic route /order/[name]',
+      description: 'Getting data for a single item, styling'
+    },
+    {
+      id: 12,
+      date: '30/06/2023 16:45',
+      title: '/order/[name]',
+      description: 'Most of the page is done, disabled strictNullChecks'
     }
   ]
   return(
