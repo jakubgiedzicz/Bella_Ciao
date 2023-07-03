@@ -8,7 +8,11 @@ export default function CartButton({ price }: { price: string }): JSX.Element {
     setQuantity(quantity + 1)
   }
   function handleDecrement() {
+    if(quantity <= 1){
+      setQuantity(1)
+    } else {
     setQuantity(quantity - 1)
+    }
   }
   useEffect(() => {
     const increment = document.getElementById('increment')

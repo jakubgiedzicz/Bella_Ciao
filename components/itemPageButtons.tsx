@@ -22,7 +22,7 @@ export default function Buttons({ price} : Price): JSX.Element {
     <>
       <h4 className={styles.desc_price}>{price}</h4>
       <div className={styles.desc_quantity}>
-        <button className={styles.desc_button} onClick={() => handleClick(false)} id="increment">
+        <button className={styles.desc_button} onClick={() => handleClick(false)} id="decrement">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -32,7 +32,7 @@ export default function Buttons({ price} : Price): JSX.Element {
           </svg>
         </button>
         <p className={styles.desc_quantity_display} id="quant">{quant}</p>
-        <button className={styles.desc_button} onClick={() => handleClick(true)} id="decrement">
+        <button className={styles.desc_button} onClick={() => handleClick(true)} id="increment">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
