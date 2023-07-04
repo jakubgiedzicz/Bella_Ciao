@@ -80,6 +80,7 @@
   border-width: 1px;
   border-style: solid;
   border-color: var(--background-dark-grey);
+  min-height: 180px;
 }
 .category_item_desc {
   width: 70%;  

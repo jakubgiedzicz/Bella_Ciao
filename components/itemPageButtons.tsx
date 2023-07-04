@@ -17,7 +17,6 @@ export default function Buttons({ price} : Price): JSX.Element {
         setQuant(quant + 1)
       }
   }
-  console.log(price)
   return (
     <>
       <h4 className={styles.desc_price}>{price}</h4>

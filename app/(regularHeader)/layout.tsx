@@ -14,7 +14,7 @@ export const metadata = {
   viewport: "width=device-width, initial-scale=1, minimum-scale=1"
 }
 
-export default function RootLayout({
+export default function Root({
   children,
 }: {
   children: React.ReactNode

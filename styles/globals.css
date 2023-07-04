@@ -11,6 +11,7 @@
   --clamp2: clamp(2vh, 2rem, 2vw);
   --clamp15: clamp(1.5vh, 1.5rem, 1.5vw);
   --clamp1: clamp(1vh, 1rem, 1vw);
+  --clampWide: clamp(0.8rem, 0.8vw, 1.5vw)
 }
 
 * {

@@ -24,7 +24,6 @@ export default function CartButton({ price }: { price: string }): JSX.Element {
       increment.removeEventListener('click', handleIncrement)
     }
   })
-  console.log(quantity)
   function handleClick() {
   }
   return (

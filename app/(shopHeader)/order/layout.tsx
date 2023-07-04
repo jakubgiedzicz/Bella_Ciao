@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import { Cormorant } from 'next/font/google'
 import Footer from '@/components/footer'
-import Header2 from '@/components/header2'
+import ShopHeader from '@/components/shop-header'
 
 const cormorant = Cormorant({
   weight: ['400', '500', '600', '700'],
@@ -22,7 +22,7 @@ export default function OrderLayout({
   return (
     <html lang="en">
       <body className={cormorant.className}>
-        <Header2 />
+        <ShopHeader />
         {children}
         <Footer />
         </body>

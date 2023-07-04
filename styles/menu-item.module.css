@@ -7,7 +7,7 @@
 .item_link {
   color: black;
   padding-top: 1rem;
-  font-size: var(--clamp1);
+  font-size: var(--clamp15);
 }
 .item_link_span {
   color: rgb(138, 170, 142);

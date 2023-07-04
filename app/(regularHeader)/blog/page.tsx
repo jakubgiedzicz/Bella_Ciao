@@ -87,6 +87,12 @@ export default function Blog(){
       date: '03/07/2023 15:38',
       title: 'Layouts and more',
       description: 'Refactored the app folder structure to support two layouts (different styling and functionality), updated NextJS'
+    },
+    {
+      id: 15,
+      date: '04/07/2023 14:00',
+      title: 'Header/Navbar',
+      description: 'Refactoring navbar component for the shopping cart'
     }
   ]
   return(

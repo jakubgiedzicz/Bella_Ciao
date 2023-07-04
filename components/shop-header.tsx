@@ -1,10 +1,11 @@
 "use client";
 import Image from "next/image";
 import Logo from "@/public/Logo.webp";
-import styles from "@/styles/navbar.module.css";
+import Cart from "@/public/shopping-cart-outline.svg";
+import styles from "@/styles/shop-header.module.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-export default function Header() {
+export default function ShopHeader() {
   /* Navbar visibility; changes on user scroll */
   const [visible, setVisible] = useState(true);
 
@@ -14,7 +15,7 @@ export default function Header() {
   /* Prevent useEffect to display navbar on mount */
   const effectRan = useRef(false);
 
-  const handleBurgerClick = () => {
+  /* const handleBurgerClick = () => {
     if (toggled === true) {
       setToggled(false);
     } else {
@@ -88,75 +89,32 @@ export default function Header() {
   useEffect(() => {
     toggleHeader();
   }, [visible]);
-
+ */
   return (
     <>
       <header id="header">
         <nav className={styles.navbar}>
-          <Link href="/" className={styles.logo_image_link}>
-            <Image src={Logo} alt="Logo" className={styles.logo_img} />
+          <Link href="/" passHref>
+            <Image src={Logo} alt="" />
           </Link>
-          <div className={styles.list_toggle_wrap}>
-            <div className={styles.nav_links}>
-              <ul className={styles.nav_list}>
-                <li>
-                  <Link href="/menu">Menu</Link>
-                </li>
-                <li>
-                  <Link href="/reservations">Reservations</Link>
-                </li>
-                <li>
-                  <a href="#contact">Contact</a>
-                </li>
-                <li>
-                  <Link href="/blog">Blog</Link>
-                </li>
-                <li>
-                  <Link href="/order">
-                    <span className={styles.order_list_item}>Order</span>
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <Link href="/order">
-              <button className={styles.button_28} role="button">
-                Order
-              </button>
-            </Link>
-            <button
-              aria-label="toggle menu"
-              className={styles.nav_toggle}
-              onClick={handleBurgerClick}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className={styles.openIcon}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className={styles.closeIcon}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+          <ul className={styles.list}>
+            <li>
+              <a href="#contact">Contact</a>
+            </li>
+            <li>
+              <Link href="/reservations">Reservations</Link>
+            </li>
+            <li>
+              <Link href="/menu">Menu</Link>
+            </li>
+            <li>
+              <Link href="/blog">Blog</Link>
+            </li>
+          </ul>
+          <div className={styles.cart_wrap}>
+            <span className={styles.cart_span}>Your cart:</span>
+            <div className={styles.cart_svg}></div>
+            <div className={styles.cart_number} id="cart-number">2</div>
           </div>
         </nav>
       </header>
