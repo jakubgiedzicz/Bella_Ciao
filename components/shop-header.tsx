@@ -94,7 +94,7 @@ export default function ShopHeader() {
     <>
       <header id="header">
         <nav className={styles.navbar}>
-          <Link href="/" passHref>
+          <Link href="/" passHref className={styles.logo}>
             <Image src={Logo} alt="" />
           </Link>
           <ul className={styles.list}>
@@ -115,7 +115,41 @@ export default function ShopHeader() {
             <span className={styles.cart_span}>Your cart:</span>
             <div className={styles.cart_svg}></div>
             <div className={styles.cart_number} id="cart-number">2</div>
+            <button
+              aria-label="toggle menu"
+              className={styles.nav_toggle}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className={styles.openIcon}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className={styles.closeIcon}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
+          
         </nav>
       </header>
     </>
