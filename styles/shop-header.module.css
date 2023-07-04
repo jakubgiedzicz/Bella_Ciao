@@ -53,3 +53,48 @@
 .cart_number {
   color: black;
 }
+.nav_toggle {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  display: none;
+}
+.nav_toggle svg {
+  height: 2rem;
+  width: 2rem;
+  filter: invert(78%) sepia(44%) saturate(0%) hue-rotate(179deg) brightness(99%) contrast(85%);
+  cursor: pointer;
+}
+.openIcon {
+  display: block;
+  filter: drop-shadow(1px 1px 1px rgb(0 0 0 / 0.4));
+}
+.closeIcon {
+  display: none;
+}
+.nav_links.open {
+  animation: 0.5s ease-out 0s 1 slideFromRight;
+}
+.nav_toggle.open .openIcon {
+  display: none;
+}
+.nav_toggle.open .closeIcon {
+  display: block;
+}
+@media (max-width: 788px) {
+  .nav_toggle,
+  .nav_links.open {
+    display: block;
+  }
+  .list {
+    display: none;
+  }
+  .navbar {
+    justify-content: space-between;
+    padding-inline: 5%;
+  }
+  .cart_wrap {
+    gap: 1rem;
+  }
+  
+}

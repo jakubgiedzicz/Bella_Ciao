@@ -13,7 +13,7 @@
   height: 100%;
 }
 .order_btn_grp {
-  padding-inline: 15%;
+  padding-inline: 10%;
   display: flex;
   justify-content: center;
   margin-top: 7rem;
@@ -21,7 +21,7 @@
   border-bottom: 2px grey solid;
 }
 .order_navigation {
-  min-height: 2rem
+  min-height: 2rem;
 }
 .order_navigation li {
   margin-left: 2rem;
@@ -80,13 +80,23 @@
   border-width: 1px;
   border-style: solid;
   border-color: var(--background-dark-grey);
-  min-height: 180px;
+  min-height: 220px;
 }
 .category_item_desc {
-  width: 70%;  
+  width: 70%;
 }
 .category_item_desc > * {
   padding-bottom: 1rem;
   font-family: var(--formal-font);
   font-weight: 500;
+}
+@media (max-width: 1000px) {
+  .category_grid_container {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 450px) {
+  .order_category {
+    padding-inline: 5%;
+  }
 }
