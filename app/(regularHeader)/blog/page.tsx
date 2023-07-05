@@ -93,7 +93,13 @@ export default function Blog(){
       date: '04/07/2023 14:00',
       title: 'Header/Navbar',
       description: 'Refactoring navbar component for the shopping cart'
-    }
+    },
+    {
+      id: 16,
+      date: '05/07/2023 13:28',
+      title: 'Header/Navbar, [name]',
+      description: 'Navbar component RWD done, moving to [name] RWD'
+    },
   ]
   return(
     <main className={styles.light_bg}>
