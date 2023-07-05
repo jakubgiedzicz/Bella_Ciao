@@ -1,8 +1,9 @@
 "use client"
 import styles from '@/styles/menu-item.module.css'
 import { useEffect, useState } from 'react'
-export default function CartButton({ price }: { price: string }): JSX.Element {
-  const actualPrice = +price.substring(1, price.length)
+import { MenuItemType } from '@/types/DBtypes'
+export default function CartButton({ props }: { props: MenuItemType }): JSX.Element {
+  const actualPrice = +props.price.substring(1, props.price.length)
   const [quantity, setQuantity] = useState(1)
   function handleIncrement() {
     setQuantity(quantity + 1)
@@ -24,7 +25,33 @@ export default function CartButton({ price }: { price: string }): JSX.Element {
       increment.removeEventListener('click', handleIncrement)
     }
   })
+  function handleProps() {
+    let string = {
+      name: props.name,
+      price: props.price,
+      link: props.link,
+      quantity: quantity,
+      full_price: (actualPrice * quantity).toFixed(2)
+    }
+    return string
+  }
+  function handleStorage(item: string){
+    let storage = sessionStorage.getItem('cart')
+    let arr = [storage]
+    arr.push(item)
+    sessionStorage.setItem('cart', arr.toString())
+    console.log(storage)
+  }
   function handleClick() {
+    let storage = sessionStorage.getItem('cart')
+    console.log(storage)
+    if (storage === null) {
+      sessionStorage.setItem('cart', JSON.stringify(handleProps()))
+      console.log(storage)
+    } else {
+      handleStorage(storage)
+    }
+    /* sessionStorage.setItem('cart', JSON.stringify()) */
   }
   return (
     <button className={styles.button_28} onClick={() => handleClick()}>Add to cart ${(actualPrice * quantity).toFixed(2)}</button>
