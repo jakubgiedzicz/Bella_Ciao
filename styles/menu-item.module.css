@@ -15,8 +15,7 @@
 .item_detail_wrap {
   padding-top: 2rem;
   display: grid;
-  grid-template-columns: 15% 1fr 35%;
-  column-gap: 2rem;
+  grid-template-columns: 15% 1fr 25%;
 }
 .image_small_container {
   height: 5rem;
@@ -37,9 +36,11 @@
 }
 .image_big_container img {
   border-radius: 1rem;
+  width: 80%;
+  height: auto;
 }
 .item_desc {
-  width: 50%;
+  width: 80%;
 }
 .desc_name {
   font-size: clamp(3vh, 3rem, 3vw);
@@ -54,6 +55,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   height: 80px;
 }
 .desc_button {
@@ -73,9 +75,8 @@
   width: 20px;
 }
 .desc_quantity_display {
-  padding: 0 1rem;
-  font-size: var(--clamp15);
-  height: 32px;
+  font-size: 2rem;
+  padding: 0 0.5rem;
 }
 .desc_description,
 .desc_warning_title {
@@ -87,7 +88,7 @@
 .delivery_details > *,
 .delivery_local {
   padding-bottom: 1rem;
-  font-size: var(--clamp1);
+  font-size: var(--clamp15);
   font-family: var(--formal-font);
   font-weight: 400;
 }
@@ -117,4 +118,22 @@
 }
 .button_28:hover {
   filter: brightness(80%);
+}
+@media (max-width: 1000px){
+  .image_small_container {
+    display: none;
+  }
+  .item_detail_wrap {
+    grid-template-columns: 60% 35%;
+    column-gap: 1rem;
+  }
+  .image_big_container img{
+    width: 100%;
+    height: auto;
+  }
+}
+@media (max-width: 760px) {
+  .item_detail_wrap {
+    display: block;
+  }
 }

@@ -53,6 +53,6 @@ export default function CartButton({ props }: { props: MenuItemType }): JSX.Elem
   }
 
   return (
-    <button className={styles.button_28} onClick={() => handleClick()}>Add to cart ${(actualPrice * quantity).toFixed(2)}</button>
+    <button className={styles.button_28} onClick={() => handleClick()} id='cartButton'>Add to cart ${(actualPrice * quantity).toFixed(2)}</button>
   )
 }

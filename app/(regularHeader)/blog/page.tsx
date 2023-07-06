@@ -100,6 +100,24 @@ export default function Blog(){
       title: 'Header/Navbar, [name]',
       description: 'Navbar component RWD done, moving to [name] RWD'
     },
+    {
+      id: 17,
+      date: '05/07/2023 15:28',
+      title: '[name]',
+      description: '[name] page now takes full item as prop, cart button adds items to sessionStorage'
+    },
+    {
+      id: 18,
+      date: '06/07/2023 11:49',
+      title: 'sessionStorage',
+      description: 'Shop-header now properly displays number of items, sessionStorage properly holds cart'
+    },
+    {
+      id: 19,
+      date: '06/07/2023 16:35',
+      title: 'Cart',
+      description: 'Cart styling/functionality halfway done'
+    },
   ]
   return(
     <main className={styles.light_bg}>

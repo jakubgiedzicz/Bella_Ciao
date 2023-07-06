@@ -43,7 +43,8 @@ export default async function Page({ params }: { params: { name: string } }) {
         </div>
         <div className={styles.item_desc}>
           <h1 className={styles.desc_name}>{item.name}</h1>
-          <Buttons price={item.price} />
+          <h4 className={styles.desc_price}>{item.price}</h4>
+          <Buttons />
           <h3 className={styles.desc_description}>Description</h3>
           <h4 className={styles.desc_details}>{item.details}</h4>
           <h3 className={styles.desc_warning_title}>Contains the following:</h3>
@@ -81,7 +82,7 @@ export default async function Page({ params }: { params: { name: string } }) {
                 </div>
               </label>
             </div>
-            <CartButton price={item.price}/>
+            <CartButton props={item}/>
           </div>
         </div>
       </div>
