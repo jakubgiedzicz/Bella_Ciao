@@ -35,24 +35,23 @@ export default function CartButton({ props }: { props: MenuItemType }): JSX.Elem
     }
     return string
   }
-  function handleStorage(item: string){
+  function handleStorage(){
     let storage = sessionStorage.getItem('cart')
     let arr = [storage]
-    arr.push(item)
+    let item = handleProps()
+    arr.push(JSON.stringify(item))
     sessionStorage.setItem('cart', arr.toString())
-    console.log(storage)
   }
+
   function handleClick() {
     let storage = sessionStorage.getItem('cart')
-    console.log(storage)
     if (storage === null) {
       sessionStorage.setItem('cart', JSON.stringify(handleProps()))
-      console.log(storage)
     } else {
-      handleStorage(storage)
+      handleStorage()
     }
-    /* sessionStorage.setItem('cart', JSON.stringify()) */
   }
+
   return (
     <button className={styles.button_28} onClick={() => handleClick()}>Add to cart ${(actualPrice * quantity).toFixed(2)}</button>
   )
