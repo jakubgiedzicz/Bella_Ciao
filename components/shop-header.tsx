@@ -5,19 +5,10 @@ import styles from "@/styles/shop-header.module.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import CartItem from "./headerCartItem";
-
-interface cartState {
-  item: {
-    full_price: string;
-    link: string;
-    name: string;
-    price: string;
-    quantity: number;
-  };
-}
+import { cartItemType } from "@/types/cartItemType";
 
 export default function ShopHeader() {
-  const [cart, setCart] = useState<cartState[] | null | string[]>([]);
+  const [cart, setCart] = useState<cartItemType[]>([]);
 
   const [cartUpdate, setCartUpdate] = useState(0);
 
@@ -49,6 +40,9 @@ export default function ShopHeader() {
       window.onscroll = function () {};
     }
   };
+
+/* buttonFunction is used to help with updating cart state */
+
   let buttonFunction = (e: Event) => {
     if ((e.target as HTMLButtonElement).id === "cartButton") {
       setCartUpdate((cartUpdate) => cartUpdate + 1);
@@ -59,12 +53,35 @@ export default function ShopHeader() {
     return () => window.removeEventListener("click", buttonFunction);
   }, []);
 
-  useEffect(() => {
-    if (sessionStorage.getItem("cart") === null) {
-      setCart([]);
+/* findItems iterates over sessionStorage, looks for cartItem keys,
+ turns them into objects and updates cart state */
+
+  const findItems = (spread: boolean) => {
+    if (spread === true) {
+      for (let i = 1; i < sessionStorage.length; i++) {
+        let x = sessionStorage.getItem(`cartItem${i}`);
+        setCart((cart) => [...cart, JSON.parse(x)]);
+      }
     } else {
-      setCart(sessionStorage.getItem("cart").split("},{"));
+      let ar = [];
+      for (let i = 1; i < sessionStorage.length; i++) {
+        let x = sessionStorage.getItem(`cartItem${i}`);
+        ar.push(JSON.parse(x));
+      }
+      setCart(ar);
     }
+  };
+
+
+
+  /* First useEffect initialises cart state, second updates it on click */
+
+  useEffect(() => {
+    findItems(true);
+  }, []);
+
+  useEffect(() => {
+    findItems(false);
   }, [cartUpdate]);
 
   useEffect(() => {
@@ -101,9 +118,11 @@ export default function ShopHeader() {
             </li>
           </ul>
           <div className={styles.cart}>
-          <div className={styles.cart_your_cart}>Your cart &#40;{cart.length}&#41;</div>
-            {cart.map((item: any) => (
-              <CartItem key={item}/>
+            <div className={styles.cart_your_cart}>
+              Your cart &#40;{cart.length}&#41;
+            </div>
+            {cart.map((item: any, i) => (
+              <CartItem key={item.name + item.price + item.full_price} props={[item, i]}/>
             ))}
           </div>
           <div className={`${styles.cart_wrap} ${styles.openCartWrap}`}>

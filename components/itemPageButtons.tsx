@@ -1,8 +1,8 @@
 "use client"
-import styles from "@/styles/menu-item.module.css";
+import styles from "@/styles/quantButtons.module.css";
 import { useState } from "react";
-export default function Buttons(): JSX.Element {
-  const [quant, setQuant] = useState(1)
+export default function Buttons({ quantity }: {quantity: number}): JSX.Element {
+  const [quant, setQuant] = useState(quantity)
   function handleClick(increment: boolean) {
     if(increment === false) {
       if(quant <= 1) {

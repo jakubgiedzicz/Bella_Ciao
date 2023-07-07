@@ -118,6 +118,18 @@ export default function Blog(){
       title: 'Cart',
       description: 'Cart styling/functionality halfway done'
     },
+    {
+      id: 20,
+      date: '07/07/2023 13:54',
+      title: 'Cart',
+      description: 'Fixed sessionstorage and shop-header'
+    },
+    {
+      id: 21,
+      date: '07/07/2023 16:08',
+      title: 'Cart',
+      description: 'Looking for a way to delete items from cart Note to self:UUID'
+    },
   ]
   return(
     <main className={styles.light_bg}>

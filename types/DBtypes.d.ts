@@ -1,5 +1,5 @@
 export type MenuItemType = {
-  id: string,
+  _id: string,
   name: string,
   price: string,
   details: string,

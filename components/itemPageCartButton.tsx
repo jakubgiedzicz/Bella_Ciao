@@ -5,6 +5,7 @@ import { MenuItemType } from '@/types/DBtypes'
 export default function CartButton({ props }: { props: MenuItemType }): JSX.Element {
   const actualPrice = +props.price.substring(1, props.price.length)
   const [quantity, setQuantity] = useState(1)
+  const [itemN, setItemN] = useState(sessionStorage.length)
   function handleIncrement() {
     setQuantity(quantity + 1)
   }
@@ -35,21 +36,9 @@ export default function CartButton({ props }: { props: MenuItemType }): JSX.Elem
     }
     return string
   }
-  function handleStorage(){
-    let storage = sessionStorage.getItem('cart')
-    let arr = [storage]
-    let item = handleProps()
-    arr.push(JSON.stringify(item))
-    sessionStorage.setItem('cart', arr.toString())
-  }
-
   function handleClick() {
-    let storage = sessionStorage.getItem('cart')
-    if (storage === null) {
-      sessionStorage.setItem('cart', JSON.stringify(handleProps()))
-    } else {
-      handleStorage()
-    }
+    sessionStorage.setItem(`cartItem${itemN}`, JSON.stringify(handleProps()))
+    setItemN(itemN + 1)
   }
 
   return (

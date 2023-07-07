@@ -1,0 +1,27 @@
+.desc_quantity {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  height: 80px;
+}
+.desc_button {
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border: none;
+  background-color: rgb(228, 231, 226);
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgb(30, 30, 30);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.desc_button svg {
+  width: 20px;
+}
+.desc_quantity_display {
+  font-size: 2rem;
+  padding: 0 0.5rem;
+}
