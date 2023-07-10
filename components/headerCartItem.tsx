@@ -4,14 +4,10 @@ import Buttons from "./itemPageButtons";
 import styles from '@/styles/shop-header.module.css'
 import trash from '@/public/trash.svg'
 import { cartItemType } from '@/types/cartItemType'
-interface propType {
-  item: cartItemType,
-  id: number
-}
-export default function CartItem({ props }: propType) {
-  console.log(props, typeof(props))
+
+export default function CartItem({ props }: {props: cartItemType}) {
   return (
-    <div className={styles.cart_item_wrap} id={props.name + props.price + props.full_price}>
+    <div className={styles.cart_item_wrap} id={props.id}>
       <div className={styles.cart_details}>
         <Image src={props.link} alt="" width={50} height={50} className={styles.cart_img}/>
         <span>{props.name}</span>

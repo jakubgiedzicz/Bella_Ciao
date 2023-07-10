@@ -2,10 +2,14 @@
 import styles from '@/styles/menu-item.module.css'
 import { useEffect, useState } from 'react'
 import { MenuItemType } from '@/types/DBtypes'
+
 export default function CartButton({ props }: { props: MenuItemType }): JSX.Element {
+  /* Turn price string to price number */
   const actualPrice = +props.price.substring(1, props.price.length)
+  
   const [quantity, setQuantity] = useState(1)
-  const [itemN, setItemN] = useState(sessionStorage.length)
+
+  /* Change state based on input */
   function handleIncrement() {
     setQuantity(quantity + 1)
   }
@@ -16,6 +20,7 @@ export default function CartButton({ props }: { props: MenuItemType }): JSX.Elem
     setQuantity(quantity - 1)
     }
   }
+  /* Add onClick event listener on mount */
   useEffect(() => {
     const increment = document.getElementById('increment')
     increment.addEventListener('click', handleIncrement)
@@ -32,16 +37,22 @@ export default function CartButton({ props }: { props: MenuItemType }): JSX.Elem
       price: props.price,
       link: props.link,
       quantity: quantity,
-      full_price: (actualPrice * quantity).toFixed(2)
+      full_price: (actualPrice * quantity).toFixed(2),
     }
     return string
   }
+  
+  
+  /* Save item data in sessionStorage on mount */
   function handleClick() {
-    sessionStorage.setItem(`cartItem${itemN}`, JSON.stringify(handleProps()))
-    setItemN(itemN + 1)
+    sessionStorage.setItem('bella-ciao-item-data', JSON.stringify(handleProps()))
   }
+  useEffect(() => {
+    handleClick()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
-    <button className={styles.button_28} onClick={() => handleClick()} id='cartButton'>Add to cart ${(actualPrice * quantity).toFixed(2)}</button>
+    <button className={styles.button_28} id='cartButton'>Add to cart ${(actualPrice * quantity).toFixed(2)}</button>
   )
 }

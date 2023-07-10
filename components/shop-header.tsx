@@ -6,11 +6,12 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import CartItem from "./headerCartItem";
 import { cartItemType } from "@/types/cartItemType";
+import { getUniqueId } from '@/lib/generateId'
 
 export default function ShopHeader() {
   const [cart, setCart] = useState<cartItemType[]>([]);
 
-  const [cartUpdate, setCartUpdate] = useState(0);
+  const [helper, setHelper] = useState(0)
 
   /* Navbar list items after clicking on designed button */
   const [toggled, setToggled] = useState(false);
@@ -25,6 +26,7 @@ export default function ShopHeader() {
       setToggled(true);
     }
   };
+  /* Function used for blocking scrolling and displaying/expanding modal */
   const toggleHeader = () => {
     const body = document.body;
     const modal = document.getElementById("modal");
@@ -41,48 +43,73 @@ export default function ShopHeader() {
     }
   };
 
-/* buttonFunction is used to help with updating cart state */
+/* buttonFunction is used to update cart state
+   target textContent of quantity button, set actual quantity,
+   generate unique id, calculate price, update cart, save to sessionStorage 
+   setCart((cart) => [...cart, item])*/
 
   let buttonFunction = (e: Event) => {
     if ((e.target as HTMLButtonElement).id === "cartButton") {
-      setCartUpdate((cartUpdate) => cartUpdate + 1);
+      setHelper(helper + 1)
+      console.log(cart)
     }
   };
+  const handleHelperChange = () => {
+    if(cart.length === 0) {
+      let item = JSON.parse(sessionStorage.getItem('bella-ciao-item-data'))
+      let quantity = document.getElementById('quantOrderPage').textContent
+      item.quantity = quantity
+      item.id = getUniqueId()
+      item.full_price = (item.full_price * item.quantity).toFixed(2)
+      sessionStorage.setItem('bella-ciao-session-cart', JSON.stringify(item))
+      setCart([item])
+    } else {
+      saveToStorage()
+    }
+  }
+  const saveToStorage = () => {
+    let string = ''
+    console.log(cart.length)
+    for (let i = 0; i < cart.length; i++){
+      string += JSON.stringify(cart[i]) + '|'
+    }
+    let array : any= string.split('|')
+    array.pop()
+    let finalArray : any= []
+    array.forEach((element: string) => {
+        finalArray.push(JSON.parse(element))
+    });
+
+    /* sessionStorage.setItem('bella-ciao-session-cart', array) */
+    console.log(string)
+    console.log(string.split('|'))
+    console.log(JSON.parse(string.split('|')[0]))
+    console.log(finalArray)
+  }
+
   useEffect(() => {
     window.addEventListener("click", buttonFunction);
     return () => window.removeEventListener("click", buttonFunction);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-/* findItems iterates over sessionStorage, looks for cartItem keys,
- turns them into objects and updates cart state */
-
-  const findItems = (spread: boolean) => {
-    if (spread === true) {
-      for (let i = 1; i < sessionStorage.length; i++) {
-        let x = sessionStorage.getItem(`cartItem${i}`);
-        setCart((cart) => [...cart, JSON.parse(x)]);
-      }
-    } else {
-      let ar = [];
-      for (let i = 1; i < sessionStorage.length; i++) {
-        let x = sessionStorage.getItem(`cartItem${i}`);
-        ar.push(JSON.parse(x));
-      }
-      setCart(ar);
-    }
-  };
 
 
 
   /* First useEffect initialises cart state, second updates it on click */
 
   useEffect(() => {
-    findItems(true);
-  }, []);
-
+    if(sessionStorage.getItem('bella-ciao-session-cart') !== null) {
+      /* setCart(JSON.parse(sessionStorage.getItem('bella-ciao-session-cart'))) */
+    }
+  },[])
   useEffect(() => {
-    findItems(false);
-  }, [cartUpdate]);
+    if(effectRan.current === true){
+      handleHelperChange()
+    }
+    return () => {
+      effectRan.current = true
+    }
+  },[helper])
 
   useEffect(() => {
     if (effectRan.current === true) {
@@ -121,9 +148,8 @@ export default function ShopHeader() {
             <div className={styles.cart_your_cart}>
               Your cart &#40;{cart.length}&#41;
             </div>
-            {cart.map((item: any, i) => (
-              <CartItem key={item.name + item.price + item.full_price} props={[item, i]}/>
-            ))}
+            
+            <button className={styles.cart_button}>Continue to payment</button>
           </div>
           <div className={`${styles.cart_wrap} ${styles.openCartWrap}`}>
             <span className={styles.cart_span}>Your cart:</span>

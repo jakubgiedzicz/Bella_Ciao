@@ -1,7 +1,7 @@
 "use client"
 import styles from "@/styles/quantButtons.module.css";
 import { useState } from "react";
-export default function Buttons({ quantity }: {quantity: number}): JSX.Element {
+export default function Buttons({ quantity, id }: {quantity: number, id: string|number}): JSX.Element {
   const [quant, setQuant] = useState(quantity)
   function handleClick(increment: boolean) {
     if(increment === false) {
@@ -26,7 +26,7 @@ export default function Buttons({ quantity }: {quantity: number}): JSX.Element {
             <path fill="currentColor" d="M19 11H5v2h14v-2Z"></path>
           </svg>
         </button>
-        <span className={styles.desc_quantity_display} id="quant">{quant}</span>
+        <span className={styles.desc_quantity_display} id={`quant${id}`}>{quant}</span>
         <button className={styles.desc_button} onClick={() => handleClick(true)} id="increment">
           <svg
             xmlns="http://www.w3.org/2000/svg"

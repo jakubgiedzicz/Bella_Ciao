@@ -130,6 +130,12 @@ export default function Blog(){
       title: 'Cart',
       description: 'Looking for a way to delete items from cart Note to self:UUID'
     },
+    {
+      id: 22,
+      date: '10/07/2023 17:28',
+      title: 'Cart/Buttons/SessionStorage',
+      description: 'Refactored (not finished yet) button components and sessionStorage usage, created id generation'
+    },
   ]
   return(
     <main className={styles.light_bg}>
