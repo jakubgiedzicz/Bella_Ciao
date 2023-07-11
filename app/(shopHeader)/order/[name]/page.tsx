@@ -7,7 +7,7 @@ import clientPromise from "@/lib/mongodb";
 import { ObjectId } from "mongodb";
 import CartButton from "@/components/itemPageCartButton";
 
-export async function getData(arg: any) {
+export async function getData(arg: string) {
   try {
     let o_id = new ObjectId(arg);
     const client = await clientPromise;
@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: { name: string } }) {
         <div className={styles.item_desc}>
           <h1 className={styles.desc_name}>{item.name}</h1>
           <h4 className={styles.desc_price}>{item.price}</h4>
-          <Buttons quantity={1}/>
+          <Buttons quantity={1} id={'OrderPage'}/>
           <h3 className={styles.desc_description}>Description</h3>
           <h4 className={styles.desc_details}>{item.details}</h4>
           <h3 className={styles.desc_warning_title}>Contains the following:</h3>
@@ -82,7 +82,7 @@ export default async function Page({ params }: { params: { name: string } }) {
                 </div>
               </label>
             </div>
-            <CartButton props={item}/>
+            <CartButton props={item} id={'OrderPage'}/>
           </div>
         </div>
       </div>

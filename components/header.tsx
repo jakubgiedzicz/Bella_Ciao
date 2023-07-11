@@ -22,7 +22,7 @@ export default function Header() {
     }
   };
 
-  const handleScroll = (event: any) => {
+  const handleScroll = (event: WheelEvent) => {
     if (event.deltaY < 0) {
       setVisible(true);
     } else {
@@ -31,9 +31,9 @@ export default function Header() {
   };
 
   const hideOnScroll = () => {
-    const header: any = document.getElementById("header");
-    const navbar: any = document.getElementsByClassName(styles.navbar);
-    if (header.style.display === "block" && navbar[0].style.width === "auto") {
+    const header: HTMLElement = document.getElementById("header");
+    const navbar: HTMLElement = document.querySelector(styles.navbar);
+    if (header.style.display === "block" && navbar.style.width === "auto") {
       setToggled(false);
       setVisible(false);
     }
@@ -41,28 +41,28 @@ export default function Header() {
 
   const toggleNavbar = () => {
     toggleHeader();
-    let button: any = document.getElementsByClassName(styles.nav_toggle);
-    let links: any = document.getElementsByClassName(styles.nav_links);
-    let links_wrap: any = document.getElementsByClassName(
+    let button: HTMLElement = document.querySelector(styles.nav_toggle);
+    let links: HTMLElement = document.querySelector(styles.nav_links);
+    let links_wrap: HTMLElement = document.querySelector(
       styles.list_toggle_wrap
     );
-    button[0].classList.toggle(styles.open);
-    links[0].classList.toggle(styles.open);
-    links_wrap[0].classList.toggle(styles.open);
+    button.classList.toggle(styles.open);
+    links.classList.toggle(styles.open);
+    links_wrap.classList.toggle(styles.open);
   };
   const toggleHeader = () => {
     if (document.documentElement.clientWidth < 760) {
-      const header: any = document.getElementById("header");
-      const navbar: any = document.getElementsByClassName(styles.navbar);
+      const header: HTMLElement = document.getElementById("header");
+      const navbar: HTMLElement = document.querySelector(styles.navbar);
       if (visible === true) {
         header.style.display = "block";
       } else {
         header.style.display = "none";
       }
       if (toggled === true) {
-        navbar[0].style.width = "auto";
+        navbar.style.width = "auto";
       } else {
-        navbar[0].style.width = "100%";
+        navbar.style.width = "100%";
       }
     }
   };
@@ -73,6 +73,7 @@ export default function Header() {
     return () => {
       effectRan.current = true;
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggled]);
 
   useEffect(() => {
@@ -87,13 +88,14 @@ export default function Header() {
 
   useEffect(() => {
     toggleHeader();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible]);
 
   return (
     <>
       <header id="header">
         <nav className={styles.navbar}>
-          <Link href="/" className={styles.logo_image_link}>
+          <Link href="/" className={styles.logo_image_link} passHref>
             <Image src={Logo} alt="Logo" className={styles.logo_img} />
           </Link>
           <div className={styles.list_toggle_wrap}>
@@ -112,13 +114,13 @@ export default function Header() {
                   <Link href="/blog">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/order">
+                  <Link href="/order" passHref>
                     <span className={styles.order_list_item}>Order</span>
                   </Link>
                 </li>
               </ul>
             </div>
-            <Link href="/order">
+            <Link href="/order" passHref>
               <button className={styles.button_28} role="button">
                 Order
               </button>
