@@ -6,6 +6,7 @@ import trash from '@/public/trash.svg'
 import { cartItemType } from '@/types/cartItemType'
 
 export default function CartItem({ props }: {props: cartItemType}) {
+  console.log(props, 'props')
   return (
     <div className={styles.cart_item_wrap} id={props.id}>
       <div className={styles.cart_details}>
@@ -14,7 +15,7 @@ export default function CartItem({ props }: {props: cartItemType}) {
         <span>${props.full_price}</span>
       </div>
       <div className={styles.cart_interactive}>
-        <Buttons quantity={props.quantity}/>
+        <Buttons quantity={props.quantity} id={props.id}/>
         <Image src={trash} alt="" height={20} width={20} className={styles.trash}/>
       </div>
     </div>
