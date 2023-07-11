@@ -1,7 +1,11 @@
 import styles from '../styles/order.module.css'
 import MenuItem from './orderPageMenuItem'
 import { MenuItemType } from '@/types/DBtypes'
-export default function OrderCategory(props: any): JSX.Element {
+interface OrderCategory {
+  categories: string,
+  data: MenuItemType[]
+}
+export default function OrderCategory(props: OrderCategory): JSX.Element {
   const categoryName = getCategoryName(props.data[0].category)
   return (
       <div id={props.data[0].category} className={styles.category_grid_wrap}>

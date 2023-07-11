@@ -3,7 +3,7 @@ import styles from '@/styles/menu-item.module.css'
 import { useEffect, useState } from 'react'
 import { MenuItemType } from '@/types/DBtypes'
 
-export default function CartButton({ props }: { props: MenuItemType }): JSX.Element {
+export default function CartButton({ props, id }: { props: MenuItemType, id: string | number }): JSX.Element {
   /* Turn price string to price number */
   const actualPrice = +props.price.substring(1, props.price.length)
   
@@ -11,20 +11,20 @@ export default function CartButton({ props }: { props: MenuItemType }): JSX.Elem
 
   /* Change state based on input */
   function handleIncrement() {
-    setQuantity(quantity + 1)
+    setQuantity((quantity) => quantity + 1)
   }
   function handleDecrement() {
     if(quantity <= 1){
       setQuantity(1)
     } else {
-    setQuantity(quantity - 1)
+    setQuantity((quantity) => quantity - 1)
     }
   }
   /* Add onClick event listener on mount */
   useEffect(() => {
-    const increment = document.getElementById('increment')
+    const increment = document.getElementById(`increment${id}`)
     increment.addEventListener('click', handleIncrement)
-    const decrement = document.getElementById('decrement')
+    const decrement = document.getElementById(`decrement${id}`)
     decrement.addEventListener('click', handleDecrement)
     return () => {
       decrement.removeEventListener('click', handleDecrement)

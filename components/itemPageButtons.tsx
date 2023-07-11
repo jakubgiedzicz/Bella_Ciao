@@ -1,23 +1,23 @@
 "use client"
 import styles from "@/styles/quantButtons.module.css";
 import { useState } from "react";
-export default function Buttons({ quantity, id }: {quantity: number, id: string|number}): JSX.Element {
-  const [quant, setQuant] = useState(quantity)
+export default function Buttons({ quantity, id }: {quantity: number, id: string}): JSX.Element {
+  const [quant, setQuant] = useState<number>(quantity)
   function handleClick(increment: boolean) {
     if(increment === false) {
       if(quant <= 1) {
         return
       } else {
-        setQuant(quant - 1)
+        setQuant((quant) => quant - 1)
       }}
       if(increment === true) {
-        setQuant(quant + 1)
+        setQuant((quant) => quant + 1)
       }
   }
   return (
     <>
       <div className={styles.desc_quantity}>
-        <button className={styles.desc_button} onClick={() => handleClick(false)} id="decrement">
+        <button className={styles.desc_button} onClick={() => handleClick(false)} id={`decrement${id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,7 +27,7 @@ export default function Buttons({ quantity, id }: {quantity: number, id: string|
           </svg>
         </button>
         <span className={styles.desc_quantity_display} id={`quant${id}`}>{quant}</span>
-        <button className={styles.desc_button} onClick={() => handleClick(true)} id="increment">
+        <button className={styles.desc_button} onClick={() => handleClick(true)} id={`increment${id}`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

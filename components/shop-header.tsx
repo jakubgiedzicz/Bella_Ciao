@@ -11,6 +11,7 @@ import { getUniqueId } from "@/lib/generateId";
 export default function ShopHeader() {
   const [cart, setCart] = useState<cartItemType[]>([]);
 
+  /* Helper is used to render cart */
   const [helper, setHelper] = useState(0);
 
   /* Navbar list items after clicking on designed button */
@@ -43,57 +44,48 @@ export default function ShopHeader() {
     }
   };
 
-  /* buttonFunction is used to update cart state
-   target textContent of quantity button, set actual quantity,
-   generate unique id, calculate price, update cart, save to sessionStorage 
-   setCart((cart) => [...cart, item])*/
-
-  let buttonFunction = (e: Event) => {
+  let cartButtonFunction = (e: Event) => {
     if ((e.target as HTMLButtonElement).id === "cartButton") {
       setHelper((helper) => helper + 1);
     }
   };
+  /* createItem returns object with full price (number), id, link, name, price (string), quantity */
   const createItem = () => {
     let item = JSON.parse(sessionStorage.getItem("bella-ciao-item-data"));
     let quantity = document.getElementById("quantOrderPage").textContent;
-    item.quantity = quantity;
+    item.quantity = +quantity;
     item.id = getUniqueId();
     item.full_price = (item.full_price * item.quantity).toFixed(2);
     return item;
   };
-  const saveSession = (item: any) => {
-    let string = JSON.stringify(item)
+  /* Saves cart items to sessionstorage */
+  const saveSession = (item: cartItemType) => {
+    let array = [JSON.stringify(item)]
     for (let i = 0; i< cart.length; i++){
-      string += JSON.stringify(cart[i]) + '|'
+      array.push(JSON.stringify(cart[i]))
     }
-    if (string.charAt(string.length - 1) === '|'){
-      string = string.slice(0, -1)
-    }
-    console.log(string, 'save string')
-    sessionStorage.setItem('bella-ciao-session-cart', string)
+    sessionStorage.setItem('bella-ciao-session-cart', "[" + array.toString() + "]")
   }
+  /* Loads sessionstorage to cart on mount */
   const loadSession = () => {
     if (sessionStorage.getItem('bella-ciao-session-cart') !== null){
-      let array = sessionStorage.getItem('bella-ciao-session-cart').split('|')
-      console.log(sessionStorage.getItem('bella-ciao-session-cart'), 'storage')
-      console.log(array, 'array')
-      array.forEach((element : any) => {
-          console.log(element, 'load element')
-          setCart((cart) => [...cart, element])
-      });
+      try {
+      setCart(JSON.parse(sessionStorage.getItem('bella-ciao-session-cart')))
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 
   useEffect(() => {
     loadSession()
-  },[])
+  },[]) 
 
   useEffect(() => {
     if (effectRan.current === true) {
       let item = createItem();
       setCart((cart) => [...cart, item])
       saveSession(item)
-      console.log(cart, 'cart')
     }
     return () => {
       effectRan.current = true;
@@ -102,8 +94,8 @@ export default function ShopHeader() {
   }, [helper]);
 
   useEffect(() => {
-    window.addEventListener("click", buttonFunction);
-    return () => window.removeEventListener("click", buttonFunction);
+    window.addEventListener("click", cartButtonFunction);
+    return () => window.removeEventListener("click", cartButtonFunction);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -145,9 +137,9 @@ export default function ShopHeader() {
             <div className={styles.cart_your_cart}>
               Your cart &#40;{cart.length}&#41;
             </div>
-            {/* {cart.map((item: any) => (
+            {cart.map((item: cartItemType) => (
               <CartItem key={item.id} props={item} />
-            ))} */}
+            ))}
             <button className={styles.cart_button}>Continue to payment</button>
           </div>
           <div className={`${styles.cart_wrap} ${styles.openCartWrap}`}>

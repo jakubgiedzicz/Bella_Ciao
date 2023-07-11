@@ -136,6 +136,18 @@ export default function Blog(){
       title: 'Cart/Buttons/SessionStorage',
       description: 'Refactored (not finished yet) button components and sessionStorage usage, created id generation'
     },
+    {
+      id: 23,
+      date: '11/07/2023 15:56',
+      title: 'Cart/Buttons/SessionStorage',
+      description: "Fixed Cart functionality, fixed non-unique html id's"
+    },
+    {
+      id: 24,
+      date: '11/07/2023 16:35',
+      title: 'Types',
+      description: "Fixed all :any types"
+    },
   ]
   return(
     <main className={styles.light_bg}>

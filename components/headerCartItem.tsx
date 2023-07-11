@@ -6,7 +6,6 @@ import trash from '@/public/trash.svg'
 import { cartItemType } from '@/types/cartItemType'
 
 export default function CartItem({ props }: {props: cartItemType}) {
-  console.log(props, 'props')
   return (
     <div className={styles.cart_item_wrap} id={props.id}>
       <div className={styles.cart_details}>
