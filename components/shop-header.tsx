@@ -14,6 +14,8 @@ export default function ShopHeader() {
   /* Helper is used to render cart */
   const [helper, setHelper] = useState(0);
 
+  const [toBeRemoved, setToBeRemoved] = useState("");
+
   /* Navbar list items after clicking on designed button */
   const [toggled, setToggled] = useState(false);
 
@@ -43,7 +45,13 @@ export default function ShopHeader() {
       window.onscroll = function () {};
     }
   };
-
+  const deleteFunction = (e: Event) => {
+    if ((e.target as HTMLImageElement).id.slice(0, 5) === "trash") {
+      setToBeRemoved((toBeRemoved) =>
+        (e.target as HTMLImageElement).id.substring(5)
+      );
+    }
+  };
   let cartButtonFunction = (e: Event) => {
     if ((e.target as HTMLButtonElement).id === "cartButton") {
       setHelper((helper) => helper + 1);
@@ -58,39 +66,75 @@ export default function ShopHeader() {
     item.full_price = (item.full_price * item.quantity).toFixed(2);
     return item;
   };
-  /* Saves cart items to sessionstorage */
-  const saveSession = (item: cartItemType) => {
-    let array = [JSON.stringify(item)]
-    for (let i = 0; i< cart.length; i++){
-      array.push(JSON.stringify(cart[i]))
-    }
-    sessionStorage.setItem('bella-ciao-session-cart', "[" + array.toString() + "]")
-  }
-  /* Loads sessionstorage to cart on mount */
-  const loadSession = () => {
-    if (sessionStorage.getItem('bella-ciao-session-cart') !== null){
-      try {
-      setCart(JSON.parse(sessionStorage.getItem('bella-ciao-session-cart')))
-      } catch (e) {
-        console.error(e)
+  const stringifyCart = () => {
+    let array = [];
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id !== toBeRemoved) {
+        array.push(JSON.stringify(cart[i]));
       }
     }
-  }
+    return array;
+  };
+  /* Saves cart items to sessionstorage */
+  const saveSession = (item: cartItemType, deleting: boolean) => {
+    if (deleting === true) {
+      sessionStorage.setItem(
+        "bella-ciao-session-cart",
+        "[" + stringifyCart().toString() + "]"
+      );
+    } else {
+      let array = [JSON.stringify(item)];
+      let array2 = stringifyCart();
+      sessionStorage.setItem(
+        "bella-ciao-session-cart",
+        "[" + [...array2, ...array].toString() + "]"
+      );
+    }
+  };
+  /* Loads sessionstorage to cart on mount */
+  const loadSession = () => {
+    if (sessionStorage.getItem("bella-ciao-session-cart") !== null) {
+      try {
+        setCart(JSON.parse(sessionStorage.getItem("bella-ciao-session-cart")));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  };
 
   useEffect(() => {
-    loadSession()
-  },[]) 
+    window.addEventListener("click", deleteFunction);
+    return () => {
+      window.removeEventListener("click", deleteFunction);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (effectRan.current === true) {
-      let item = createItem();
-      setCart((cart) => [...cart, item])
-      saveSession(item)
+      setCart(cart.filter((item) => item.id !== toBeRemoved));
+      saveSession(cart.filter((item) => item.id === toBeRemoved)[0], true);
     }
     return () => {
       effectRan.current = true;
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [toBeRemoved]);
+
+  useEffect(() => {
+    loadSession();
+  }, []);
+
+  useEffect(() => {
+    if (effectRan.current === true) {
+      let item = createItem();
+      setCart((cart) => [...cart, item]);
+      saveSession(item, false);
+    }
+    return () => {
+      effectRan.current = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [helper]);
 
   useEffect(() => {

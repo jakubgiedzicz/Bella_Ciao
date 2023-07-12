@@ -148,6 +148,12 @@ export default function Blog(){
       title: 'Types',
       description: "Fixed all :any types"
     },
+    {
+      id: 25,
+      date: '12/07/2023 15:54',
+      title: 'Deleting from cart, changing quantity',
+      description: "Added deleting items and changing quantity functionality"
+    },
   ]
   return(
     <main className={styles.light_bg}>
