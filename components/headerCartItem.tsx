@@ -8,26 +8,49 @@ import { useEffect, useRef, useState } from "react";
 
 export default function CartItem({ props }: { props: cartItemType }) {
   const [quant, setQuant] = useState(props.quantity);
-  const latestQuant = useRef(quant)
+  const latestQuant = useRef(quant);
   const handleClick = (e: Event) => {
     if (
       (e.target as HTMLButtonElement).id === `increment${props.id}` ||
       (e.target as HTMLImageElement).id === `incrementSvg${props.id}` ||
       (e.target as HTMLImageElement).id === `incrementPath${props.id}`
     ) {
-      setQuant((quant) =>quant + 1);
+      setQuant((quant) => quant + 1);
     } else if (
       (e.target as HTMLButtonElement).id === `decrement${props.id}` ||
       (e.target as HTMLImageElement).id === `decrementSvg${props.id}` ||
       (e.target as HTMLImageElement).id === `decrementPath${props.id}`
     ) {
-       if (latestQuant.current > 1) {
+      if (latestQuant.current > 1) {
         setQuant((quant) => quant - 1);
       } else {
         setQuant(1);
       }
     }
   };
+  /* Load sessionstorage, parse for items, iterate over them to find the one needed
+     set quantity, full_price, turn into string, save in session */
+  function updateSession() {
+    let cart = [];
+    let stringedCart: string[] = [];
+    if (sessionStorage.getItem("bella-ciao-session-cart") !== null) {
+      cart = JSON.parse(sessionStorage.getItem("bella-ciao-session-cart"));
+    } else {
+      return;
+    }
+    cart.forEach((element: cartItemType) => {
+      if (element.id === props.id) {
+        element.quantity = quant;
+        element.full_price = (quant * +element.price.substring(1)).toFixed(2);
+      }
+      stringedCart.push(JSON.stringify(element));
+    });
+    sessionStorage.setItem(
+      "bella-ciao-session-cart",
+      "[" + stringedCart.toString() + "]"
+    );
+  }
+
   useEffect(() => {
     window.addEventListener("click", handleClick);
     return () => {
@@ -37,8 +60,10 @@ export default function CartItem({ props }: { props: cartItemType }) {
   }, []);
 
   useEffect(() => {
-    latestQuant.current = quant
-  },[quant])
+    latestQuant.current = quant;
+    updateSession();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quant]);
 
   return (
     <div className={styles.cart_item_wrap} id={props.id}>
