@@ -154,6 +154,12 @@ export default function Blog(){
       title: 'Deleting from cart, changing quantity',
       description: "Added deleting items and changing quantity functionality"
     },
+    {
+      id: 26,
+      date: '12/07/2023 16:56',
+      title: 'Updating session',
+      description: "Added cart session update functionality"
+    },
   ]
   return(
     <main className={styles.light_bg}>
