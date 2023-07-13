@@ -160,6 +160,12 @@ export default function Blog(){
       title: 'Updating session',
       description: "Added cart session update functionality"
     },
+    {
+      id: 27,
+      date: '13/07/2023 17:05',
+      title: 'Mobile cart',
+      description: "Updated styles for mobile navbar cart/ fixed minor bugs in cart"
+    },
   ]
   return(
     <main className={styles.light_bg}>
