@@ -223,7 +223,7 @@ export default function ShopHeader() {
                 {isNaN(cartSum) ? 0 : cartSum.toFixed(2)}
               </div>
               {cart.map((item: cartItemType) => (
-                <CartItem key={item.id} props={item} />
+                <CartItem key={item.id} props={item} interactive={true}/>
               ))}
               <button className={styles.cart_button}>
                 Continue to payment
@@ -292,11 +292,9 @@ export default function ShopHeader() {
                     </div>
                   </div>
                 </li>
-              </ul>
-              <ul className={styles.modal_list_products}>
                 {cart.map((item: cartItemType) => (
-                  <li key={item.id}>
-                    <CartItem props={item} />
+                  <li key={item.id} className={styles.cart_li}>
+                    <CartItem props={item} interactive={false}/>
                   </li>
                 ))}
               </ul>
