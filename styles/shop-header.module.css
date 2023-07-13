@@ -48,13 +48,14 @@
   background-image: url('../public/shopping-cart-outline.svg');
   background-size: 100%;
   cursor: pointer;
+  position: relative;
 }
 .cart {
   background-color: white;
   color: black;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 3rem;
+  right: 15%;
   border-radius: 0.5rem;
   -webkit-box-shadow: 0px 0px 24px -5px rgba(69, 90, 66, 1);
   -moz-box-shadow: 0px 0px 24px -5px rgba(69, 90, 66, 1);
@@ -63,6 +64,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 .cart_your_cart {
   padding: 1rem 0;
@@ -92,6 +94,18 @@
 }
 .cart_number {
   color: black;
+}
+.cart_button {
+  margin: 1rem;
+  width: 90%;
+  padding: 1rem 2rem;
+  background-color: var(--logo-green);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+.cart_button:hover {
+  filter: brightness(0.9);
 }
 .nav_toggle {
   background-color: transparent;
