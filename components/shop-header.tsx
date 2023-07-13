@@ -10,6 +10,7 @@ import { getUniqueId } from "@/lib/generateId";
 
 export default function ShopHeader() {
   const [cart, setCart] = useState<cartItemType[]>([]);
+  const [cartSum, setCartSum] = useState(0);
   const [cartVisibility, setCartVisibility] = useState(false);
   const cartRef = useRef(null);
 
@@ -114,8 +115,9 @@ export default function ShopHeader() {
       }
     }
   };
+
   useEffect(() => {
-      toggleCartStyle();
+    toggleCartStyle();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cartVisibility]);
 
@@ -141,6 +143,18 @@ export default function ShopHeader() {
   useEffect(() => {
     loadSession();
   }, []);
+
+  useEffect(() => {
+    setCartSum((sum) =>
+      cart !== null
+        ? +cart
+            .map((item) => +item.price.substring(1) * item.quantity)
+            .reduce((a, i) => a + i, 0)
+            .toFixed(2)
+        : 0
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cart]);
 
   useEffect(() => {
     if (effectRan.current === true) {
@@ -197,12 +211,16 @@ export default function ShopHeader() {
           <div className={`${styles.cart_wrap} ${styles.openCartWrap}`}>
             <span className={styles.cart_span}>Your cart:</span>
             <div className={styles.cart_svg} onClick={() => toggleCart()}></div>
-            <div className={styles.cart_number} id="cart-number">
-              {cart.length}
+            <div className={styles.cart_numbers} id="cart-number">
+              <div className={styles.cart_itemN}>{cart.length}</div>
+              <div className={styles.cart_itemPrice}>
+                ${isNaN(cartSum) ? 0 : cartSum.toFixed(2)}
+              </div>
             </div>
             <div className={styles.cart} ref={cartRef}>
               <div className={styles.cart_your_cart}>
-                Your cart &#40;{cart.length}&#41;
+                Your cart &#40;{cart.length}&#41; $
+                {isNaN(cartSum) ? 0 : cartSum.toFixed(2)}
               </div>
               {cart.map((item: cartItemType) => (
                 <CartItem key={item.id} props={item} />
@@ -262,15 +280,25 @@ export default function ShopHeader() {
                 <li>
                   <Link href="/blog">Blog</Link>
                 </li>
-                <li className={styles.cart_li}>
+                <li>
                   <div className={styles.cart_wrap}>
                     <span className={styles.cart_span}>Your cart:</span>
                     <div className={styles.cart_svg}></div>
-                    <div className={styles.cart_number} id="cart-number">
-                      {cart.length}
+                    <div className={styles.cart_numbers} id="cart-number">
+                      <div className={styles.cart_itemN}>{cart.length}</div>
+                      <div className={styles.cart_itemPrice}>
+                        ${isNaN(cartSum) ? 0 : cartSum.toFixed(2)}
+                      </div>
                     </div>
                   </div>
                 </li>
+              </ul>
+              <ul className={styles.modal_list_products}>
+                {cart.map((item: cartItemType) => (
+                  <li key={item.id}>
+                    <CartItem props={item} />
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
