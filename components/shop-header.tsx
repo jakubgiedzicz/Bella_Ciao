@@ -10,6 +10,8 @@ import { getUniqueId } from "@/lib/generateId";
 
 export default function ShopHeader() {
   const [cart, setCart] = useState<cartItemType[]>([]);
+  const [cartVisibility, setCartVisibility] = useState(false);
+  const cartRef = useRef(null);
 
   /* Helper is used to render cart */
   const [helper, setHelper] = useState(0);
@@ -27,6 +29,17 @@ export default function ShopHeader() {
       setToggled(false);
     } else {
       setToggled(true);
+    }
+  };
+  const toggleCart = () => {
+    cartVisibility ? setCartVisibility(false) : setCartVisibility(true);
+  };
+  const toggleCartStyle = () => {
+    const cart = cartRef.current;
+    if (cartRef.current !== null) {
+      cartVisibility
+        ? (cart.style.display = "none")
+        : (cart.style.display = "flex");
     }
   };
   /* Function used for blocking scrolling and displaying/expanding modal */
@@ -101,6 +114,10 @@ export default function ShopHeader() {
       }
     }
   };
+  useEffect(() => {
+      toggleCartStyle();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartVisibility]);
 
   useEffect(() => {
     window.addEventListener("click", deleteFunction);
@@ -177,20 +194,22 @@ export default function ShopHeader() {
               <Link href="/blog">Blog</Link>
             </li>
           </ul>
-          <div className={styles.cart}>
-            <div className={styles.cart_your_cart}>
-              Your cart &#40;{cart.length}&#41;
-            </div>
-            {cart.map((item: cartItemType) => (
-              <CartItem key={item.id} props={item} />
-            ))}
-            <button className={styles.cart_button}>Continue to payment</button>
-          </div>
           <div className={`${styles.cart_wrap} ${styles.openCartWrap}`}>
             <span className={styles.cart_span}>Your cart:</span>
-            <div className={styles.cart_svg}></div>
+            <div className={styles.cart_svg} onClick={() => toggleCart()}></div>
             <div className={styles.cart_number} id="cart-number">
               {cart.length}
+            </div>
+            <div className={styles.cart} ref={cartRef}>
+              <div className={styles.cart_your_cart}>
+                Your cart &#40;{cart.length}&#41;
+              </div>
+              {cart.map((item: cartItemType) => (
+                <CartItem key={item.id} props={item} />
+              ))}
+              <button className={styles.cart_button}>
+                Continue to payment
+              </button>
             </div>
             <button
               aria-label="toggle menu"
