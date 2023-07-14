@@ -5,8 +5,11 @@ import styles from "@/styles/shop-header.module.css";
 import trash from "@/public/trash.svg";
 import { cartItemType } from "@/types/cartItemType";
 import { useEffect, useRef, useState } from "react";
-
-export default function CartItem({ props }: { props: cartItemType }) {
+interface props {
+  props: cartItemType,
+  interactive: boolean
+}
+export default function CartItem({ props, interactive }: props) {
   const [quant, setQuant] = useState(props.quantity);
   const latestQuant = useRef(quant);
   const handleClick = (e: Event) => {
@@ -78,7 +81,7 @@ export default function CartItem({ props }: { props: cartItemType }) {
         <span>{props.name}</span>
         <span>${(quant * +props.price.substring(1)).toFixed(2)}</span>
       </div>
-      <div className={styles.cart_interactive}>
+      <div className={interactive ? `${styles.cart_interactive} ${styles.cart_mobile}` : styles.cart_mobile}>
         <Buttons quantity={props.quantity} id={props.id} />
         <Image
           src={trash}
