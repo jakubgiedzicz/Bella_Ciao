@@ -52,6 +52,11 @@ export default function ShopHeader() {
     item.full_price = (item.full_price * item.quantity).toFixed(2);
     return item;
   }
+  function deleteCartItem(e: Event) {
+    if ((e.target as HTMLImageElement).id.slice(0, 5) === "trash"){
+      setCart((cart) => cart.filter((item) => item.id !== (e.target as HTMLImageElement).id.substring(5)))
+    }
+  }
   function loadCartFromSession() {
     if (sessionStorage.getItem("bella-ciao-session-cart") !== null) {
       setCart(JSON.parse(sessionStorage.getItem("bella-ciao-session-cart")));
@@ -67,11 +72,27 @@ export default function ShopHeader() {
     let oldCart = cart
     let item = oldCart.filter((item) => item.id === item_id)
     item[0].quantity = change
-    item[0].full_price = (change * +item[0].price.substring(1)).toString()
+    item[0].full_price = (change * +item[0].price.substring(1))
     oldCart = oldCart.filter((item) => item.id !== item_id)
     oldCart.push(item[0])
     setCart(oldCart)
   }
+  useEffect(() => {
+    loadCartFromSession();
+  },[])
+
+  useEffect(() => {
+    setCartSum((sum) => cart.reduce((acc, obj) => acc + obj.full_price, 0))
+  },[cart])
+
+  useEffect(() => {
+    window.addEventListener('click', deleteCartItem)
+
+    return () => {
+      window.removeEventListener('click', deleteCartItem)
+    }
+  },[])
+
   
 
   return <></>;
