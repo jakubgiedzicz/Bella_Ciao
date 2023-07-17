@@ -70,14 +70,19 @@ export default function ShopHeader() {
       "[" + [...stringifyCart()].toString() + "]"
     );
   }
-  function updateCartItemQuantity(change: number, item_id: string) {
-    let oldCart = cart;
-    let item = oldCart.filter((item) => item.id === item_id);
-    item[0].quantity = change + item[0].quantity;
-    item[0].full_price = item[0].quantity * +item[0].price.substring(1);
-    oldCart = oldCart.filter((item) => item.id !== item_id);
-    oldCart.push(item[0]);
-    setCart(oldCart);
+  function updateCartItemQuantity(change: number, item_id: string){
+  const updated = cart.map(item => {
+    if(item.id !== item_id) {
+      return item
+    } else {
+      return {
+        ...item,
+        quantity: item.quantity + change,
+        full_price: (item.quantity + change) * +item.price.substring(1)
+      }
+    }
+  })
+  setCart(updated)
   }
   useEffect(() => {
     loadCartFromSession();

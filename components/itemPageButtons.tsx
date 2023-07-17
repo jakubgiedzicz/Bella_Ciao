@@ -57,7 +57,7 @@ export default function Buttons({
           </svg>
         </button>
         <span className={styles.desc_quantity_display} id={`quant${id}`}>
-          {quant}
+          {quantity}
         </span>
         <button
           className={styles.desc_button}
