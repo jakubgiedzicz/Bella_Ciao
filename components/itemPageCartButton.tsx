@@ -37,7 +37,7 @@ export default function CartButton({ props, id }: { props: MenuItemType, id: str
       price: props.price,
       link: props.link,
       quantity: quantity,
-      full_price: (actualPrice * quantity).toFixed(2),
+      full_price: +(actualPrice * quantity).toFixed(2),
     }
     return string
   }
