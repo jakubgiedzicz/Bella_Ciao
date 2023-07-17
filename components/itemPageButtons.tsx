@@ -5,25 +5,26 @@ export default function Buttons({
   quantity,
   id,
   updateCartQuant = null,
-  updateCartItemQuant = null
+  updateCartItemQuant = null,
+  orderPage = true,
 }: {
   quantity: number;
   id: string;
   updateCartQuant: (change: number, item_id: string) => void;
   updateCartItemQuant: (increment: boolean) => void;
+  orderPage: boolean;
 }): JSX.Element {
-
   const [quant, setQuant] = useState<number>(quantity);
 
   function handleClick(increment: boolean) {
     if (increment === false) {
-      if (quant <= 1) {
+      if (quantity <= 1) {
         return;
       } else {
         setQuant((quant) => quant - 1);
         if (updateCartQuant !== null) {
           updateCartQuant(-1, id);
-          updateCartItemQuant(false)
+          updateCartItemQuant(false);
         }
       }
     }
@@ -31,7 +32,7 @@ export default function Buttons({
       setQuant((quant) => quant + 1);
       if (updateCartQuant !== null) {
         updateCartQuant(1, id);
-        updateCartItemQuant(true)
+        updateCartItemQuant(true);
       }
     }
   }
@@ -57,7 +58,7 @@ export default function Buttons({
           </svg>
         </button>
         <span className={styles.desc_quantity_display} id={`quant${id}`}>
-          {quantity}
+          {orderPage ? quant : quantity}
         </span>
         <button
           className={styles.desc_button}

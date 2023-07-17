@@ -18,7 +18,7 @@ export default function ShopHeader() {
 
   /* Burger button click state; true means user can see context menu*/
   const [toggled, setToggled] = useState(false);
-  const mobileNavbarVisibleOnMount = useRef(false)
+  const mobileNavbarVisibleOnMount = useRef(false);
 
   /* !!!!!!!!!!!!!!!!!! */
   function toggleCartStyle() {
@@ -55,9 +55,9 @@ export default function ShopHeader() {
   };
   const handleAddItemToCartButton = (e: Event) => {
     if ((e.target as HTMLButtonElement).id === "cartButton") {
-      addItemToCart()
+      addItemToCart();
     }
-  }
+  };
 
   function loadCartFromSession() {
     if (sessionStorage.getItem("bella-ciao-session-cart") !== null) {
@@ -70,33 +70,33 @@ export default function ShopHeader() {
       "[" + [...stringifyCart()].toString() + "]"
     );
   }
-  function updateCartItemQuantity(change: number, item_id: string){
-  const updated = cart.map(item => {
-    if(item.id !== item_id) {
-      return item
-    } else {
-      return {
-        ...item,
-        quantity: item.quantity + change,
-        full_price: (item.quantity + change) * +item.price.substring(1)
+  function updateCartItemQuantity(change: number, item_id: string) {
+    const updated = cart.map((item) => {
+      if (item.id !== item_id) {
+        return item;
+      } else {
+        return {
+          ...item,
+          quantity: item.quantity + change,
+          full_price: (item.quantity + change) * +item.price.substring(1),
+        };
       }
-    }
-  })
-  setCart(updated)
+    });
+    setCart(updated);
   }
   useEffect(() => {
     loadCartFromSession();
   }, []);
 
-   useEffect(() => {
-    window.addEventListener('click', handleAddItemToCartButton)
+  useEffect(() => {
+    window.addEventListener("click", handleAddItemToCartButton);
 
     return () => {
-      window.removeEventListener('click', handleAddItemToCartButton)
-    }
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-   },[])
-   
+      window.removeEventListener("click", handleAddItemToCartButton);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     setCartSum((sum) => cart.reduce((acc, obj) => acc + obj.full_price, 0));
     saveCartToSession();
@@ -104,12 +104,12 @@ export default function ShopHeader() {
   }, [cart]);
 
   useEffect(() => {
-    if(mobileNavbarVisibleOnMount.current === true){ 
-    toggleMobileNavbar();
+    if (mobileNavbarVisibleOnMount.current === true) {
+      toggleMobileNavbar();
     }
     return () => {
-      mobileNavbarVisibleOnMount.current = true
-    }
+      mobileNavbarVisibleOnMount.current = true;
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toggled]);
 

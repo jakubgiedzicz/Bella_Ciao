@@ -67,10 +67,10 @@ export default function CartItem({ props, interactive, removeItem, updateCartQua
           className={styles.cart_img}
         />
         <span>{props.name}</span>
-        <span>${(cartItemQuant * +props.price.substring(1)).toFixed(2)}</span>
+        <span>${props.full_price.toFixed(2)}</span>
       </div>
       <div className={interactive ? `${styles.cart_interactive} ${styles.cart_mobile}` : styles.cart_mobile}>
-        <Buttons quantity={props.quantity} id={props.id} updateCartQuant={updateCartQuant} updateCartItemQuant={updateItemQuant}/>
+        <Buttons quantity={props.quantity} id={props.id} updateCartQuant={updateCartQuant} updateCartItemQuant={updateItemQuant} orderPage={false}/>
         <Image
           src={trash}
           alt=""
