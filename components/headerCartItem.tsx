@@ -7,30 +7,26 @@ import { cartItemType } from "@/types/cartItemType";
 import { useEffect, useRef, useState } from "react";
 interface props {
   props: cartItemType,
-  interactive: boolean
+  interactive: boolean,
+  removeItem: (id: string) => void,
+  updateCartQuant: (change: number, item_id: string) => void
 }
-export default function CartItem({ props, interactive }: props) {
-  const [quant, setQuant] = useState(props.quantity);
-  const latestQuant = useRef(quant);
-  const handleClick = (e: Event) => {
-    if (
-      (e.target as HTMLButtonElement).id === `increment${props.id}` ||
-      (e.target as HTMLImageElement).id === `incrementSvg${props.id}` ||
-      (e.target as HTMLImageElement).id === `incrementPath${props.id}`
-    ) {
-      setQuant((quant) => quant + 1);
-    } else if (
-      (e.target as HTMLButtonElement).id === `decrement${props.id}` ||
-      (e.target as HTMLImageElement).id === `decrementSvg${props.id}` ||
-      (e.target as HTMLImageElement).id === `decrementPath${props.id}`
-    ) {
-      if (latestQuant.current > 1) {
-        setQuant((quant) => quant - 1);
+export default function CartItem({ props, interactive, removeItem, updateCartQuant }: props) {
+  const [cartItemQuant, setCartItemQuant] = useState(props.quantity);
+  const latestQuant = useRef(cartItemQuant);
+
+  const updateItemQuant = (increment: boolean) => {
+    if (increment === false) {
+      if (cartItemQuant <= 1) {
+        return;
       } else {
-        setQuant(1);
+        setCartItemQuant((cartItemQuant) => cartItemQuant - 1);
       }
     }
-  };
+    if (increment === true) {
+      setCartItemQuant((cartItemQuant) => cartItemQuant + 1);
+    }
+  }
   /* Load sessionstorage, parse for items, iterate over them to find the one needed
      set quantity, full_price, turn into string, save in session */
   function updateSession() {
@@ -43,8 +39,8 @@ export default function CartItem({ props, interactive }: props) {
     }
     cart.forEach((element: cartItemType) => {
       if (element.id === props.id) {
-        element.quantity = quant;
-        element.full_price = (quant * +element.price.substring(1)).toFixed(2);
+        element.quantity = cartItemQuant;
+        element.full_price = +(cartItemQuant * +element.price.substring(1)).toFixed(2);
       }
       stringedCart.push(JSON.stringify(element));
     });
@@ -55,18 +51,10 @@ export default function CartItem({ props, interactive }: props) {
   }
 
   useEffect(() => {
-    window.addEventListener("click", handleClick);
-    return () => {
-      window.removeEventListener("click", handleClick);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    latestQuant.current = quant;
+    latestQuant.current = cartItemQuant;
     updateSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [quant]);
+  }, [cartItemQuant]);
 
   return (
     <div className={styles.cart_item_wrap} id={props.id}>
@@ -79,10 +67,10 @@ export default function CartItem({ props, interactive }: props) {
           className={styles.cart_img}
         />
         <span>{props.name}</span>
-        <span>${(quant * +props.price.substring(1)).toFixed(2)}</span>
+        <span>${props.full_price.toFixed(2)}</span>
       </div>
       <div className={interactive ? `${styles.cart_interactive} ${styles.cart_mobile}` : styles.cart_mobile}>
-        <Buttons quantity={props.quantity} id={props.id} />
+        <Buttons quantity={props.quantity} id={props.id} updateCartQuant={updateCartQuant} updateCartItemQuant={updateItemQuant} orderPage={false}/>
         <Image
           src={trash}
           alt=""
@@ -90,6 +78,7 @@ export default function CartItem({ props, interactive }: props) {
           width={20}
           className={styles.trash}
           id={`trash${props.id}`}
+          onClick={() => removeItem(props.id)}
         />
       </div>
     </div>

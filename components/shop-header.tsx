@@ -11,177 +11,118 @@ import { getUniqueId } from "@/lib/generateId";
 export default function ShopHeader() {
   const [cart, setCart] = useState<cartItemType[]>([]);
   const [cartSum, setCartSum] = useState(0);
+
+  /* Cart summary state, true means user can see context menu */
   const [cartVisibility, setCartVisibility] = useState(false);
-  const cartRef = useRef(null);
+  const cartVisibilityOnMount = useRef(false);
 
-  /* Helper is used to render cart */
-  const [helper, setHelper] = useState(0);
-
-  const [toBeRemoved, setToBeRemoved] = useState("");
-
-  /* Navbar list items after clicking on designed button */
+  /* Burger button click state; true means user can see context menu*/
   const [toggled, setToggled] = useState(false);
+  const mobileNavbarVisibleOnMount = useRef(false);
 
-  /* Prevent useEffect to display navbar on mount */
-  const effectRan = useRef(false);
+  /* !!!!!!!!!!!!!!!!!! */
+  function toggleCartStyle() {
+    const cart2 = document.getElementById("cartMain");
+    cartVisibility
+      ? (cart2.style.display = "flex")
+      : (cart2.style.display = "none");
+  }
 
-  const handleBurgerClick = () => {
-    if (toggled === true) {
-      setToggled(false);
-    } else {
-      setToggled(true);
-    }
-  };
-  const toggleCart = () => {
-    cartVisibility ? setCartVisibility(false) : setCartVisibility(true);
-  };
-  const toggleCartStyle = () => {
-    const cart = cartRef.current;
-    if (cartRef.current !== null) {
-      cartVisibility
-        ? (cart.style.display = "none")
-        : (cart.style.display = "flex");
-    }
-  };
-  /* Function used for blocking scrolling and displaying/expanding modal */
-  const toggleHeader = () => {
-    const body = document.body;
+  function toggleMobileNavbar() {
     const modal = document.getElementById("modal");
-    if (modal.style.display === "none") {
-      modal.style.display = "flex";
-      body.classList.toggle("block");
-      window.onscroll = function () {
-        window.scrollTo(0, 0);
-      };
-    } else {
-      modal.style.display = "none";
-      body.classList.toggle("block");
-      window.onscroll = function () {};
-    }
-  };
-  const deleteFunction = (e: Event) => {
-    if ((e.target as HTMLImageElement).id.slice(0, 5) === "trash") {
-      setToBeRemoved((toBeRemoved) =>
-        (e.target as HTMLImageElement).id.substring(5)
-      );
-    }
-  };
-  let cartButtonFunction = (e: Event) => {
-    if ((e.target as HTMLButtonElement).id === "cartButton") {
-      setHelper((helper) => helper + 1);
-    }
-  };
-  /* createItem returns object with full price (number), id, link, name, price (string), quantity */
-  const createItem = () => {
-    let item = JSON.parse(sessionStorage.getItem("bella-ciao-item-data"));
-    let quantity = document.getElementById("quantOrderPage").textContent;
-    item.quantity = +quantity;
-    item.id = getUniqueId();
-    item.full_price = (item.full_price * item.quantity).toFixed(2);
-    return item;
-  };
+    toggled ? (modal.style.display = "flex") : (modal.style.display = "none");
+  }
   const stringifyCart = () => {
     let array = [];
     for (let i = 0; i < cart.length; i++) {
-      if (cart[i].id !== toBeRemoved) {
-        array.push(JSON.stringify(cart[i]));
-      }
+      array.push(JSON.stringify(cart[i]));
     }
     return array;
   };
-  /* Saves cart items to sessionstorage */
-  const saveSession = (item: cartItemType, deleting: boolean) => {
-    if (deleting === true) {
-      sessionStorage.setItem(
-        "bella-ciao-session-cart",
-        "[" + stringifyCart().toString() + "]"
-      );
-    } else {
-      let array = [JSON.stringify(item)];
-      let array2 = stringifyCart();
-      sessionStorage.setItem(
-        "bella-ciao-session-cart",
-        "[" + [...array2, ...array].toString() + "]"
-      );
+  const createCartItem = () => {
+    let item = JSON.parse(sessionStorage.getItem("bella-ciao-item-data"));
+    item.quantity = +document.getElementById("quantOrderPage").textContent;
+    item.id = getUniqueId();
+    item.full_price = +(item.full_price * item.quantity).toFixed(2);
+    return item;
+  };
+  const deleteCartItem = (id: string) => {
+    setCart((cart) => cart.filter((item) => item.id !== id));
+  };
+
+  const addItemToCart = () => {
+    setCart((cart) => [...cart, createCartItem()]);
+  };
+  const handleAddItemToCartButton = (e: Event) => {
+    if ((e.target as HTMLButtonElement).id === "cartButton") {
+      addItemToCart();
     }
   };
-  /* Loads sessionstorage to cart on mount */
-  const loadSession = () => {
+
+  function loadCartFromSession() {
     if (sessionStorage.getItem("bella-ciao-session-cart") !== null) {
-      try {
-        setCart(JSON.parse(sessionStorage.getItem("bella-ciao-session-cart")));
-      } catch (e) {
-        console.error(e);
-      }
+      setCart(JSON.parse(sessionStorage.getItem("bella-ciao-session-cart")));
     }
-  };
-
-  useEffect(() => {
-    toggleCartStyle();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartVisibility]);
-
-  useEffect(() => {
-    window.addEventListener("click", deleteFunction);
-    return () => {
-      window.removeEventListener("click", deleteFunction);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (effectRan.current === true) {
-      setCart(cart.filter((item) => item.id !== toBeRemoved));
-      saveSession(cart.filter((item) => item.id === toBeRemoved)[0], true);
-    }
-    return () => {
-      effectRan.current = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toBeRemoved]);
-
-  useEffect(() => {
-    loadSession();
-  }, []);
-
-  useEffect(() => {
-    setCartSum((sum) =>
-      cart !== null
-        ? +cart
-            .map((item) => +item.price.substring(1) * item.quantity)
-            .reduce((a, i) => a + i, 0)
-            .toFixed(2)
-        : 0
+  }
+  function saveCartToSession() {
+    sessionStorage.setItem(
+      "bella-ciao-session-cart",
+      "[" + [...stringifyCart()].toString() + "]"
     );
+  }
+  function updateCartItemQuantity(change: number, item_id: string) {
+    const updated = cart.map((item) => {
+      if (item.id !== item_id) {
+        return item;
+      } else {
+        return {
+          ...item,
+          quantity: item.quantity + change,
+          full_price: (item.quantity + change) * +item.price.substring(1),
+        };
+      }
+    });
+    setCart(updated);
+  }
+  useEffect(() => {
+    loadCartFromSession();
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("click", handleAddItemToCartButton);
+
+    return () => {
+      window.removeEventListener("click", handleAddItemToCartButton);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    setCartSum((sum) => cart.reduce((acc, obj) => acc + obj.full_price, 0));
+    saveCartToSession();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cart]);
 
   useEffect(() => {
-    if (effectRan.current === true) {
-      let item = createItem();
-      setCart((cart) => [...cart, item]);
-      saveSession(item, false);
+    if (mobileNavbarVisibleOnMount.current === true) {
+      toggleMobileNavbar();
     }
     return () => {
-      effectRan.current = true;
+      mobileNavbarVisibleOnMount.current = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [helper]);
-
-  useEffect(() => {
-    window.addEventListener("click", cartButtonFunction);
-    return () => window.removeEventListener("click", cartButtonFunction);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (effectRan.current === true) {
-      toggleHeader();
-    }
-    return () => {
-      effectRan.current = true;
-    };
   }, [toggled]);
+
+  useEffect(() => {
+    if (cartVisibilityOnMount.current === true) {
+      toggleCartStyle();
+    }
+
+    return () => {
+      cartVisibilityOnMount.current = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [cartVisibility]);
 
   return (
     <>
@@ -210,20 +151,33 @@ export default function ShopHeader() {
           </ul>
           <div className={`${styles.cart_wrap} ${styles.openCartWrap}`}>
             <span className={styles.cart_span}>Your cart:</span>
-            <div className={styles.cart_svg} onClick={() => toggleCart()}></div>
+            <div
+              className={styles.cart_svg}
+              onClick={() =>
+                cartVisibility
+                  ? setCartVisibility((cartVisibility) => false)
+                  : setCartVisibility((cartVisibility) => true)
+              }
+            ></div>
             <div className={styles.cart_numbers} id="cart-number">
               <div className={styles.cart_itemN}>{cart.length}</div>
               <div className={styles.cart_itemPrice}>
                 ${isNaN(cartSum) ? 0 : cartSum.toFixed(2)}
               </div>
             </div>
-            <div className={styles.cart} ref={cartRef}>
+            <div className={styles.cart} id="cartMain">
               <div className={styles.cart_your_cart}>
                 Your cart &#40;{cart.length}&#41; $
                 {isNaN(cartSum) ? 0 : cartSum.toFixed(2)}
               </div>
               {cart.map((item: cartItemType) => (
-                <CartItem key={item.id} props={item} interactive={true}/>
+                <CartItem
+                  key={item.id}
+                  props={item}
+                  interactive={true}
+                  removeItem={deleteCartItem}
+                  updateCartQuant={updateCartItemQuantity}
+                />
               ))}
               <button className={styles.cart_button}>
                 Continue to payment
@@ -232,7 +186,11 @@ export default function ShopHeader() {
             <button
               aria-label="toggle menu"
               className={styles.nav_toggle}
-              onClick={handleBurgerClick}
+              onClick={() => {
+                toggled
+                  ? setToggled((toggled) => false)
+                  : setToggled((toggled) => true);
+              }}
               id="openButton"
             >
               <svg
@@ -252,7 +210,11 @@ export default function ShopHeader() {
             </button>
             <div id="modal" className={styles.modal}>
               <svg
-                onClick={handleBurgerClick}
+                onClick={() => {
+                  toggled
+                    ? setToggled((toggled) => false)
+                    : setToggled((toggled) => true);
+                }}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -294,7 +256,13 @@ export default function ShopHeader() {
                 </li>
                 {cart.map((item: cartItemType) => (
                   <li key={item.id} className={styles.cart_li}>
-                    <CartItem props={item} interactive={false}/>
+                    <CartItem
+                      key={item.id}
+                      props={item}
+                      interactive={true}
+                      removeItem={deleteCartItem}
+                      updateCartQuant={updateCartItemQuantity}
+                    />
                   </li>
                 ))}
               </ul>

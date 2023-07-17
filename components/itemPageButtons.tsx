@@ -4,21 +4,36 @@ import { useState } from "react";
 export default function Buttons({
   quantity,
   id,
+  updateCartQuant = null,
+  updateCartItemQuant = null,
+  orderPage = true,
 }: {
   quantity: number;
   id: string;
+  updateCartQuant: (change: number, item_id: string) => void;
+  updateCartItemQuant: (increment: boolean) => void;
+  orderPage: boolean;
 }): JSX.Element {
   const [quant, setQuant] = useState<number>(quantity);
+
   function handleClick(increment: boolean) {
     if (increment === false) {
-      if (quant <= 1) {
+      if (quantity <= 1) {
         return;
       } else {
         setQuant((quant) => quant - 1);
+        if (updateCartQuant !== null) {
+          updateCartQuant(-1, id);
+          updateCartItemQuant(false);
+        }
       }
     }
     if (increment === true) {
       setQuant((quant) => quant + 1);
+      if (updateCartQuant !== null) {
+        updateCartQuant(1, id);
+        updateCartItemQuant(true);
+      }
     }
   }
   return (
@@ -35,11 +50,15 @@ export default function Buttons({
             viewBox="0 0 24 24"
             id={`decrementSvg${id}`}
           >
-            <path fill="currentColor" d="M19 11H5v2h14v-2Z" id={`decrementPath${id}`}></path>
+            <path
+              fill="currentColor"
+              d="M19 11H5v2h14v-2Z"
+              id={`decrementPath${id}`}
+            ></path>
           </svg>
         </button>
         <span className={styles.desc_quantity_display} id={`quant${id}`}>
-          {quant}
+          {orderPage ? quant : quantity}
         </span>
         <button
           className={styles.desc_button}
