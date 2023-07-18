@@ -44,7 +44,7 @@ export default async function Page({ params }: { params: { name: string } }) {
         <div className={styles.item_desc}>
           <h1 className={styles.desc_name}>{item.name}</h1>
           <h4 className={styles.desc_price}>{item.price}</h4>
-          <Buttons quantity={1} id={'OrderPage'}/>
+          <Buttons quantity={1} id={'OrderPage'} updateCartQuant={null} updateCartItemQuant={null} orderPage={true}/>
           <h3 className={styles.desc_description}>Description</h3>
           <h4 className={styles.desc_details}>{item.details}</h4>
           <h3 className={styles.desc_warning_title}>Contains the following:</h3>

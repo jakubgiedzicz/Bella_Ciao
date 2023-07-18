@@ -34,6 +34,7 @@
   display: inline-block;
   margin: 0;
   color: white;
+  cursor: pointer;
 }
 .button_28.menu_intro:hover {
   background-color: rgb(0, 150, 0);
@@ -167,7 +168,6 @@
 }
 .small_plates {
   background-image: url('../public/small-plate-bruscetta.jpg');
-  background-size: cover;
 }
 .soups_salads {
   background-image: url('../public/soups-salads-pasta-e-ceci.jpg');
@@ -176,7 +176,7 @@
   background-image: url('../public/meat-fish.jpg');
 }
 .essentials {
-  background-image: url('../public/small-plate-bruscetta.jpg');
+  background-image: url('../public/balsamic-vinaigrette.jpg');
 }
 .white_wine {
   background-image: url('../public/white-wine.jpg');
@@ -186,6 +186,10 @@
 }
 .desserts {
   background-image: url('../public/dessert-tiramisu.jpg');
+}
+.menu_category_main_dish_wrap > *,
+.menu_category_else_wrap > * {
+  background-size: cover;
 }
 @media (max-width: 1000px) {
   .menu_intro {

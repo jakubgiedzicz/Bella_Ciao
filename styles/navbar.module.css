@@ -9,9 +9,10 @@
   background-color: transparent;
 }
 .logo_img {
-  width: clamp(2vw, 64px, 2vh);
+  width: clamp(1.5vw, 48px, 2vh);
   min-width: 64px;
   height: auto;
+  filter: invert(100%);
 }
 .nav_list {
   display: flex;
@@ -85,9 +86,10 @@
 }
 .openIcon {
   display: block;
-  filter: drop-shadow(1px 1px 1px rgb(0 0 0 / 0.4));
+  filter: drop-shadow(1px 1px 1px rgb(255 255 255 / 1));
 }
 .closeIcon {
+  filter: invert(100%);
   display: none;
 }
 .nav_links.open {
@@ -111,11 +113,6 @@
   height: 100vh;
   overflow: hidden;
   animation: none;
-}
-.block {
-  height: 100%;
-  width: 100%;
-  overflow: hidden!important;
 }
 @media (max-width: 1000px){
   .button_28 {

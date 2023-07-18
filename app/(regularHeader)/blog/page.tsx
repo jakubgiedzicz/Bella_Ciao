@@ -166,6 +166,30 @@ export default function Blog(){
       title: 'Mobile cart',
       description: "Updated styles for mobile navbar cart/ fixed minor bugs in cart"
     },
+    {
+      id: 28,
+      date: '14/07/2023 16:16',
+      title: 'shop-header',
+      description: "Beggining of refactoring"
+    },
+    {
+      id: 29,
+      date: '17/07/2023 17:30',
+      title: 'shop-header',
+      description: "End of refactoring (so far everything looks fine, but then again that's what i thought 3hr ago)"
+    },
+    {
+      id: 30,
+      date: '18/07/2023 11:53',
+      title: 'Menu page',
+      description: "Menu page fetches db-menu to display items, changed type exported from types folder and neither VSCode nor TS cried(?)"
+    },
+    {
+      id: 31,
+      date: '18/07/2023 16:50',
+      title: 'Reservation',
+      description: "Few modifications to reservations page, header refactor tommorow and possibly this week deployment"
+    },
   ]
   return(
     <main className={styles.light_bg}>

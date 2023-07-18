@@ -3,7 +3,7 @@
 }
 .reservations_intro {
   padding-inline: 10%;
-  background-color: rgb(238, 240, 242);
+  background-color: var(--background-light-grey);
   color: black;
   text-align: center;
   padding-bottom: 4rem;
@@ -25,9 +25,9 @@
 }
 .reservation_intro_make_res {
   height: 100%;
-  background-color: rgb(228, 230, 232);
+  background-color: var(--background-grey);
   width: 30vw;
-  border: 1px solid rgb(208, 210, 212);
+  border: 1px solid var(--background-dark-grey);
   height: auto;
 }
 .reservation_intro_make_res h3 {
@@ -48,22 +48,11 @@
   min-height: 3rem;
   color: black;
   width: 80%;
-  border: 1px solid rgb(208, 210, 212);
+  border: 1px solid var(--background-dark-grey);
   background-color: white;
   cursor: pointer;
   font-size: clamp(1.2vh, 1.2rem, 1.2vw);
   position: relative;
-}
-#dateInput::-webkit-calendar-picker-indicator,
-#timeInput::-webkit-calendar-picker-indicator {
-  background-position: right;
-  background-size: auto;
-  cursor: pointer;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 }
 .reservations_submit {
   min-width: 80%;
@@ -74,6 +63,7 @@
   cursor: pointer;
   margin-bottom: 1rem;
   font-size: var(--clamp15);
+  color: white;
 }
 .reservations_submit:hover {
   opacity: 0.85;

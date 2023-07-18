@@ -66,7 +66,7 @@
   -webkit-box-shadow: 0px 0px 24px -5px rgba(69, 90, 66, 1);
   -moz-box-shadow: 0px 0px 24px -5px rgba(69, 90, 66, 1);
   box-shadow: 0px 0px 24px -5px rgba(69, 90, 66, 1);
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -184,12 +184,8 @@
 .modal_list li:first-child {
   border-top: 2px solid var(--background-dark-grey);
 }
-.modal svg {
+.closeButton {
   margin: 1rem 5vw;
-}
-.block {
-  height: 100%;
-  overflow: hidden;
 }
 @media (max-width: 760px) {
   .nav_toggle,

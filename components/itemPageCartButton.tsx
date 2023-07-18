@@ -20,7 +20,7 @@ export default function CartButton({ props, id }: { props: MenuItemType, id: str
     setQuantity((quantity) => quantity - 1)
     }
   }
-  /* Add onClick event listener on mount */
+  /* Add onClick event listener on mount, cant lift state up - page wont be SSR anymore*/
   useEffect(() => {
     const increment = document.getElementById(`increment${id}`)
     increment.addEventListener('click', handleIncrement)

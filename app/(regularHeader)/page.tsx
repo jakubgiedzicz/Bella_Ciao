@@ -39,15 +39,15 @@ export default function Home() {
         <section className={styles.intro_extend}>
           <h1 className={styles.extend_title}>Discover Italian cuisine</h1>
           <div className={styles.intro_extend_flex}>
-            <Link href="/menu" passHref>
+            <Link href="#contact" passHref>
               <Image
                 src={sandwich_img}
                 alt="sandwich image"
                 className={styles.sandwich_img}
               />
-              <h3>Catering</h3>
+              <h3>Contact</h3>
             </Link>
-            <Link href="/order" passHref>
+            <Link href="/menu" passHref>
               <Image
                 src={pizza_img}
                 alt="pizza image"
@@ -55,7 +55,7 @@ export default function Home() {
               />
               <h3>Menu</h3>
             </Link>
-            <Link href="/catering" passHref>
+            <Link href="/order" passHref>
               <Image
                 src={pasta_img}
                 alt="pizza image"

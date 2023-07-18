@@ -220,7 +220,7 @@ export default function ShopHeader() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                /* className={styles.closeIcon} */
+                className={styles.closeButton}
                 id="closeButton"
               >
                 <path

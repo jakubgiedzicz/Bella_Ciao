@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "@/public/Logo.webp";
+import Logo from "@/public/home-icon.svg";
 import styles from "@/styles/navbar.module.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -32,7 +32,7 @@ export default function Header() {
 
   const hideOnScroll = () => {
     const header: HTMLElement = document.getElementById("header");
-    const navbar: HTMLElement = document.querySelector(styles.navbar);
+    const navbar: HTMLElement = document.querySelector(`.${styles.navbar}`);
     if (header.style.display === "block" && navbar.style.width === "auto") {
       setToggled(false);
       setVisible(false);
@@ -41,10 +41,10 @@ export default function Header() {
 
   const toggleNavbar = () => {
     toggleHeader();
-    let button: HTMLElement = document.querySelector(styles.nav_toggle);
-    let links: HTMLElement = document.querySelector(styles.nav_links);
+    let button: HTMLElement = document.querySelector(`.${styles.nav_toggle}`);
+    let links: HTMLElement = document.querySelector(`.${styles.nav_links}`);
     let links_wrap: HTMLElement = document.querySelector(
-      styles.list_toggle_wrap
+      `.${styles.list_toggle_wrap}`
     );
     button.classList.toggle(styles.open);
     links.classList.toggle(styles.open);
@@ -53,7 +53,7 @@ export default function Header() {
   const toggleHeader = () => {
     if (document.documentElement.clientWidth < 760) {
       const header: HTMLElement = document.getElementById("header");
-      const navbar: HTMLElement = document.querySelector(styles.navbar);
+      const navbar: HTMLElement = document.querySelector(`.${styles.navbar}`);
       if (visible === true) {
         header.style.display = "block";
       } else {
