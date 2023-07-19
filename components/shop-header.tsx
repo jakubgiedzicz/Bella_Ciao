@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Logo from "@/public/Logo.webp";
+import Logo from "@/public/home-icon.svg";
 import styles from "@/styles/shop-header.module.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -131,7 +131,7 @@ export default function ShopHeader() {
           <Link
             href="/"
             passHref
-            className={`${styles.logo} ${styles.openLogo}`}
+            className={styles.logo}
           >
             <Image src={Logo} alt="" />
           </Link>

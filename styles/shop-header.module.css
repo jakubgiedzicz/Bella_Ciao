@@ -9,6 +9,10 @@
   font-size: var(--clampWide);
 }
 /* NAVIGATION LIST */
+.logo img{
+  width: 2rem;
+  height: 2rem;
+}
 .list {
   color: black;
 }
@@ -153,7 +157,7 @@
   background-color: var(--background-light-grey);
   width: 300px;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 100;
