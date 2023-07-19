@@ -3,31 +3,18 @@ import styles from "@/styles/menu-item.module.css";
 import Image from "next/image";
 import Buttons from "@/components/itemPageButtons";
 import Link from "next/link";
-import clientPromise from "@/lib/mongodb";
-import { ObjectId } from "mongodb";
 import CartButton from "@/components/itemPageCartButton";
-
-export async function getData(arg: string) {
-  try {
-    let o_id = new ObjectId(arg);
-    const client = await clientPromise;
-    const db = client.db("Bella_Ciao");
-    const menu = await db.collection("menu").find({ _id: o_id }).toArray();
-
-    return {
-      props: { menu: JSON.parse(JSON.stringify(menu)) },
-    };
-  } catch (e) {
-    console.error(e);
-  }
-}
+import { getData } from "@/lib/getMenuData";
+import { cartItemType } from "@/types/cartItemType";
 
 interface Props {
   props: MenuItemType;
 }
 export default async function Page({ params }: { params: { name: string } }) {
-  const data = await getData(params.name);
-  const item: MenuItemType = data?.props.menu[0];
+  const data = await getData();
+  const menu: any = data?.props.menu;
+  const array = menu.filter((item: any) => item._id === params.name)
+  const item = array[0]
   return (
     <main className={styles.item_container}>
       <h4 className={styles.item_link}>
