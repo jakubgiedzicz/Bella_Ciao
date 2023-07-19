@@ -5,15 +5,11 @@ import Buttons from "@/components/itemPageButtons";
 import Link from "next/link";
 import CartButton from "@/components/itemPageCartButton";
 import { getData } from "@/lib/getMenuData";
-import { cartItemType } from "@/types/cartItemType";
 
-interface Props {
-  props: MenuItemType;
-}
 export default async function Page({ params }: { params: { name: string } }) {
   const data = await getData();
-  const menu: any = data?.props.menu;
-  const array = menu.filter((item: any) => item._id === params.name)
+  const menu: MenuItemType[] = data?.props.menu;
+  const array = menu.filter((item: MenuItemType) => item._id === params.name)
   const item = array[0]
   return (
     <main className={styles.item_container}>
