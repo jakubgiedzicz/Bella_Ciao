@@ -110,7 +110,6 @@
 }
 .list_toggle_wrap.open {
   align-items: flex-end;
-  height: 100vh;
   overflow: hidden;
   animation: none;
 }

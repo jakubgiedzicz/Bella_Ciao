@@ -19,7 +19,6 @@ export default async function Order(){
         <ul className={styles.order_navigation}>
           <OrderListItem name="Small Plates" linkname='#small-plates'/>
           <OrderListItem name="Soups and Salads" linkname='#soups-salads'/>
-          <OrderListItem name="Essentials" linkname='#essentials'/>
           <OrderListItem name="Meat and Fish" linkname='#meat-and-fish'/>
           <OrderListItem name="Desserts" linkname='#desserts'/>
           <OrderListItem name="White Wine" linkname='#white-wine'/>

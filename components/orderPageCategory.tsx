@@ -33,9 +33,6 @@ function getCategoryName(category: string) {
     case 'soups-salads':
       categoryName = 'Soups and Salads'
       break
-    case 'essentials':
-      categoryName = 'Essentials'
-      break
     case 'white-wine':
       categoryName = 'White Wine'
       break
