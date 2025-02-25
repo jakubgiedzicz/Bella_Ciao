@@ -10,7 +10,7 @@ export default function Header() {
   // Mobile navbar visibility state
   const [visible, setVisible] = useState(false);
   // Window width
-  const [width, setWidth] = useState(window.innerWidth)
+  const [width, setWidth] = useState(0)
   
 
   const handleBurgerClick = () => {
@@ -38,7 +38,7 @@ export default function Header() {
     <>
       <header id="header">
         <nav className={styles.navbar}>
-          <Link href="/" className={!visible ? styles.logo_image_link : styles.logo_image_link + ' ' + styles.hide} passHref>
+          <Link href="/" className={!visible ? styles.block : styles.hide} passHref>
             <Image src={Logo} alt="Logo" className={styles.logo_img} />
           </Link>
           <div className={styles.list_toggle_wrap}>
@@ -79,7 +79,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="white"
-                className={visible ? styles.block : styles.hide}
+                className={visible ? styles.block + ' ' + styles.black : styles.hide}
               >
                 <path
                   strokeLinecap="round"
@@ -93,7 +93,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="white"
-                className={visible ? styles.block : styles.hide}
+                className={visible ? styles.block + ' ' + styles.black : styles.hide}
               >
                 <path
                   strokeLinecap="round"

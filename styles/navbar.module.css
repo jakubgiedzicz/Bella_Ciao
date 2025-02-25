@@ -4,7 +4,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 6rem;
   width: 100%;
   background-color: transparent;
 }
@@ -23,7 +22,7 @@
   display: inline;
   margin-left: 2vw;
   height: auto;
-  color: rgb(var(--text-grey))
+  color: white;
 }
 .nav_list li:hover {
   color: white;
@@ -91,6 +90,9 @@
 }
 .block {
  display: block; 
+} 
+.black {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .list_toggle_wrap {
   display: flex;
@@ -99,11 +101,6 @@
   align-items: center;
   gap: 6rem;
 }
-.list_toggle_wrap.open {
-  align-items: flex-end;
-  overflow: hidden;
-  animation: none;
-}
 @media (max-width: 1000px){
   .button_28 {
     margin: 1rem 2px 1rem 1rem;
@@ -111,12 +108,16 @@
 }
 @media (max-width: 760px){
   .navbar {
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
-    right: 1rem;
-    top: 1rem;
+    right: 0;
+    top: 0;
     z-index: 100;
     justify-content: flex-end;
     animation: 0.8s 0s 1 slideFromTop;
+    width: auto;
+    margin-top: 1rem;
+    margin-right: 1rem;
   }
   .nav_links ul {
     width: 100%;
@@ -137,11 +138,7 @@
     justify-content: flex-end;
     flex-direction: column-reverse;
     gap: 0;
-  }
-  .list_toggle_wrap.open {
-    background-color: black;
-    width: auto;
-    animation: 0.2s 0s 1 slideFromRight;
+    align-items: flex-end;
   }
 }
 @keyframes slideFromRight {
