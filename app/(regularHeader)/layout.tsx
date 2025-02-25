@@ -10,7 +10,7 @@ const cormorant = Cormorant({
 
 export const metadata = {
   title: 'Bella Ciao',
-  description: 'Użyto create next app',
+  description: 'NextJS app project',
   viewport: "width=device-width, initial-scale=1, minimum-scale=1"
 }
 

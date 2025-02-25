@@ -5,101 +5,44 @@ import styles from "@/styles/navbar.module.css";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 export default function Header() {
-  /* Navbar visibility; changes on user scroll */
-  const [visible, setVisible] = useState(true);
-
-  /* Navbar list items after clicking on designed button */
+  // Burger button state
   const [toggled, setToggled] = useState(false);
-
-  /* Prevent useEffect to display navbar on mount */
-  const effectRan = useRef(false);
+  // Mobile navbar visibility state
+  const [visible, setVisible] = useState(false);
+  // Window width
+  const [width, setWidth] = useState(window.innerWidth)
+  
 
   const handleBurgerClick = () => {
-    if (toggled === true) {
-      setToggled(false);
+    setToggled(!toggled);
+  };
+  useEffect(() => {
+    if (width <= 760){
+      setVisible(true)
     } else {
-      setToggled(true);
+      setVisible(false)
+      setToggled(false)
     }
-  };
-
-  const handleScroll = (event: WheelEvent) => {
-    if (event.deltaY < 0) {
-      setVisible(true);
-    } else {
-      setVisible(false);
-    }
-  };
-
-  const hideOnScroll = () => {
-    const header: HTMLElement = document.getElementById("header");
-    const navbar: HTMLElement = document.querySelector(`.${styles.navbar}`);
-    if (header.style.display === "block" && navbar.style.width === "auto") {
-      setToggled(false);
-      setVisible(false);
-    }
-  };
-
-  const toggleNavbar = () => {
-    toggleHeader();
-    let button: HTMLElement = document.querySelector(`.${styles.nav_toggle}`);
-    let links: HTMLElement = document.querySelector(`.${styles.nav_links}`);
-    let links_wrap: HTMLElement = document.querySelector(
-      `.${styles.list_toggle_wrap}`
-    );
-    button.classList.toggle(styles.open);
-    links.classList.toggle(styles.open);
-    links_wrap.classList.toggle(styles.open);
-  };
-  const toggleHeader = () => {
-    if (document.documentElement.clientWidth < 760) {
-      const header: HTMLElement = document.getElementById("header");
-      const navbar: HTMLElement = document.querySelector(`.${styles.navbar}`);
-      if (visible === true) {
-        header.style.display = "block";
-      } else {
-        header.style.display = "none";
-      }
-      if (toggled === true) {
-        navbar.style.width = "auto";
-      } else {
-        navbar.style.width = "100%";
-      }
-    }
-  };
+  },[width])
   useEffect(() => {
-    if (effectRan.current === true) {
-      toggleNavbar();
+    function handleResize() {
+     setWidth(window.innerWidth) 
     }
-    return () => {
-      effectRan.current = true;
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [toggled]);
-
-  useEffect(() => {
-    window.addEventListener("wheel", handleScroll);
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("wheel", hideOnScroll);
-    return () => window.removeEventListener("wheel", hideOnScroll);
-  }, []);
-
-  useEffect(() => {
-    toggleHeader();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible]);
-
+    window.addEventListener('resize', handleResize)
+    handleResize()
+    return ()  => {
+      window.removeEventListener('resize', handleResize)
+    }
+  },[])
   return (
     <>
       <header id="header">
         <nav className={styles.navbar}>
-          <Link href="/" className={styles.logo_image_link} passHref>
+          <Link href="/" className={!visible ? styles.logo_image_link : styles.logo_image_link + ' ' + styles.hide} passHref>
             <Image src={Logo} alt="Logo" className={styles.logo_img} />
           </Link>
           <div className={styles.list_toggle_wrap}>
-            <div className={styles.nav_links}>
+            <div className={(toggled || !visible) ? styles.nav_links : styles.hide}>
               <ul className={styles.nav_list}>
                 <li>
                   <Link href="/menu">Menu</Link>
@@ -121,7 +64,7 @@ export default function Header() {
               </ul>
             </div>
             <Link href="/order" passHref>
-              <button className={styles.button_28} role="button">
+              <button className={!visible ? styles.button_28 : styles.button_28 + ' ' + styles.hide} role="button">
                 Order
               </button>
             </Link>
@@ -130,34 +73,34 @@ export default function Header() {
               className={styles.nav_toggle}
               onClick={handleBurgerClick}
             >
+              {toggled ? <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="white"
+                className={visible ? styles.block : styles.hide}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />{" "}
+              </svg> :
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
-                stroke="currentColor"
-                className={styles.openIcon}
+                stroke="white"
+                className={visible ? styles.block : styles.hide}
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
                 />
-              </svg>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className={styles.closeIcon}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
+              </svg>}
             </button>
           </div>
         </nav>

@@ -78,28 +78,19 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  display: none;
 }
 .nav_toggle svg {
   height: 4rem;
   width: 4rem;
 }
-.openIcon {
-  display: block;
-  filter: drop-shadow(1px 1px 1px rgb(255 255 255 / 1));
-}
-.closeIcon {
-  filter: invert(100%);
-  display: none;
-}
 .nav_links.open {
   animation: 0.5s ease-out 0s 1 slideFromRight;
 }
-.nav_toggle.open .openIcon {
-  display: none;
+.hide {
+  display: none!important;
 }
-.nav_toggle.open .closeIcon {
-  display: block;
+.block {
+ display: block; 
 }
 .list_toggle_wrap {
   display: flex;
@@ -121,29 +112,15 @@
 @media (max-width: 760px){
   .navbar {
     position: fixed;
-    right: 0;
-    top: 0;
+    right: 1rem;
+    top: 1rem;
     z-index: 100;
     justify-content: flex-end;
     animation: 0.8s 0s 1 slideFromTop;
   }
-  .nav_links,
-  nav .button_28 {
-    display: none;
-  }
-  .logo_image_link {
-    display: none;
-  }
-  .nav_toggle {
-    display: block;
-  }
-  .nav_links.open {
-    display: block;
-  }
   .nav_links ul {
     width: 100%;
     flex-direction: column;
-    padding: 1rem;
     text-align: right;
   }
   .nav_list {
