@@ -2,6 +2,7 @@ import '@/styles/globals.css'
 import { Cormorant } from 'next/font/google'
 import Footer from '@/components/footer'
 import ShopHeader from '@/components/shop-header'
+import { Viewport } from 'next'
 
 const cormorant = Cormorant({
   weight: ['400', '500', '600', '700'],
@@ -10,8 +11,13 @@ const cormorant = Cormorant({
 
 export const metadata = {
   title: 'Bella Ciao',
-  description: 'Użyto create next app',
-  viewport: "width=device-width, initial-scale=1, minimum-scale=1"
+  description: 'NextJs App',
+}
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  minimumScale: 1,
+  colorScheme: 'light',
 }
 
 export default function OrderLayout({
@@ -21,6 +27,9 @@ export default function OrderLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+      <script src="https://unpkg.com/react-scan/dist/auto.global.js"></script>
+      </head>
       <body className={cormorant.className}>
         <ShopHeader />
         {children}

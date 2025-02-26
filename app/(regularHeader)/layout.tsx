@@ -1,8 +1,8 @@
 import '@/styles/globals.css'
 import { Cormorant } from 'next/font/google'
-import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { Viewport } from 'next'
+import Navbar from '@/components/navbar'
 
 const cormorant = Cormorant({
   weight: ['400', '500', '600', '700'],
@@ -27,8 +27,11 @@ export default function Root({
 }) {
   return (
     <html lang="en">
+      <head>
+      <script src="https://unpkg.com/react-scan/dist/auto.global.js"></script>
+      </head>
       <body className={cormorant.className}>
-        <Header />
+        <Navbar />
         {children}
         <Footer />
         </body>
