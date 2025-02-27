@@ -6,80 +6,59 @@ import trash from "@/public/trash.svg";
 import { cartItemType } from "@/types/cartItemType";
 import { useEffect, useRef, useState } from "react";
 interface props {
-  props: cartItemType,
-  interactive: boolean,
-  removeItem: (id: string) => void,
-  updateCartQuant: (change: number, item_id: string) => void
+  props: cartItemType;
+  setQuant: (item: cartItemType[]) => void;
+  cart: cartItemType[];
 }
-export default function CartItem({ props, interactive, removeItem, updateCartQuant }: props) {
-  const [cartItemQuant, setCartItemQuant] = useState(props.quantity);
-  const latestQuant = useRef(cartItemQuant);
-
-  const updateItemQuant = (increment: boolean) => {
-    if (increment === false) {
-      if (cartItemQuant <= 1) {
-        return;
-      } else {
-        setCartItemQuant((cartItemQuant) => cartItemQuant - 1);
-      }
-    }
-    if (increment === true) {
-      setCartItemQuant((cartItemQuant) => cartItemQuant + 1);
-    }
-  }
-  /* Load sessionstorage, parse for items, iterate over them to find the one needed
-     set quantity, full_price, turn into string, save in session */
-  function updateSession() {
-    let cart = [];
-    let stringedCart: string[] = [];
-    if (sessionStorage.getItem("bella-ciao-session-cart") !== null) {
-      cart = JSON.parse(sessionStorage.getItem("bella-ciao-session-cart"));
-    } else {
-      return;
-    }
-    cart.forEach((element: cartItemType) => {
-      if (element.id === props.id) {
-        element.quantity = cartItemQuant;
-        element.full_price = +(cartItemQuant * +element.price.substring(1)).toFixed(2);
-      }
-      stringedCart.push(JSON.stringify(element));
+export default function CartItem({ props, setQuant, cart }: props) {
+  const handleClick = (increment: boolean) => {
+    const newCart = cart.map((i) => {
+      if (i.id === props.id) {
+        return {
+          ...i,
+          quantity: increment ? i.quantity + 1 : i.quantity - 1,
+        };
+      } else return i;
     });
-    sessionStorage.setItem(
-      "bella-ciao-session-cart",
-      "[" + stringedCart.toString() + "]"
-    );
-  }
-
-  useEffect(() => {
-    latestQuant.current = cartItemQuant;
-    updateSession();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cartItemQuant]);
-
+    setQuant(newCart)
+  };
   return (
-    <div className={styles.cart_item_wrap} id={props.id}>
-      <div className={styles.cart_details}>
-        <Image
-          src={props.link}
-          alt=""
-          width={50}
-          height={50}
-          className={styles.cart_img}
-        />
-        <span>{props.name}</span>
-        <span>${props.full_price.toFixed(2)}</span>
-      </div>
-      <div className={interactive ? `${styles.cart_interactive} ${styles.cart_mobile}` : styles.cart_mobile}>
-        <Buttons quantity={props.quantity} id={props.id} updateCartQuant={updateCartQuant} updateCartItemQuant={updateItemQuant} orderPage={false}/>
-        <Image
-          src={trash}
-          alt=""
-          height={20}
-          width={20}
-          className={styles.trash}
-          id={`trash${props.id}`}
-          onClick={() => removeItem(props.id)}
-        />
+    <div className={styles.dropdown_item}>
+      <Image
+        src={props.link}
+        alt={`${props.name} image`}
+        width={50}
+        height={50}
+      />
+      <span>{props.name}</span>
+      <span>${props.full_price.toFixed(2)}</span>
+      <div className={styles.dropwdown_item_button_wrapper}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          width={24}
+          height={24}
+          onClick={() => handleClick(false)}
+        >
+          <path fill="currentColor" d="M19 11H5v2h14v-2Z"></path>
+        </svg>
+        <div className={styles.dropdown_item_quantity}>{props.quantity}</div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          width={24}
+          height={24}
+          onClick={() => handleClick(true)}
+        >
+          <path
+            fill="currentColor"
+            d="M13 19v-6h6v-2h-6V5h-2v6H5v2h6v6h2Z"
+            width={24}
+            height={24}
+          ></path>
+        </svg>
       </div>
     </div>
   );

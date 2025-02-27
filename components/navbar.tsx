@@ -34,7 +34,7 @@ export default function Navbar() {
     };
   }, []);
   return (
-    <nav className={styles.navbar}>
+    <nav className={(visible && !toggled) ? styles.navbar + ' ' + styles.burger_margin : styles.navbar + ' ' + styles.burger_padding}>
       <Link href="/" passHref>
         <Image
           src={Logo}
