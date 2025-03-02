@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import CartItem from "./headerCartItem";
 import { cartItemType } from "@/types/cartItemType";
-import { getUniqueId } from "@/lib/generateId";
 import cart_svg from "../public/shopping-cart-outline.svg";
 const item: cartItemType = {
   id: "m",
@@ -27,6 +26,8 @@ export default function ShopHeader() {
   const [cart, setCart] = useState<cartItemType[]>([]);
   //cart value
   const [cartSum, setCartSum] = useState<number>();
+  //cart state helper
+  const [helper, setHelper] = useState(0)
   useEffect(() => {
     if (width <= 760) {
       setVisible(true);
@@ -39,10 +40,15 @@ export default function ShopHeader() {
     function handleResize() {
       setWidth(window.innerWidth);
     }
+    function handleStorage(){
+      setHelper((prev) => prev+1)
+    }
     window.addEventListener("resize", handleResize);
+    window.addEventListener("storage", handleStorage);
     handleResize();
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("storage", handleStorage);
     };
   }, []);
   useEffect(() => {
@@ -53,6 +59,11 @@ export default function ShopHeader() {
     setCartSum(sum);
     sessionStorage.setItem("Bella-Ciao-cart", JSON.stringify(cart));
   }, [cart]);
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      setCart(JSON.parse(sessionStorage.getItem("Bella-Ciao-cart")));
+    }
+  }, [helper]);
   return (
     <nav className={styles.navbar}>
       <Link href="/" passHref className={styles.logo}>
