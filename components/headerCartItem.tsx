@@ -31,7 +31,7 @@ export default function CartItem({ props, setQuant, cart }: props) {
         height={50}
       />
       <span>{props.name}</span>
-      <span>${props.full_price.toFixed(2)}</span>
+      <span>${(props.price*props.quantity).toFixed(2)}</span>
       <div className={styles.dropwdown_item_button_wrapper}>
         <svg
           xmlns="http://www.w3.org/2000/svg"

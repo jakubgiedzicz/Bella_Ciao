@@ -9,12 +9,11 @@ import { cartItemType } from "@/types/cartItemType";
 import { getUniqueId } from "@/lib/generateId";
 import cart_svg from "../public/shopping-cart-outline.svg";
 const item: cartItemType = {
-  full_price: 140,
   id: "m",
   link: "https://i.redd.it/8p649rdtwnle1.png",
-  name: "xd",
-  price: "$2.95",
-  quantity: 4,
+  name: "Minestrone",
+  price: 20.95,
+  quantity: 2,
 };
 
 export default function ShopHeader() {
@@ -25,7 +24,9 @@ export default function ShopHeader() {
   // Window width
   const [width, setWidth] = useState(0);
   //cart items
-  const [cart, setCart] = useState<cartItemType[]>([item]);
+  const [cart, setCart] = useState<cartItemType[]>([]);
+  //cart value
+  const [cartSum, setCartSum] = useState<number>();
   useEffect(() => {
     if (width <= 760) {
       setVisible(true);
@@ -44,6 +45,14 @@ export default function ShopHeader() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+  useEffect(() => {
+    let sum = 0;
+    cart.forEach((i) => {
+      sum += i.quantity * +i.price;
+    });
+    setCartSum(sum);
+    sessionStorage.setItem("Bella-Ciao-cart", JSON.stringify(cart));
+  }, [cart]);
   return (
     <nav className={styles.navbar}>
       <Link href="/" passHref className={styles.logo}>
@@ -59,7 +68,9 @@ export default function ShopHeader() {
         <h2>{cart.length}</h2>
         <Image src={cart_svg} width={32} height={32} alt="shopping cart" />
         <div className={toggled ? styles.dropdown : styles.hide}>
-          <div className={styles.dropdown_title}>Your cart ($140): </div>
+          <div className={styles.dropdown_title}>
+            Your cart (${cartSum ? cartSum.toFixed(2) : 0}):{" "}
+          </div>
           {cart.map((i) => (
             <CartItem key={i.id} props={i} setQuant={setCart} cart={cart} />
           ))}
