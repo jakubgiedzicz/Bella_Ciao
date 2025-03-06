@@ -14,14 +14,18 @@ export default function CartItem({ props, setQuant, cart }: props) {
   const handleClick = (increment: boolean) => {
     const newCart = cart.map((i) => {
       if (i.id === props.id) {
+        if((i.quantity -1) == 0 && !increment) return i
         return {
           ...i,
           quantity: increment ? i.quantity + 1 : i.quantity - 1,
-        };
+        }
       } else return i;
     });
     setQuant(newCart)
-  };
+  }
+  useEffect(()=> {
+    sessionStorage.setItem("Bella-Ciao-cart", JSON.stringify(cart))
+  },[cart])
   return (
     <div className={styles.dropdown_item}>
       <Image

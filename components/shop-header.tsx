@@ -71,7 +71,18 @@ export default function ShopHeader() {
       </div>
       <div className={styles.navbar_cart}>
         <h2>{cart.length}</h2>
-        <Image src={cart_svg} width={32} height={32} alt="shopping cart" />
+        {visible ? (
+          <Image src={cart_svg} width={32} height={32} alt="shopping cart" />
+        ) : (
+          <Image
+            src={cart_svg}
+            width={32}
+            height={32}
+            alt="shopping cart"
+            className={styles.burger}
+            onClick={() => setToggled((prev) => !prev)}
+          />
+        )}
         <div className={toggled ? styles.dropdown : styles.hide}>
           <div className={styles.dropdown_title}>
             Your cart (${getCartSum().toFixed(2)}):{" "}

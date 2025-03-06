@@ -18,6 +18,7 @@
   flex-direction: row;
   gap: 1rem;
   align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
 }
 .hide {
@@ -35,6 +36,8 @@
   top: calc(100% + 0.4rem);
   right: -4rem;
   padding: 1rem;
+  padding-inline: 3rem;
+  user-select: none;
 }
 .dropdown_title {
   white-space: nowrap;;
@@ -42,7 +45,12 @@
 .dropdown_item {
   display: flex;
   gap: 1rem;
+  padding: 1rem;
   align-items: center;
+}
+.dropdown_item:hover{
+  transform: scaleX(1.05);
+  background-color: rgb(222,222,222);
 }
 .dropdown_item_quantity {
   height: 24px;
