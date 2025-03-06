@@ -7,13 +7,6 @@ import Link from "next/link";
 import CartItem from "./headerCartItem";
 import { cartItemType } from "@/types/cartItemType";
 import cart_svg from "../public/shopping-cart-outline.svg";
-const item: cartItemType = {
-  id: "m",
-  link: "https://i.redd.it/8p649rdtwnle1.png",
-  name: "Minestrone",
-  price: 20.95,
-  quantity: 2,
-};
 
 export default function ShopHeader() {
   //is burger toggled
@@ -24,10 +17,8 @@ export default function ShopHeader() {
   const [width, setWidth] = useState(0);
   //cart items
   const [cart, setCart] = useState<cartItemType[]>([]);
-  //cart value
-  const [cartSum, setCartSum] = useState<number>();
   //cart state helper
-  const [helper, setHelper] = useState(0)
+  const [helper, setHelper] = useState(0);
   useEffect(() => {
     if (width <= 760) {
       setVisible(true);
@@ -36,12 +27,23 @@ export default function ShopHeader() {
       setToggled(false);
     }
   }, [width]);
+  const getCartSum = () => {
+    let sum = 0;
+    cart.forEach((i) => {
+      sum += i.quantity * +i.price;
+    });
+    return sum;
+  };
   useEffect(() => {
     function handleResize() {
       setWidth(window.innerWidth);
     }
-    function handleStorage(){
-      setHelper((prev) => prev+1)
+    function handleStorage() {
+      setHelper((prev) => prev + 1);
+    }
+    const session = JSON.parse(sessionStorage.getItem("Bella-Ciao-cart"));
+    if (session) {
+      setCart(session);
     }
     window.addEventListener("resize", handleResize);
     window.addEventListener("storage", handleStorage);
@@ -51,14 +53,6 @@ export default function ShopHeader() {
       window.removeEventListener("storage", handleStorage);
     };
   }, []);
-  useEffect(() => {
-    let sum = 0;
-    cart.forEach((i) => {
-      sum += i.quantity * +i.price;
-    });
-    setCartSum(sum);
-    sessionStorage.setItem("Bella-Ciao-cart", JSON.stringify(cart));
-  }, [cart]);
   useEffect(() => {
     if (typeof window !== undefined) {
       setCart(JSON.parse(sessionStorage.getItem("Bella-Ciao-cart")));
@@ -80,7 +74,7 @@ export default function ShopHeader() {
         <Image src={cart_svg} width={32} height={32} alt="shopping cart" />
         <div className={toggled ? styles.dropdown : styles.hide}>
           <div className={styles.dropdown_title}>
-            Your cart (${cartSum ? cartSum.toFixed(2) : 0}):{" "}
+            Your cart (${getCartSum().toFixed(2)}):{" "}
           </div>
           {cart.map((i) => (
             <CartItem key={i.id} props={i} setQuant={setCart} cart={cart} />
