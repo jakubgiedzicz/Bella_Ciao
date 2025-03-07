@@ -10,7 +10,7 @@ export default function MenuItem({ props }: PropsType): JSX.Element {
   let src = props.link;
   return (
     <>
-      <Link href={`/order/${props._id}`} passHref>
+      <Link href={`/order/${props._id}`} passHref aria-label={`Order ${props.name}`}>
         <div className={styles.category_item_wrap}>
           <div className={styles.category_item_desc}>
             <h3>{props.name}</h3>
