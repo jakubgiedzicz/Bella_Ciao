@@ -13,12 +13,11 @@ export default function Home() {
     <>
       <main>
         <div className={styles.intro_wrap}>
-          <div className={styles.intro_wrap_grid}>
             <div className={styles.left_intro_column}>
-              <Image src={pizza} alt="pizza slices image" />
+              <Image src={pizza} alt="pizza slices image" loading="eager" />
             </div>
             <section className={styles.right_intro_column}>
-              <Image src={logo} alt="Bella Ciao logo" />
+              <Image src={logo} alt="Bella Ciao logo"/>
               <h2> Original Italian food and wine experience</h2>
               <h5>
                 Famous across the whole globe, italian cuisine best known for
@@ -35,7 +34,6 @@ export default function Home() {
               <button className={styles.button_29}>Menu</button>
             </section>
           </div>
-        </div>
         <section className={styles.intro_extend}>
           <h1 className={styles.extend_title}>Discover Italian cuisine</h1>
           <div className={styles.intro_extend_flex}>

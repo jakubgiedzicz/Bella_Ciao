@@ -1,22 +1,11 @@
 .intro_wrap {
   margin-inline: 15%;
-  min-height: calc(100vh - 6rem);
-}
-.intro_wrap_grid {
+  margin-bottom: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 2rem;
-  min-height: 90%;
-  padding-bottom: 1rem;
-}
-.left_intro_column,
-.right_intro_column {
-  width: 100%;
-  min-height: 80dvh;
 }
 .left_intro_column img {
-  width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 .left_intro_column {
@@ -39,10 +28,11 @@
   text-align: center;
   font-family: 'Cormorant', serif;
   font-weight: normal;
-  font-size: clamp(0.5rem, 1.5vw, 4rem);
+  font-size: larger;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
 }
 .right_intro_column img {
   min-height: 140px;
@@ -50,7 +40,7 @@
   width: auto;
   animation: 1s ease-out 0s 1 slideFromLeft;
 }
-.right_intro_column h5 {
+.right_intro_column h5, .right_intro_column h2 {
   color: rgb(var(--text-grey));
 }
 .order_link_span {
@@ -61,8 +51,6 @@
 }
 .right_intro_column h2,
 .right_intro_column h5 {
-  width: 80%;
-  padding-top: 3rem;
   font-weight: normal;
   animation: 0.4s ease-out 0s 1 slideFromRight;
 }
@@ -70,7 +58,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  min-height: 60vh;
+  padding-bottom: 2rem;
+  gap: 2rem;
   height: auto;
   background-color: white;
   color: black;
@@ -83,8 +72,7 @@
   font-weight: 600;
 }
 .intro_extend_flex img {
-  max-height: 350px;
-  width: 100%;
+  width: 250px;
   object-fit: contain;
 }
 .intro_extend_flex {
@@ -225,24 +213,19 @@
 }
 @media (max-width: 1000px){
   .intro_wrap {
-    margin-top: 6rem;
-    margin-inline: 25%;
-    min-height: 100vh;
-    height: auto;
+    grid-template-columns: 1fr;
+    margin: 4rem 20%;
   }
   .intro_wrap_grid {
-    grid-template-columns: 1fr;
     height: auto;
   }
   .right_intro_column {
     height: auto;
   }_  .right_intro_column h2 {
-    font-size: clamp(2rem, 2vh, 3rem);
     overflow: visible;
     height: auto;
   }
   .right_intro_column h5 {
-    font-size: clamp(1rem, 2vh, 2rem);
     overflow: visible;
   }
   .left_intro_column {
