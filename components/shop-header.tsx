@@ -28,11 +28,13 @@ export default function ShopHeader() {
     }
   }, [width]);
   const getCartSum = () => {
+    if(cart){
     let sum = 0;
     cart.forEach((i) => {
       sum += i.quantity * +i.price;
     });
-    return sum;
+    return sum != undefined ? sum : 0
+  }
   };
   useEffect(() => {
     function handleResize() {
@@ -70,7 +72,7 @@ export default function ShopHeader() {
         <Link href="/blog">Blog</Link>
       </div>
       <div className={styles.navbar_cart}>
-        <h2>{cart.length}</h2>
+        <h2>{cart? cart.length : 0}</h2>
         {visible ? (
           <Image src={cart_svg} width={32} height={32} alt="shopping cart" />
         ) : (
@@ -85,9 +87,9 @@ export default function ShopHeader() {
         )}
         <div className={toggled ? styles.dropdown : styles.hide}>
           <div className={styles.dropdown_title}>
-            Your cart (${getCartSum().toFixed(2)}):{" "}
+            Your cart (${cart ? getCartSum().toFixed(2) : 0}):{" "}
           </div>
-          {cart.map((i) => (
+          {cart && cart.map((i) => (
             <CartItem key={i.id} props={i} setQuant={setCart} cart={cart} />
           ))}
         </div>
