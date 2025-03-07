@@ -12,15 +12,15 @@ export default function Footer() {
       </div>
       <div>
         <h3>Venice</h3>
-        <h5>5301 Hazel Ave</h5>
-        <h5>Orangevale, CA</h5>
-        <h5>123-555-1234</h5>
+        <h5>5301 Hazel Ave<br />
+        Orangevale, CA<br />
+        123-555-1234</h5>
       </div>
       <div>
         <h3>Florence</h3>
-        <h5>2626 Marigold Ln</h5>
-        <h5>Arden-Arcade, CA</h5>
-        <h5>123-555-1235</h5>
+        <h5>2626 Marigold Ln<br />
+        Arden-Arcade, CA<br />
+        123-555-1235</h5>
       </div>
     </div>
     <div className={styles.contact_email}>

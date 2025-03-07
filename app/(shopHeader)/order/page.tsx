@@ -13,7 +13,7 @@ export default async function Order(){
   return (
     <main className={styles.light_bg}>
       <section className={styles.order_intro}>
-        <Image src={wine_img} alt='aha'/>
+        <Image src={wine_img} alt='aha' loading='eager'/>
       </section>
       <section className={styles.order_btn_grp}>
         <ul className={styles.order_navigation}>

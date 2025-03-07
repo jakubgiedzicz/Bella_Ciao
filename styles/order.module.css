@@ -22,11 +22,12 @@
 }
 .order_navigation {
   min-height: 2rem;
+  display: flex;
+  gap: 3rem;
 }
 .order_navigation li {
-  margin-left: 2rem;
   display: inline;
-  height: auto;
+  font-size: 1.25rem;
 }
 .order_navigation li a {
   position: relative;

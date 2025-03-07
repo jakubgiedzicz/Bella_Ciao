@@ -98,9 +98,8 @@
 }
 .parallax_shot,
 .delivery_parallax {
-  width: 100%;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 50vh;
+  height: 50vh;
   background-attachment: fixed;
   position: relative;
   background-repeat: no-repeat;
@@ -168,6 +167,7 @@
 }
 .italy_wine_desc {
   margin-top: 4rem;
+  margin-bottom: 4rem;
   justify-content: flex-start;
 }
 .italy_wine_desc_img {
@@ -177,6 +177,15 @@
   max-width: 100%;
   object-fit: cover;
   object-position: center right;
+}
+.italy_wine_desc_text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+.button_container {
+  display: flex;
 }
 .italy_desc_text,
 .italy_wine_desc_text {
@@ -211,11 +220,8 @@
   font-family: var(--formal-font);
 }
 .delivery_btn_grp {
-  width: auto;
-  gap: 10vw;
-  justify-content: space-between;
+  gap: 4rem;
   display: flex;
-  flex-direction: row;
 }
 @media (max-width: 1000px){
   .intro_wrap {
@@ -276,10 +282,7 @@
   .button_29 {
     padding: 0.7rem 2.1rem;
   }
-  .delivery_btn_grp {
-    width: auto;
-    gap: 1rem;
-  }
+  
 }
 @keyframes slideFromLeft {
   0% {

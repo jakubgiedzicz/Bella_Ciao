@@ -62,7 +62,7 @@ export default function ShopHeader() {
   }, [helper]);
   return (
     <nav className={styles.navbar}>
-      <Link href="/" passHref className={styles.logo}>
+      <Link href="/" passHref className={styles.logo} aria-label="Take to homepage">
         <Image src={Logo} alt="" width={48} height={48} />
       </Link>
       <div className={!visible ? styles.links : styles.hide}>

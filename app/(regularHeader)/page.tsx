@@ -28,7 +28,7 @@ export default function Home() {
               <h5>
                 Sounds interesting? Getting hungry? Get your order{" "}
                 <span className={styles.order_link_span}>
-                  <Link href="/order">here</Link>
+                  <Link href="/order" aria-label="Order page link">here</Link>
                 </span>{" "}
                 or click the button below to see our menu!
               </h5>
@@ -39,7 +39,7 @@ export default function Home() {
         <section className={styles.intro_extend}>
           <h1 className={styles.extend_title}>Discover Italian cuisine</h1>
           <div className={styles.intro_extend_flex}>
-            <Link href="#contact" passHref>
+            <Link href="#contact" passHref aria-label="Scroll to contact">
               <Image
                 src={sandwich_img}
                 alt="sandwich image"
@@ -47,7 +47,7 @@ export default function Home() {
               />
               <h3>Contact</h3>
             </Link>
-            <Link href="/menu" passHref>
+            <Link href="/menu" passHref aria-label="Link to menu page">
               <Image
                 src={pizza_img}
                 alt="pizza image"
@@ -55,7 +55,7 @@ export default function Home() {
               />
               <h3>Menu</h3>
             </Link>
-            <Link href="/order" passHref>
+            <Link href="/order" passHref aria-label="Link to order page">
               <Image
                 src={pasta_img}
                 alt="pizza image"
@@ -79,7 +79,7 @@ export default function Home() {
                 of Italian diaspora. It is one of the best-known and most
                 appreciated gastronomies worldwide.
               </h3>
-              <Link href="https://google.com" className={styles.desc_btn}>
+              <Link href="https://google.com" className={styles.desc_btn} aria-label="Wiki link">
                 Read More
               </Link>
             </div>
@@ -88,11 +88,9 @@ export default function Home() {
                 <div className={styles.gmap_canvas}>
                   <iframe
                     className={styles.gmap_iframe}
+                    title="Italy on Google Maps"
                     src="https://maps.google.com/maps?width=600&amp;height=500&amp;hl=en&amp;q=Italy&amp;t=p&amp;z=5&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
                   ></iframe>
-                  <Link href="https://capcuttemplate.org/">
-                    Capcuttemplate.org
-                  </Link>
                 </div>
               </div>
             </div>
@@ -109,9 +107,11 @@ export default function Home() {
                 blood from a stone,” vines have barely enough water to survive.
                 Grapes undiluted with water are packed with flavor and texture.
               </h3>
-              <Link href="https://google.com" className="desc-btn">
+              <div className={styles.button_container}>
+              <Link href="https://google.com" className={styles.desc_btn} aria-label="Shop link">
                 Shop Now
               </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -120,7 +120,7 @@ export default function Home() {
             <h2>Take it home</h2>
             <h1>We Deliver</h1>
             <div className={styles.delivery_btn_grp}>
-              <Link href="/order" passHref>
+              <Link href="/order" passHref aria-label="Order page link">
                 <button className={styles.button_29}>Delivery</button>
               </Link>
               <button className={styles.button_29}>Pickup</button>
