@@ -14,7 +14,17 @@ export default function CartButton({
     let storage: cartItemType[] = JSON.parse(
       sessionStorage.getItem("Bella-Ciao-cart")
     );
-    if (storage.find((e) => e.id === props._id)) {
+    if (!storage) {
+      storage = []
+      storage.push({
+        id: props._id,
+        link: props.link,
+        name: props.name,
+        price: +props.price,
+        quantity: q,
+      });
+      sessionStorage.setItem("Bella-Ciao-cart", JSON.stringify(storage));
+    } else if (storage.find((e) => e.id === props._id)) {
       const newStorage = storage.map((i) => {
         if (i.id === props._id) {
           return {
